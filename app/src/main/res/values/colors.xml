@@ -10,6 +10,11 @@
     <color name="_74D98E">#95E2A9</color>
     <color name="line">#eaeaea</color>
     <color name="btn_pressed_color">#4ebbbc</color>
+    <color name="gray">#979797</color>
+    <color name="_eeeeee">#eeeeee</color>
+    <color name="white">#ffffff</color>
+    <color name="_959595">#959595</color>
+    <color name="_464646">#464646</color>
 
 
 </resources>

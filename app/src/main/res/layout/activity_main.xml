@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_swipe_refresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/mainLayout"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.qianmo.jinxiaocun.fu.widget.TabContainerView
+        android:id="@+id/tab_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <com.qianmo.jinxiaocun.fu.widget.TabContainerView
-            android:id="@+id/tab_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:divideLineColor="@android:color/darker_gray"
-            app:divideLineHeight="0.3dp"
-            app:drawablePadding="1dp"
-            app:iconHeight="24dp"
-            app:iconWidth="24dp"
-            app:selectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@android:color/darker_gray"
-            app:tabTextSize="12sp" />
+        app:divideLineColor="@android:color/darker_gray"
+        app:divideLineHeight="0.3dp"
+        app:drawablePadding="1dp"
+        app:iconHeight="24dp"
+        app:iconWidth="24dp"
+        app:selectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/gray"
+        app:tabTextSize="12sp" />
 
-    </LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
+

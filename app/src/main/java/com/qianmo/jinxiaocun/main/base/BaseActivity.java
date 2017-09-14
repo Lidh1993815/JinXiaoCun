@@ -237,6 +237,8 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void setupSwipeRefresh(SwipeRefreshLayout swipeRefreshLayout) {
         //设置刷新时动画的颜色，可以设置4个
         if (swipeRefreshLayout != null) {
+
+            swipeRefreshLayout.setDistanceToTriggerSync(DPUtils.dip2px(this,40));
             //设置刷新突变距离顶部的距离
             swipeRefreshLayout.setProgressViewOffset(false, 0, DPUtils.dip2px(this,48));
             //设置刷新圈圈的颜色

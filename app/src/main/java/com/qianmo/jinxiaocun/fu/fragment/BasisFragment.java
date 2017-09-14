@@ -1,6 +1,5 @@
 package com.qianmo.jinxiaocun.fu.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +12,12 @@ import com.qianmo.jinxiaocun.R;
 /**
  * Created by chengxi on 17/4/26.
  */
-public class TabFragment1 extends Fragment {
-
+public class BasisFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-       return inflater.inflate(R.layout.fragment_tab_1, null);
+        return inflater.inflate(R.layout.fragment_basis, null);
 
     }
 }

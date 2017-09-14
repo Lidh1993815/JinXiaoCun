@@ -14,5 +14,35 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">#f5f5f5</item>
     </style>
+    <!--首页通知条目的style-->
+    <style name="HomeNotifyLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:minHeight">@dimen/_40dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <!--首页文字的style-->
+    <style name="HomeNotifyText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/_15dp</item>
+        <item name="android:textColor">@color/_959595</item>
+    </style>
+    <!--首页小红点的样式-->
+    <style name="HomeRedPoint">
+        <item name="android:layout_width">@dimen/_15dp</item>
+        <item name="android:layout_height">@dimen/_15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/zhang_shape_red_point</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:text">1</item>
+        <item name="android:layout_marginLeft">@dimen/_10dp</item>
+        <item name="android:textSize">@dimen/_10sp</item>
 
+    </style>
 </resources>

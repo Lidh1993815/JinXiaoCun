@@ -45,14 +45,20 @@ public class MainViewAdapter extends BaseAdapter {
         return fragmentArray;
     }
 
+    /**
+     * @return 设置选中时的图标
+     */
     @Override
     public int[] getIconImageArray() {
-        return new int[] {R.drawable.home_icon_unselected,R.drawable.jiaoyi_icon_unselected};
+        return new int[] {R.mipmap.huazhuan_unselect,R.mipmap.jichu_unselect};
     }
 
+    /**
+     * @return设置未选中时的图标
+     */
     @Override
     public int[] getSelectedIconImageArray() {
-        return new int[] {R.drawable.home_icon_selected,R.drawable.jiaoyi_icon_selected};
+        return new int[] {R.mipmap.huazhuan_select,R.mipmap.jichu_select};
     }
 
     @Override

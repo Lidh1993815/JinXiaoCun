@@ -6,4 +6,8 @@
     <string name="account">帐号：</string>
     <string name="password">密码：</string>
     <string name="login">登录</string>
+    <string name="task_notify">任务通知</string>
+    <string name="approval">审批通知</string>
+    <string name="alarm_notify">报警通知</string>
+    <string name="basis_app">基础应用</string>
 </resources>

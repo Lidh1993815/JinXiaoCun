@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_eeeeee"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/task_notify_layout"
+            style="@style/HomeNotifyLayout">
+
+            <TextView
+                style="@style/HomeNotifyText"
+                android:text="@string/task_notify" />
+
+            <TextView style="@style/HomeRedPoint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/approval_notify_layout"
+            style="@style/HomeNotifyLayout"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/HomeNotifyText"
+                android:text="@string/approval" />
+
+            <TextView style="@style/HomeRedPoint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/alarm_notify_layout"
+            style="@style/HomeNotifyLayout"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/HomeNotifyText"
+                android:text="@string/alarm_notify" />
+
+            <TextView style="@style/HomeRedPoint" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/HomeNotifyLayout"
+            android:layout_marginTop="@dimen/_8dp">
+
+            <TextView
+                style="@style/HomeNotifyText"
+                android:text="@string/basis_app" />
+        </LinearLayout>
+        <GridView
+            android:layout_width="match_parent"
+            android:numColumns="4"
+            android:verticalSpacing="@dimen/_1dp"
+            android:horizontalSpacing="@dimen/_1dp"
+            android:layout_height="wrap_content">
+
+        </GridView>
+    </LinearLayout>
+
+
+</android.support.v4.widget.SwipeRefreshLayout>

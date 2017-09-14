@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.main.utils.DPUtils;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 import com.qianmo.jinxiaocun.main.utils.ZhUtils;
 import com.qianmo.jinxiaocun.main.view.KProgressHUD;
@@ -190,7 +191,17 @@ public abstract class BaseFragment extends Fragment {
             hud.dismiss();
         }
     }
+    //设置SwipeRefreshLayout
+    protected void setupSwipeRefresh(SwipeRefreshLayout swipeRefreshLayout) {
+        //设置刷新时动画的颜色，可以设置4个
+        if (swipeRefreshLayout != null) {
 
+            //设置刷新突变距离顶部的距离
+            swipeRefreshLayout.setProgressViewOffset(false, 0, DPUtils.dip2px(getContext(),48));
+            //设置刷新圈圈的颜色
+            swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        }
+    }
     public void showSwipeRefresh(final SwipeRefreshLayout swipeRefreshLayout) {
         swipeRefreshLayout.post(new Runnable() {
             @Override
