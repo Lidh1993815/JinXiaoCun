@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JinXiaoCun</string>
+    <string name="net_error">当前网络不可用，请检查您的网络设置</string>
+    <string name="please_input_account">请输入帐号</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="account">帐号：</string>
+    <string name="password">密码：</string>
+    <string name="login">登录</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--进度条加载完成后才显示界面-->
+    <declare-styleable name="ProgressLayout">
+        <attr name="progressBackground" format="color" />
+        <attr name="progress" format="boolean" />
+    </declare-styleable>
+
+    <!--app菜单-->
+    <declare-styleable name="MainMenuItemView">
+        <attr name="menuSelectedImage" format="reference" />
+        <attr name="menuUnselectedImage" format="reference" />
+        <attr name="menuText" format="string" />
+        <attr name="menuSelectedColor" format="color"></attr>
+        <attr name="menuUnselectedColor" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="TabContainerViewStyle">
+        <attr name="tabTextSize" format="dimension" />
+        <attr name="tabTextColor" format="color" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="drawablePadding" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
+        <attr name="iconWidth" format="dimension" />
+        <attr name="divideLineColor" format="color" />
+        <attr name="divideLineHeight" format="dimension" />
+    </declare-styleable>
+    <!--  导航栏头部属性 -->
+    <declare-styleable name="MyToolBar">
+        <attr name="leftBtnIcon" format="reference" />
+        <attr name="rightBtnIcon" format="reference" />
+        <attr name="leftText" format="string" />
+        <attr name="rightText" format="string" />
+        <attr name="titleText" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="MyOccupy">
+        <attr name="imgBtnIcon" format="reference" />
+        <attr name="textText" format="string" />
+        <attr name="commitText" format="string" />
+    </declare-styleable>
+</resources>
