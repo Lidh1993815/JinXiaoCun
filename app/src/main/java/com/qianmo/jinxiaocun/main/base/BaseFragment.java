@@ -1,6 +1,7 @@
 package com.qianmo.jinxiaocun.main.base;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -235,30 +236,15 @@ public abstract class BaseFragment extends Fragment {
         return requestView(inflater, layoutId, 0);
     }
 
-    /*@TargetApi(19)
-    public void initWindow() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
+    protected void startActivity(Class<?> cls, boolean isFinish) {
+        startActivity(new Intent(getContext(),cls));
+        if (isFinish) {
+            getActivity().finish();
         }
-        //为状态栏着色
-        SystemBarTintManager tintManager = new SystemBarTintManager(getActivity());
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(android.R.color.transparent);
     }
-
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getActivity().getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }*/
+    protected void startActivity(Class<?> cls) {
+        startActivity(cls,false);
+    }
 
     public abstract void requestInit();
 

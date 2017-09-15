@@ -7,11 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.utils.DisplayHelper;
 
 
 /**
@@ -210,6 +212,9 @@ public class MyToolBar extends LinearLayout {
                     .findViewById(R.id.toolbar_leftLayout);
             rightLayout = (LinearLayout) mView
                     .findViewById(R.id.toolbar_rightLayout);
+            //设置toolbar的高度
+            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayHelper.getActionBarHeight(getContext()));
+            mView.setLayoutParams(params);
         }
     }
 
@@ -300,6 +305,4 @@ public class MyToolBar extends LinearLayout {
             leftLayout.setVisibility(INVISIBLE);
         }
     }
-
-
 }

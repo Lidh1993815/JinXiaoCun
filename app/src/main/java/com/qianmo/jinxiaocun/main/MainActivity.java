@@ -11,7 +11,7 @@ import com.qianmo.jinxiaocun.fu.listener.OnTabSelectedListener;
 import com.qianmo.jinxiaocun.fu.widget.Tab;
 import com.qianmo.jinxiaocun.fu.widget.TabContainerView;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
-import com.qianmo.jinxiaocun.main.base.MyToolBar;
+import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,10 +20,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tab_container)
     TabContainerView tabContainerView;
     private static final String TAG = "MainActivity";
+    private long mExitTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, -1, "首页", "");
         setContentView(requestView(R.layout.activity_main));
         ButterKnife.bind(this);
         initView();
@@ -53,4 +54,16 @@ public class MainActivity extends BaseActivity {
     public void requestInit() {
 
     }
+    
+    //监听返回按键
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            ToastUtils.MyToast(getApplicationContext(), "再按一次退出应用");
+            mExitTime = System.currentTimeMillis();
+        } else {
+            finish();
+        }
+    }
+
 }

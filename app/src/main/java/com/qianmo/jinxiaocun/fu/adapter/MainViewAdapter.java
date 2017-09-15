@@ -37,7 +37,7 @@ public class MainViewAdapter extends BaseAdapter {
 
     @Override
     public String[] getTextArray() {
-        return new String[] {"首页", "交易", };
+        return new String[] {"首页", "基础", };
     }
 
     @Override

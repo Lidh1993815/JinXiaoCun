@@ -2,6 +2,7 @@ package com.qianmo.jinxiaocun.main.base;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -238,7 +239,6 @@ public abstract class BaseActivity extends FragmentActivity {
         //设置刷新时动画的颜色，可以设置4个
         if (swipeRefreshLayout != null) {
 
-            swipeRefreshLayout.setDistanceToTriggerSync(DPUtils.dip2px(this,40));
             //设置刷新突变距离顶部的距离
             swipeRefreshLayout.setProgressViewOffset(false, 0, DPUtils.dip2px(this,48));
             //设置刷新圈圈的颜色
@@ -270,9 +270,9 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullScreen();
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.init();
+
     }
 
     private void setFullScreen() {
@@ -352,5 +352,15 @@ public abstract class BaseActivity extends FragmentActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, time);
+    }
+
+    protected void startActivity(Class<?> cls, boolean isFinish) {
+        startActivity(new Intent(this,cls));
+        if (isFinish) {
+            this.finish();
+        }
+    }
+    protected void startActivity(Class<?> cls) {
+        startActivity(cls,true);
     }
 }

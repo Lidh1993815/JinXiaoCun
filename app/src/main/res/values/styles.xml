@@ -18,12 +18,14 @@
     <style name="HomeNotifyLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/btn_white_ripple</item>
         <item name="android:minHeight">@dimen/_40dp</item>
         <item name="android:orientation">horizontal</item>
     </style>
     <!--首页文字的style-->
     <style name="HomeNotifyText">
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/_15sp</item>
@@ -34,6 +36,7 @@
     </style>
     <!--首页小红点的样式-->
     <style name="HomeRedPoint">
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_width">@dimen/_15dp</item>
         <item name="android:layout_height">@dimen/_15dp</item>
         <item name="android:gravity">center</item>
@@ -43,6 +46,14 @@
         <item name="android:text">1</item>
         <item name="android:layout_marginLeft">@dimen/_10dp</item>
         <item name="android:textSize">@dimen/_10sp</item>
-
+    </style>
+    <!--首页更多箭头的样式-->
+    <style name="HomeMoreImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@mipmap/youjiant</item>
+        <item name="android:layout_marginRight">@dimen/_15dp</item>
     </style>
 </resources>

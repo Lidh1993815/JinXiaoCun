@@ -1,68 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="false">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/_eeeeee"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/task_notify_layout"
             style="@style/HomeNotifyLayout">
 
             <TextView
+                android:id="@+id/task_text"
                 style="@style/HomeNotifyText"
                 android:text="@string/task_notify" />
 
-            <TextView style="@style/HomeRedPoint" />
-        </LinearLayout>
+            <TextView
+                style="@style/HomeRedPoint"
+                android:layout_toEndOf="@id/task_text"
+                android:layout_toRightOf="@id/task_text" />
 
-        <LinearLayout
+            <ImageView style="@style/HomeMoreImage" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/approval_notify_layout"
             style="@style/HomeNotifyLayout"
             android:layout_marginTop="1dp">
 
             <TextView
+                android:id="@+id/approval_text"
                 style="@style/HomeNotifyText"
                 android:text="@string/approval" />
 
-            <TextView style="@style/HomeRedPoint" />
-        </LinearLayout>
+            <TextView
+                style="@style/HomeRedPoint"
+                android:layout_toEndOf="@id/approval_text"
+                android:layout_toRightOf="@id/approval_text" />
 
-        <LinearLayout
+            <ImageView style="@style/HomeMoreImage" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/alarm_notify_layout"
             style="@style/HomeNotifyLayout"
             android:layout_marginTop="1dp">
 
             <TextView
+                android:id="@+id/alarm_text"
                 style="@style/HomeNotifyText"
                 android:text="@string/alarm_notify" />
 
-            <TextView style="@style/HomeRedPoint" />
-        </LinearLayout>
+            <TextView
+                style="@style/HomeRedPoint"
+
+                android:layout_toEndOf="@id/alarm_text"
+                android:layout_toRightOf="@id/alarm_text" />
+
+            <ImageView style="@style/HomeMoreImage" />
+        </RelativeLayout>
 
         <LinearLayout
             style="@style/HomeNotifyLayout"
-            android:layout_marginTop="@dimen/_8dp">
+            android:layout_marginTop="@dimen/_8dp"
+            android:clickable="false">
 
             <TextView
                 style="@style/HomeNotifyText"
                 android:text="@string/basis_app" />
         </LinearLayout>
-        <GridView
+
+        <com.qianmo.jinxiaocun.fu.widget.MyGridView
+            android:id="@+id/gv_home"
             android:layout_width="match_parent"
-            android:numColumns="4"
-            android:verticalSpacing="@dimen/_1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1dp"
             android:horizontalSpacing="@dimen/_1dp"
-            android:layout_height="wrap_content">
-
-        </GridView>
+            android:scrollbars="none"
+            android:numColumns="4"
+            android:verticalSpacing="@dimen/_1dp" />
     </LinearLayout>
+    </ScrollView>
 
-
-</android.support.v4.widget.SwipeRefreshLayout>
+</com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout>
