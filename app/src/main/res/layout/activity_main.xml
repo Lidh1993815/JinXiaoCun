@@ -12,14 +12,15 @@
         android:id="@+id/tab_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:divideLineColor="@android:color/darker_gray"
-        app:divideLineHeight="0.3dp"
+        app:divideLineColor="#d7d7d7"
+        app:divideLineHeight="1dp"
         app:drawablePadding="1dp"
+        android:background="@color/white"
         app:iconHeight="24dp"
         app:iconWidth="24dp"
         app:selectedTextColor="@color/colorPrimary"
         app:tabTextColor="@color/gray"
-        app:tabTextSize="12sp" />
+        app:tabTextSize="10sp" />
 
 </LinearLayout>
 

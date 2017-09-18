@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:minHeight="@dimen/_105dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_alarm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginTop="@dimen/dp_18"
+        android:text="化妆品名称"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_warehouse_count"
+            style="@style/AlarmContentTitle"
+            android:text="仓库：30" />
+
+        <TextView
+            android:id="@+id/tv_warehouse_detail"
+            style="@style/AlarmContentDetail"
+            android:text="(低于最低库存销售天数2)" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_sell_count"
+            style="@style/AlarmContentTitle"
+            android:text="销售数量：30" />
+
+        <TextView
+            android:id="@+id/tv_sell_detail"
+            style="@style/AlarmContentDetail"
+            android:text="(本月未销售)" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_is_inventory"
+
+            style="@style/AlarmContentTitle"
+            android:text="是否盘点" />
+
+        <TextView
+            android:id="@+id/tv_inventory_detail"
+            style="@style/AlarmContentDetail"
+            android:text="(本月未盘点)" />
+    </LinearLayout>
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
+import com.github.jdsjlzx.recyclerview.LuRecyclerView;
+import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.gyf.barlibrary.ImmersionBar;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.utils.DisplayHelper;
 import com.qianmo.jinxiaocun.main.application.MyApplication;
 import com.qianmo.jinxiaocun.main.utils.DPUtils;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
@@ -89,7 +94,7 @@ public abstract class BaseActivity extends FragmentActivity {
      * @param type 占位图类型 NET_ERROR，DATA_EMPTY
      */
     public void changePlaceHolderLayoutByType(int type, int imageResourceId, String tips, String button) {
-        if (occupying!=null) {
+        if (occupying != null) {
             changeSimpleLayout(0);
             switch (type) {
                 case NET_ERROR:
@@ -143,6 +148,7 @@ public abstract class BaseActivity extends FragmentActivity {
         if (!networkConnected)
             ToastUtils.MyToast(this, R.string.net_error);
     }
+
     /**
      * @param layoutId
      * @param type     1代表无占位图，0代表有展位图
@@ -179,11 +185,11 @@ public abstract class BaseActivity extends FragmentActivity {
                 vLayout, false);
         if (toolBar != null) {
             LinearLayout linearLayout = new LinearLayout(this);
-            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ZhUtils.getStatusBarHeight(this)));
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayHelper.getStatusBarHeight(this)));
             linearLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
             vLayout.addView(toolBar, 0);
             LinearLayout line = new LinearLayout(this);
-            line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ZhUtils.DimenTrans.dip2px(this,1)));
+            line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DisplayHelper.dp2px(this, 1)));
             line.setBackgroundResource(R.color.line);
             vLayout.addView(line);//标题栏下面的横线
             vLayout.addView(linearLayout, 0);//添加状态栏
@@ -221,11 +227,12 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     public void dismissBlackDialog() {
-        if (hud != null&&hud.isShowing()) {
+        if (hud != null && hud.isShowing()) {
             hud.dismiss();
         }
     }
-//XML布局中有SwipeRefreshLayout，让SwipeRefreshLayout刷新
+
+    //XML布局中有SwipeRefreshLayout，让SwipeRefreshLayout刷新
     public void showSwipeRefresh(final SwipeRefreshLayout swipeRefreshLayout) {
         swipeRefreshLayout.post(new Runnable() {
             @Override
@@ -240,7 +247,7 @@ public abstract class BaseActivity extends FragmentActivity {
         if (swipeRefreshLayout != null) {
 
             //设置刷新突变距离顶部的距离
-            swipeRefreshLayout.setProgressViewOffset(false, 0, DPUtils.dip2px(this,48));
+            swipeRefreshLayout.setProgressViewOffset(false, 0, DPUtils.dip2px(this, 48));
             //设置刷新圈圈的颜色
             swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         }
@@ -355,12 +362,40 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected void startActivity(Class<?> cls, boolean isFinish) {
-        startActivity(new Intent(this,cls));
+        startActivity(new Intent(this, cls));
         if (isFinish) {
             this.finish();
         }
     }
+
     protected void startActivity(Class<?> cls) {
-        startActivity(cls,true);
+        startActivity(cls, true);
+    }
+
+    //设置RecycleView
+    protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter) {
+        LuDividerDecoration divider = new LuDividerDecoration.Builder(this, luRecyclerViewAdapter)
+                .setHeight(R.dimen._6dp)
+                //  .setPadding(R.dimen.default_divider_padding)
+                .setColorResource(R.color._eeeeee)
+                .build();
+        this.setupRecycleView(recyclerView,luRecyclerViewAdapter,divider);
+    }
+
+    protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter, LuDividerDecoration divider) {
+        //setLayoutManager放在setAdapter之前配置
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(luRecyclerViewAdapter);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(divider);//设置RecycleView的分割线
+        recyclerView.setLoadMoreEnabled(true);
+        //如果使用了自动加载更多，就不要添加FooterView了
+        //mLuRecyclerViewAdapter.addFooterView(new SampleFooter(this));
+        //设置底部加载颜色
+        recyclerView.setFooterViewColor(R.color.colorPrimary, R.color.gray, R.color._eeeeee);
+        //设置底部加载文字提示
+        recyclerView.setFooterViewHint("拼命加载中", "别扯了，到底了！", "网络不给力啊，点击再试一次吧");
+
     }
 }

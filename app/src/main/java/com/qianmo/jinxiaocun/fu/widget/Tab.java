@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.listener.OnTabSelectedListener;
 import com.qianmo.jinxiaocun.main.utils.DPUtils;

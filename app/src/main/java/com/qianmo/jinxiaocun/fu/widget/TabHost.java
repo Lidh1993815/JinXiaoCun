@@ -38,7 +38,6 @@ public class TabHost {
         rootView = new LinearLayout(context);
         rootView.setOrientation(LinearLayout.HORIZONTAL);
         rootView.setId(R.id.linearlayout_tab);
-
         RelativeLayout.LayoutParams rootViewLp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rootViewLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         rootView.setLayoutParams(rootViewLp);

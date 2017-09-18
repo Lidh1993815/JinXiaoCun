@@ -26,7 +26,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginTop="17dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/text_radius_bg"
         android:layout_marginLeft="@dimen/_15dp"
         android:minWidth="@dimen/dp_60"
         android:minHeight="@dimen/dp_18"

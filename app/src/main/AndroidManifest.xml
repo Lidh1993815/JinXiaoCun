@@ -3,10 +3,12 @@
     package="com.qianmo.jinxiaocun">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".main.application.MyApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -20,7 +22,9 @@
         <activity android:name=".fu.activity.LoginActivity" />
         <activity android:name=".fu.activity.TaskNotifyActivity" />
         <activity android:name=".fu.activity.ApprovalNotifyActivity" />
-        <activity android:name=".fu.activity.AlarmNotifyActivity"></activity>
+        <activity android:name=".fu.activity.AlarmNotifyActivity" />
+        <activity android:name=".fu.activity.TaskActivity" />
+        <activity android:name=".fu.activity.TaskAddActivity" />
     </application>
 
 </manifest>

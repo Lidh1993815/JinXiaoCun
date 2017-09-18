@@ -7,7 +7,24 @@
     <string name="password">密码：</string>
     <string name="login">登录</string>
     <string name="task_notify">任务通知</string>
-    <string name="approval">审批通知</string>
+    <string name="approval">审批</string>
+    <string name="approval_notify">审批通知</string>
     <string name="alarm_notify">报警通知</string>
     <string name="basis_app">基础应用</string>
+    <string name="task">任务</string>
+    <string name="tour_shop_manager">寻店管理</string>
+    <string name="attendance">考勤</string>
+    <string name="promotion_manager">促销管理</string>
+    <string name="puchase_manager">进货管理</string>
+    <string name="sales_manager">销售管理</string>
+    <string name="inventory_manager">库存管理</string>
+    <string name="money_manager">钱流管理</string>
+    <string name="title">标题：</string>
+    <string name="please_input_title">请输入标题</string>
+    <string name="content">内容：</string>
+    <string name="please_input_task_content">请输入任务内容</string>
+    <string name="stop_time">截止时间：</string>
+    <string name="expected_bonus">预计奖金：</string>
+    <string name="expected_fine">预计罚款：</string>
+    <string name="executor">执行人</string>
 </resources>

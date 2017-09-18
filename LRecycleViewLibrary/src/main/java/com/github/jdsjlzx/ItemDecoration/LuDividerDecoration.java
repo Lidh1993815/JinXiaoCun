@@ -25,15 +25,17 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
     private int mLPadding;
     private int mRPadding;
     private Paint mPaint;
+    private boolean isHeaderDivide;
     private LuRecyclerViewAdapter mRecyclerViewAdapter;
-
-    private LuDividerDecoration(int height, int lPadding, int rPadding, int colour, LuRecyclerViewAdapter adapter) {
+    private static final String TAG = "LuDividerDecoration";
+    private LuDividerDecoration(int height, int lPadding, int rPadding, int colour, LuRecyclerViewAdapter adapter, boolean isHeaderDivide) {
         mHeight = height;
         mLPadding = lPadding;
         mRPadding = rPadding;
         mPaint = new Paint();
         mPaint.setColor(colour);
         mRecyclerViewAdapter = adapter;
+        this.isHeaderDivide = isHeaderDivide;
     }
 
 
@@ -47,8 +49,9 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         for (int i = 0; i < count; i++) {
             final View child = parent.getChildAt(i);
-            final int top = child.getBottom();
-            final int bottom = top + mHeight;
+            // final int top = child.getBottom();
+            final int top = child.getTop() - mHeight;
+            final int bottom = child.getTop();
 
             int left = child.getLeft() + mLPadding;
             int right = child.getRight() - mRPadding;
@@ -56,13 +59,22 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
             int position = parent.getChildAdapterPosition(child);
 
             c.save();
-
-            if (mRecyclerViewAdapter. isHeader(position) || mRecyclerViewAdapter.isFooter(position)) {
-                c.drawRect(0, 0, 0, 0, mPaint);
-            }else {
+            //if (isHeaderDivide) {
                 c.drawRect(left, top, right, bottom, mPaint);
-            }
+          //  } else {
+                /*if (position == 0) {
+                    c.drawRect(0, 0, 0, 0, mPaint);
+                } else {
+                    c.drawRect(left, top, right, bottom, mPaint);
+                }*/
+               /* if (mRecyclerViewAdapter.isHeader(position)) {
+                    Log.i(TAG, "onDrawOver: ");
+                  //  c.drawRect(0, 0, 0, 0, mPaint);
+                } else {
+                    c.drawRect(left, top, right, bottom, mPaint);
+                }*/
 
+          //  }
             c.restore();
         }
     }
@@ -73,12 +85,17 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildAdapterPosition(view);
-
-        if (mRecyclerViewAdapter. isHeader(position) || mRecyclerViewAdapter.isFooter(position)) {
-            outRect.bottom = mHeight;
+        if (isHeaderDivide) {
+            outRect.set(0, mHeight, 0, 0);
+        } else {
+            if (position == 0) {
+                outRect.set(0, 0, 0, 0);
+            } else {
+                outRect.set(0, mHeight, 0, 0);
+            }
         }
 
-        //outRect.set(0, 0, 0, mHeight);
+
 
     }
 
@@ -92,19 +109,28 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
         private int mLPadding;
         private int mRPadding;
         private int mColour;
+
+        public Builder setHeaderDivide(boolean headerDivide) {
+            isHeaderDivide = headerDivide;
+            return this;
+        }
+
+        private boolean isHeaderDivide;
         private LuRecyclerViewAdapter mRecyclerViewAdapter;
 
-        public Builder(Context context,LuRecyclerViewAdapter adapter) {
+        public Builder(Context context, LuRecyclerViewAdapter adapter) {
             mResources = context.getResources();
             mHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 1f, context.getResources().getDisplayMetrics());
             mLPadding = 0;
             mRPadding = 0;
             mColour = Color.BLACK;
             mRecyclerViewAdapter = adapter;
+            isHeaderDivide = false;
         }
 
         /**
          * Set the divider height in pixels
+         *
          * @param pixels height in pixels
          * @return the current instance of the Builder
          */
@@ -116,6 +142,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Set the divider height in dp
+         *
          * @param resource height resource id
          * @return the current instance of the Builder
          */
@@ -126,6 +153,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets both the left and right padding in pixels
+         *
          * @param pixels padding in pixels
          * @return the current instance of the Builder
          */
@@ -138,6 +166,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the left and right padding in dp
+         *
          * @param resource padding resource id
          * @return the current instance of the Builder
          */
@@ -149,6 +178,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the left padding in pixels
+         *
          * @param pixelPadding left padding in pixels
          * @return the current instance of the Builder
          */
@@ -160,6 +190,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the right padding in pixels
+         *
          * @param pixelPadding right padding in pixels
          * @return the current instance of the Builder
          */
@@ -171,6 +202,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the left padding in dp
+         *
          * @param resource left padding resource id
          * @return the current instance of the Builder
          */
@@ -182,6 +214,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the right padding in dp
+         *
          * @param resource right padding resource id
          * @return the current instance of the Builder
          */
@@ -193,6 +226,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the divider colour
+         *
          * @param resource the colour resource id
          * @return the current instance of the Builder
          */
@@ -203,6 +237,7 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Sets the divider colour
+         *
          * @param color the colour
          * @return the current instance of the Builder
          */
@@ -214,10 +249,11 @@ public class LuDividerDecoration extends RecyclerView.ItemDecoration {
 
         /**
          * Instantiates a DividerDecoration with the specified parameters.
+         *
          * @return a properly initialized DividerDecoration instance
          */
         public LuDividerDecoration build() {
-            return new LuDividerDecoration(mHeight, mLPadding, mRPadding, mColour,mRecyclerViewAdapter);
+            return new LuDividerDecoration(mHeight, mLPadding, mRPadding, mColour, mRecyclerViewAdapter, isHeaderDivide);
         }
     }
 }

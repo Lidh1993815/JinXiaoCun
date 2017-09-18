@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-    >
-
-    <TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        />
-</RelativeLayout>
+        android:minHeight="95dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="@dimen/dp_60"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_marginBottom="@dimen/dp_18"
+            android:layout_centerVertical="true"
+            app:placeholderImage="@mipmap/touxiang"
+            app:actualImageResource="@mipmap/touxiang"
+            app:roundAsCircle="true"
+            android:id="@+id/avatar"
+            android:layout_height="@dimen/dp_60" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="黄可山"
+            android:textSize="@dimen/_12sp"
+            android:textColor="@color/black"
+            android:id="@+id/name"
+            android:layout_toRightOf="@+id/avatar"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="@dimen/dp_18"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="门店01 促销员"
+            android:textSize="@dimen/_12sp"
+            android:textColor="@color/gray"
+            android:layout_below="@+id/name"
+            android:layout_toRightOf="@+id/avatar"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="@dimen/dp_18"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

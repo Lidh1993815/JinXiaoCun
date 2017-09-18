@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
-import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -139,32 +137,9 @@ public class TaskNotifyActivity extends BaseActivity implements SwipeRefreshLayo
 
     private void initView() {
         mTaskAdapter = new TaskAdapter(this);//实例化适配器
-        setupRecycleView();//创建RecycleView
-
-
-
-    }
-
-    private void setupRecycleView() {
-        //setLayoutManager放在setAdapter之前配置
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
-        mRecyclerView.setAdapter(mLuRecyclerViewAdapter);
+        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter);//创建RecycleView
 
-        LuDividerDecoration divider = new LuDividerDecoration.Builder(this, mLuRecyclerViewAdapter)
-                .setHeight(R.dimen._6dp)
-                //  .setPadding(R.dimen.default_divider_padding)
-                .setColorResource(R.color._eeeeee)
-                .build();
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(divider);//设置RecycleView的分割线
-        mRecyclerView.setLoadMoreEnabled(true);
-        //如果使用了自动加载更多，就不要添加FooterView了
-        //mLuRecyclerViewAdapter.addFooterView(new SampleFooter(this));
-        //设置底部加载颜色
-        mRecyclerView.setFooterViewColor(R.color.colorPrimary, R.color.gray, R.color._eeeeee);
-        //设置底部加载文字提示
-        mRecyclerView.setFooterViewHint("拼命加载中", "别扯了，到底了！", "网络不给力啊，点击再试一次吧");
     }
 
     @Override
@@ -182,6 +157,7 @@ public class TaskNotifyActivity extends BaseActivity implements SwipeRefreshLayo
         requestDataFromNet();
     }
 
+    //设置RecycleView的适配器
     private class TaskAdapter extends ListBaseAdapter<String> {
 
         public TaskAdapter(Context context) {

@@ -87,8 +87,8 @@ public class TabContainerView extends RelativeLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabContainerViewStyle);
         textColor = typedArray.getColor(R.styleable.TabContainerViewStyle_tabTextColor, Color.BLACK);
         selectedTextColor = typedArray.getColor(R.styleable.TabContainerViewStyle_selectedTextColor, Color.RED);
-        textSize = typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_tabTextSize, DPUtils.dip2px(context,14));
-        drawablePadding =typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_drawablePadding,DPUtils.dip2px(context,4));
+        textSize = typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_tabTextSize, DPUtils.dip2px(context,10));
+        drawablePadding =typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_drawablePadding,DPUtils.dip2px(context,0));
         iconHeight = typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_iconHeight,0);
         iconWidth = typedArray.getDimensionPixelSize(R.styleable.TabContainerViewStyle_iconWidth,0);
         divideLineColor = typedArray.getColor(R.styleable.TabContainerViewStyle_divideLineColor, Color.BLACK);

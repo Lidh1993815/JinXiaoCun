@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
+import com.github.jdsjlzx.recyclerview.LuRecyclerView;
+import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.main.utils.DPUtils;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
@@ -248,4 +252,30 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void requestInit();
 
+    //设置RecycleView
+    protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter) {
+        LuDividerDecoration divider = new LuDividerDecoration.Builder(getContext(), luRecyclerViewAdapter)
+                .setHeight(R.dimen._6dp)
+                //  .setPadding(R.dimen.default_divider_padding)
+                .setColorResource(R.color._eeeeee)
+                .build();
+        this.setupRecycleView(recyclerView,luRecyclerViewAdapter,divider);
+    }
+
+    protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter, LuDividerDecoration divider) {
+        //setLayoutManager放在setAdapter之前配置
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(luRecyclerViewAdapter);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(divider);//设置RecycleView的分割线
+        recyclerView.setLoadMoreEnabled(true);
+        //如果使用了自动加载更多，就不要添加FooterView了
+        //mLuRecyclerViewAdapter.addFooterView(new SampleFooter(this));
+        //设置底部加载颜色
+        recyclerView.setFooterViewColor(R.color.colorPrimary, R.color.gray, R.color._eeeeee);
+        //设置底部加载文字提示
+        recyclerView.setFooterViewHint("拼命加载中", "别扯了，到底了！", "网络不给力啊，点击再试一次吧");
+
+    }
 }

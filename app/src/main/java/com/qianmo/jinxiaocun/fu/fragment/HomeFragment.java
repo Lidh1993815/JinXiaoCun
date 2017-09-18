@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -14,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.activity.AlarmNotifyActivity;
+import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
+import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
@@ -26,7 +30,7 @@ import butterknife.Unbinder;
 /**
  * Created by chengxi on 17/4/26.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.main_swipe_refresh)
     SwipeRefreshLayout mainSwipeRefresh;
@@ -57,6 +61,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initEvent() {
+        gvHome.setOnItemClickListener(this);
     }
 
     private void initView() {
@@ -77,7 +82,7 @@ public class HomeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.task_notify_layout,R.id.approval_notify_layout,R.id.alarm_notify_layout})
+    @OnClick({R.id.task_notify_layout, R.id.approval_notify_layout, R.id.alarm_notify_layout})
     public void clickLayout(View view) {
         switch (view.getId()) {
             //任务通知
@@ -86,14 +91,49 @@ public class HomeFragment extends BaseFragment {
                 break;
             //审批通知
             case R.id.approval_notify_layout:
+                startActivity(ApprovalNotifyActivity.class);
                 break;
             //报警通知
             case R.id.alarm_notify_layout:
+                startActivity(AlarmNotifyActivity.class);
                 break;
         }
     }
 
-
+    //gridView中的item的点击事件
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        switch (position) {
+                //任务
+            case 0:
+                startActivity(TaskActivity.class);
+                break;
+                //寻店管理
+            case 1:
+                break;
+                //考勤
+            case 2:
+                break;
+                //促销管理
+            case 3:
+                break;
+                //审批
+            case 4:
+                break;
+                //进货管理
+            case 5:
+                break;
+                //销售管理
+            case 6:
+                break;
+                //库存管理
+            case 7:
+                break;
+                //钱流管理
+            case 8:
+                break;
+        }
+    }
 
 
     //GridView的Adapter
