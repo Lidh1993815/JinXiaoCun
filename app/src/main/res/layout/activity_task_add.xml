@@ -7,157 +7,166 @@
     android:background="@color/_eeeeee"
     android:orientation="vertical"
     tools:context="com.qianmo.jinxiaocun.fu.activity.TaskAddActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:minHeight="44dp">
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
         <TextView
             style="@style/AddTaskTitleStyle"
             android:layout_gravity="center_vertical"
-            android:text="@string/title"
-            />
+            android:text="@string/title" />
+
         <EditText
-            android:textColorHint="@color/_9f9f9f"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_14sp"
-            android:background="@null"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:background="@null"
             android:hint="@string/please_input_title"
-            android:layout_height="wrap_content" />
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_5dp"
-        android:minHeight="160dp">
+        android:background="@color/white"
+        android:minHeight="160dp"
+        android:orientation="horizontal">
+
         <TextView
             style="@style/AddTaskTitleStyle"
-            android:text="@string/content"
             android:layout_marginTop="@dimen/_16dp"
-            />
+            android:text="@string/content" />
+
         <EditText
-            android:textColorHint="@color/_9f9f9f"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_14sp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"
             android:background="@null"
-            android:lineSpacingMultiplier="1.2"
-            android:inputType="textMultiLine"
             android:hint="@string/please_input_task_content"
-            android:layout_height="wrap_content" />
+            android:inputType="textMultiLine"
+            android:lineSpacingMultiplier="1.2"
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_5dp"
-        android:minHeight="44dp">
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:text="@string/stop_time"
-            android:layout_gravity="center_vertical"
-            />
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="@string/stop_time"
-            android:textColor="@color/_9f9f9f"
+            style="@style/AddTaskTitleStyle"
             android:layout_gravity="center_vertical"
-            android:textSize="@dimen/_14sp"
+            android:text="@string/stop_time" />
+
+        <TextView
             android:id="@+id/tv_select_calendar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            />
+            android:layout_gravity="center_vertical"
+            android:text="@string/click_choose_date"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_5dp"
-        android:minHeight="44dp">
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
         <TextView
             style="@style/AddTaskTitleStyle"
-            android:text="@string/expected_bonus"
             android:layout_gravity="center_vertical"
-            />
+            android:text="@string/expected_bonus" />
 
-        <TextView
-            android:text="@string/stop_time"
-            android:textColor="@color/_9f9f9f"
-            android:layout_gravity="center_vertical"
-            android:textSize="@dimen/_14sp"
-            android:layout_height="wrap_content"
+        <EditText
             android:layout_width="wrap_content"
-            />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="@string/please_input_bonus"
+            android:textColorHint="@color/_9f9f9f"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_1dp"
-        android:minHeight="44dp">
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
         <TextView
             style="@style/AddTaskTitleStyle"
-            android:text="@string/expected_fine"
             android:layout_gravity="center_vertical"
-            />
+            android:text="@string/expected_fine" />
 
-        <TextView
-            android:text="@string/stop_time"
-            android:textColor="@color/_9f9f9f"
-            android:layout_gravity="center_vertical"
-            android:textSize="@dimen/_14sp"
-            android:layout_height="wrap_content"
+        <EditText
             android:layout_width="wrap_content"
-            />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColorHint="@color/_9f9f9f"
+
+            android:background="@null"
+            android:hint="@string/please_input_fine"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
         android:background="@color/white"
         android:minHeight="100dp"
-        android:layout_marginTop="@dimen/_5dp"
 
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 style="@style/AddTaskTitleStyle"
-                android:textSize="@dimen/_15sp"
-                android:text="@string/executor"
                 android:layout_marginTop="@dimen/_16dp"
-                />
+                android:text="@string/executor"
+                android:textSize="@dimen/_15sp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
                 android:text="(点击头像可删除)"
                 android:textColor="@color/_9f9f9f"
-                android:layout_marginTop="@dimen/_16dp"
-                android:textSize="@dimen/_12sp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content" />
+                android:textSize="@dimen/_12sp" />
 
         </LinearLayout>
+
         <ImageView
             android:layout_width="@dimen/_40dp"
-            android:layout_marginTop="@dimen/dp_14"
+            android:layout_height="@dimen/_40dp"
             android:layout_marginBottom="17dp"
             android:layout_marginLeft="@dimen/dp_14"
-            android:src="@mipmap/tianjia"
-            android:layout_height="@dimen/_40dp" />
+            android:layout_marginTop="@dimen/dp_14"
+            android:src="@mipmap/tianjia" />
     </LinearLayout>
 
 </LinearLayout>

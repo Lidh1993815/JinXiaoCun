@@ -86,10 +86,6 @@
         <item name="android:orientation">vertical</item>
     </style>
     <!--首页图文混排中文字的style-->
-    <!--
-                android:text="@string/tour_shop_manager"
-                android:textColor="@color/_464646"
-                android:textSize="@dimen/_12sp"-->
     <style name="HomeTextStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -109,5 +105,31 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_marginLeft">@dimen/dp_14</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--白色条目的样式-->
+    <style name="ItemHorizontalStyle">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">44dp</item>
+    </style>
+    <!--带图片的textView的样式-->
+    <style name="TextViewAndDrawable">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/_12sp</item>
+        <item name="android:textColor">@color/_010101</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:drawablePadding">@dimen/_12dp</item>
+        <item name="android:layout_marginLeft">@dimen/_15dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/light_gray</item>
+    </style>
+    <!-- 任务详情界面文字的style-->
+    <style name="TaskDetailText">
+        <item name="android:layout_marginTop">@dimen/_16dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_14sp</item>
     </style>
 </resources>

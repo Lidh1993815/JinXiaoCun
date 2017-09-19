@@ -9,6 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:minHeight="95dp"
+        android:id="@+id/personal_info_layout"
         android:background="@color/white"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
@@ -42,6 +43,70 @@
             android:layout_toRightOf="@+id/avatar"
             android:layout_marginTop="19dp"
             android:layout_marginLeft="@dimen/dp_18"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_5dp">
+        <TextView
+            style="@style/TextViewAndDrawable"
+            android:drawableLeft="@mipmap/gongys"
+            android:text="@string/supplier_management" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_1dp">
+        <TextView
+            style="@style/TextViewAndDrawable"
+            android:drawableLeft="@mipmap/kehu"
+            android:text="@string/client_manager" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_5dp">
+        <TextView
+            style="@style/TextViewAndDrawable"
+            android:drawableLeft="@mipmap/qiehuan"
+            android:text="@string/store_switch" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_5dp">
+        <TextView
+            style="@style/TextViewAndDrawable"
+            android:drawableLeft="@mipmap/gongzitiao"
+            android:text="@string/wages_section" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"

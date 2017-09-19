@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_eeeeee"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="95dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dp_18"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginTop="@dimen/dp_18"
+                app:actualImageResource="@mipmap/touxiang"
+                app:placeholderImage="@mipmap/touxiang"
+                app:roundAsCircle="true" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginTop="27dp"
+                android:layout_toRightOf="@+id/avatar"
+                android:text="黄可山"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginTop="19dp"
+                android:layout_toRightOf="@+id/avatar"
+                android:text="门店01 促销员"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextViewAndDrawable"
+                android:text="@string/date_of_birth" />
+
+            <TextView
+                style="@style/TextViewAndDrawable"
+                android:layout_centerInParent="true"
+                android:text="2017-8-25" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiant" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_identification"
+                style="@style/TextViewAndDrawable"
+                android:text="@string/identification_number" />
+
+            <EditText
+                style="@style/TextViewAndDrawable"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/tv_identification"
+                android:background="@null"
+                android:hint="@string/please_input_identification_number" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_contact_text"
+                style="@style/TextViewAndDrawable"
+                android:text="@string/contact_information" />
+
+            <EditText
+                style="@style/TextViewAndDrawable"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/tv_contact_text"
+                android:background="@null"
+                android:hint="@string/please_input_contact" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_emergency_contact"
+                style="@style/TextViewAndDrawable"
+                android:text="@string/emergency_contact" />
+
+            <EditText
+                style="@style/TextViewAndDrawable"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/tv_emergency_contact"
+                android:background="@null"
+                android:hint="@string/please_input_emergency_contact" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_emergency_contact_num"
+                style="@style/TextViewAndDrawable"
+                android:text="@string/emergency_contact_num" />
+
+            <EditText
+                style="@style/TextViewAndDrawable"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/tv_emergency_contact_num"
+                android:background="@null"
+                android:hint="@string/please_input_emergency_num" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_residential_address"
+                style="@style/TextViewAndDrawable"
+                android:text="@string/residential_address" />
+
+            <EditText
+                style="@style/TextViewAndDrawable"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/tv_residential_address"
+                android:background="@null"
+                android:hint="@string/please_input_residential_address" />
+        </RelativeLayout>
+
+        <android.support.constraint.ConstraintLayout
+            style="@style/ItemHorizontalStyle"
+            android:minHeight="190dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="372dp">
+
+            <TextView
+                android:id="@+id/tv_certification_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginTop="17dp"
+                android:text="@string/certification_information"
+                android:textColor="@color/_010101"
+                android:textSize="@dimen/_12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/indentification_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_22"
+                android:minHeight="99dp"
+                android:src="@mipmap/zhenmian"
+                app:layout_constraintBottom_toTopOf="@+id/upload_positive"
+                app:layout_constraintEnd_toEndOf="@+id/upload_positive"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/upload_positive"
+                app:layout_constraintTop_toBottomOf="@+id/tv_certification_information" />
+
+            <ImageView
+                android:id="@+id/indentification_negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_22"
+                android:minHeight="99dp"
+                android:src="@mipmap/fanmian"
+                app:layout_constraintBottom_toTopOf="@+id/upload_negative"
+                app:layout_constraintEnd_toEndOf="@+id/upload_negative"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/upload_negative"
+                app:layout_constraintTop_toBottomOf="@+id/tv_certification_information"/>
+
+
+            <TextView
+                android:id="@+id/upload_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/upload_btn_shape"
+                android:gravity="center"
+                android:minHeight="@dimen/dp_18"
+                android:minWidth="61dp"
+                android:text="@string/upload_positive"
+                android:textColor="@color/_ff4434"
+                android:textSize="@dimen/_8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/indentification_positive" />
+
+            <TextView
+                android:id="@+id/upload_negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/upload_btn_shape"
+                android:gravity="center"
+                android:minHeight="@dimen/dp_18"
+                android:minWidth="61dp"
+                android:text="@string/upload_negative"
+                android:textColor="@color/_ff4434"
+                android:textSize="@dimen/_8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/indentification_negative" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

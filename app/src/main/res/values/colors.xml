@@ -22,5 +22,7 @@
     <color name="mdtp_accent_color">#009688</color>
     <color name="mdtp_accent_color_dark">#00796b</color>
     <color name="_010101">#010101</color>
+    <color name="_ff4434">#ff4434</color>
+    <color name="btn_pressed_bg">#4ab2b3</color>
 
 </resources>

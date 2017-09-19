@@ -17,6 +17,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.activity.TaskDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
@@ -137,7 +138,7 @@ public class ApprovalNotifyFragment extends BaseFragment implements SwipeRefresh
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                    startActivity(TaskDetailActivity.class);
             }
 
         });
