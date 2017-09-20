@@ -25,8 +25,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TaskNotifyActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
-
+/**
+ * author : wizardev
+ * e-mail : wizarddev@163.com
+ * time   : 2017/09/20
+ * desc   :
+ * version: 1.0
+ */
+public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
     /**
      * 服务器端一共多少条数据
      */
@@ -58,7 +64,7 @@ public class TaskNotifyActivity extends BaseActivity implements SwipeRefreshLayo
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "任务通知", -1);
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "我发布的", -1);
         setContentView(requestView(R.layout.activity_task_notify));
         ButterKnife.bind(this);
         initData();//初始化数据

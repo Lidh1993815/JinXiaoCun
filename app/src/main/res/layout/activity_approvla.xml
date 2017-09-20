@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="@dimen/_80dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/btn_white_ripple"
+            android:id="@+id/my_approval_layout"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@mipmap/shengpi"
+                android:layout_marginTop="18dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/pending_approval"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/btn_white_ripple"
+
+            android:id="@+id/my_release_layout"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@mipmap/fabu"
+                android:layout_marginTop="18dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/i_started"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/_40dp"
+        android:text="通用模板"
+        android:textColor="@color/_959595"
+        android:paddingLeft="@dimen/_15dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:minHeight="95dp">
+
+        <com.qianmo.jinxiaocun.fu.widget.ImageAndText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:src="@mipmap/daka"
+            app:textMarginTop="11dp"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_marginBottom="17dp"
+            android:text="@string/make_up_card"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="@dimen/_1dp"
+            android:background="@color/_eeeeee"
+            android:layout_height="match_parent" />
+        <com.qianmo.jinxiaocun.fu.widget.ImageAndText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/qinjia"
+            app:textMarginTop="11dp"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_marginBottom="17dp"
+            android:text="@string/Leave"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="@dimen/_1dp"
+            android:background="@color/_eeeeee"
+            android:layout_height="match_parent" />
+        <com.qianmo.jinxiaocun.fu.widget.ImageAndText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/baoxiao"
+            app:textMarginTop="11dp"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_marginBottom="17dp"
+            android:text="@string/reim"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="@dimen/_1dp"
+            android:background="@color/_eeeeee"
+            android:layout_height="match_parent" />
+        <com.qianmo.jinxiaocun.fu.widget.ImageAndText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/wuliao"
+            app:textMarginTop="11dp"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_marginBottom="17dp"
+            android:text="@string/material"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

@@ -40,4 +40,14 @@
         <attr name="textText" format="string" />
         <attr name="commitText" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ImageAndText">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:text" />
+        <attr name="android:src" />
+        <attr name="imageMarginTop" format="dimension|reference"/>
+        <attr name="textMarginTop" format="dimension|reference" />
+        <attr name="textMarginBottom" format="dimension|reference" />
+    </declare-styleable>
 </resources>

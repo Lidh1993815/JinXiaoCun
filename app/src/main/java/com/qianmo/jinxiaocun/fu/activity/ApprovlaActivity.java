@@ -2,38 +2,43 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.qianmo.jinxiaocun.R;
-import com.qianmo.jinxiaocun.main.MainActivity;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
+import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class ApprovlaActivity extends BaseActivity {
 
-    @BindView(R.id.btn_login)
-    Button btnLogin;
+    @BindView(R.id.my_approval_layout)
+    LinearLayout myApprovalLayout;
+    @BindView(R.id.my_release_layout)
+    LinearLayout myReleaseLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "审批", -1);
+        setContentView(requestView(R.layout.activity_approvla));
         ButterKnife.bind(this);
     }
-    @OnClick({R.id.btn_login})
+
+    @OnClick({R.id.my_approval_layout, R.id.my_release_layout})
     public void cliclAction(View view) {
         switch (view.getId()) {
-            case R.id.btn_login:
-                startActivity(MainActivity.class);
+            case R.id.my_approval_layout:
+                startActivity(MyApprovalActivity.class, false);
                 break;
-           /* case R.id.my_release_layout:
+            case R.id.my_release_layout:
                 startActivity(MyReleaseActivity.class, false);
-                break;*/
+                break;
         }
     }
+
     @Override
     public void requestInit() {
 

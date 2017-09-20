@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.activity.AlarmNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
+import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
@@ -46,7 +47,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private int[] mImages = {R.mipmap.renwu, R.mipmap.xundian, R.mipmap.kaoq, R.mipmap.cuxiao,
             R.mipmap.shenpi, R.mipmap.jinhuo, R.mipmap.xiaoshou, R.mipmap.kucun,
             R.mipmap.qianliu};
-    private String[] titles = {"任务", "寻店管理", "考勤", "促销管理", "审批", "进货管理", "销售管理", "库存管理", "钱流管理"};
+    private String[] titles = {"任务", "巡店管理", "考勤", "促销管理", "审批", "进货管理", "销售管理", "库存管理", "钱流管理"};
 
     @Nullable
     @Override
@@ -119,6 +120,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 break;
                 //审批
             case 4:
+                startActivity(ApprovlaActivity.class);
                 break;
                 //进货管理
             case 5:

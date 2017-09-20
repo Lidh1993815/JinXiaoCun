@@ -57,4 +57,10 @@
     <string name="please_input_audit">请输入审核意见</string>
     <string name="bouns">奖金：</string>
     <string name="fine">罚款：</string>
+    <string name="pending_approval">待我审批</string>
+    <string name="i_started">我发起的</string>
+    <string name="make_up_card">补打卡</string>
+    <string name="Leave">请假</string>
+    <string name="reim">报销</string>
+    <string name="material">物料</string>
 </resources>

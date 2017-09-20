@@ -12,21 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+
+        <activity android:name=".fu.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fu.activity.LoginActivity" />
+        <activity android:name=".main.MainActivity" />
         <activity android:name=".fu.activity.TaskNotifyActivity" />
         <activity android:name=".fu.activity.ApprovalNotifyActivity" />
         <activity android:name=".fu.activity.AlarmNotifyActivity" />
         <activity android:name=".fu.activity.TaskActivity" />
         <activity android:name=".fu.activity.TaskAddActivity" />
         <activity android:name=".fu.activity.PersonalInfoActivity" />
-        <activity android:name=".fu.activity.TaskDetailActivity"></activity>
+        <activity android:name=".fu.activity.TaskDetailActivity" />
+        <activity android:name=".fu.activity.ApprovlaActivity" />
+        <activity android:name=".fu.activity.MyApprovalActivity" />
+        <activity android:name=".fu.activity.MyReleaseActivity"></activity>
     </application>
 
 </manifest>
