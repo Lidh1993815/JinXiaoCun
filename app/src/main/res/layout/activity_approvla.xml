@@ -82,7 +82,7 @@
         <com.qianmo.jinxiaocun.fu.widget.ImageAndText
             android:layout_width="0dp"
             android:layout_weight="1"
-
+            android:id="@+id/card_apply"
             android:src="@mipmap/daka"
             app:textMarginTop="11dp"
             android:layout_marginTop="@dimen/_22dp"
@@ -103,6 +103,7 @@
             android:layout_marginTop="@dimen/_22dp"
             android:layout_marginBottom="17dp"
             android:text="@string/Leave"
+            android:id="@+id/leave_apply"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
@@ -118,6 +119,7 @@
             android:layout_marginTop="@dimen/_22dp"
             android:layout_marginBottom="17dp"
             android:text="@string/reim"
+            android:id="@+id/reim_apply"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_height="wrap_content"/>
@@ -133,6 +135,7 @@
             android:layout_marginTop="@dimen/_22dp"
             android:layout_marginBottom="17dp"
             android:text="@string/material"
+            android:id="@+id/material_apply"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_height="wrap_content"/>

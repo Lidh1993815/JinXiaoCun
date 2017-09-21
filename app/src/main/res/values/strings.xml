@@ -63,4 +63,15 @@
     <string name="Leave">请假</string>
     <string name="reim">报销</string>
     <string name="material">物料</string>
+    <string name="card_time">补卡时间：</string>
+    <string name="plaese_choose_time">请选择补卡时间</string>
+    <string name="input_content">填写内容：</string>
+    <string name="please_input_reson">请输入原因</string>
+    <string name="approver">审批人</string>
+    <string name="card_apply_content">补卡内容：</string>
+    <string name="task_progress">任务进度</string>
+    <string name="start_time">开始时间：</string>
+    <string name="end_time">结束时间：</string>
+    <string name="leave_dyas">请假天数：</string>
+    <string name="leave_reson">请假事由：</string>
 </resources>

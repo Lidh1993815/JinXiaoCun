@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.PagerAdapter;
-import com.qianmo.jinxiaocun.fu.fragment.ApprovalNotifyFragment;
+import com.qianmo.jinxiaocun.fu.fragment.MyApprovalFragment;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 
 import butterknife.BindView;
@@ -82,8 +82,8 @@ public class MyApprovalActivity extends BaseActivity{
     //为viewPager添加fragment
     public void setupViewPager() {
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPageAdapter.addFragment(ApprovalNotifyFragment.newInstance(0), "待我审批的");
-        mPageAdapter.addFragment(ApprovalNotifyFragment.newInstance(1), "我已审批的");
+        mPageAdapter.addFragment(MyApprovalFragment.newInstance(0), "待我审批的");
+        mPageAdapter.addFragment(MyApprovalFragment.newInstance(1), "我已审批的");
         vpApproval.setAdapter(mPageAdapter);
     }
 }

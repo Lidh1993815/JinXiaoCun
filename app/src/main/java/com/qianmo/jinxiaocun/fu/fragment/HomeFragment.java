@@ -3,7 +3,6 @@ package com.qianmo.jinxiaocun.fu.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
+import com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -34,7 +34,7 @@ import butterknife.Unbinder;
 public class HomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.main_swipe_refresh)
-    SwipeRefreshLayout mainSwipeRefresh;
+    ForbiddenSwipeRefreshLayout mainSwipeRefresh;
     Unbinder unbinder;
     @BindView(R.id.gv_home)
     GridView gvHome;

@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".fu.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +29,10 @@
         <activity android:name=".fu.activity.TaskDetailActivity" />
         <activity android:name=".fu.activity.ApprovlaActivity" />
         <activity android:name=".fu.activity.MyApprovalActivity" />
-        <activity android:name=".fu.activity.MyReleaseActivity"></activity>
+        <activity android:name=".fu.activity.MyReleaseActivity" />
+        <activity android:name=".fu.activity.CardApplyActivity" />
+        <activity android:name=".fu.activity.CardDetailActivity"></activity>
+        <activity android:name=".fu.activity.LeaveApplyActivity"></activity>
     </application>
 
 </manifest>
