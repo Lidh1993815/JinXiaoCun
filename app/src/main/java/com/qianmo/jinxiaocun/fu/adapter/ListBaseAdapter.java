@@ -80,7 +80,6 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     public void remove(int position) {
         this.mDataList.remove(position);
         notifyItemRemoved(position);
-
         if(position != (getDataList().size())){ // 如果移除的是最后一个，忽略
             notifyItemRangeChanged(position,this.mDataList.size()-position);
         }

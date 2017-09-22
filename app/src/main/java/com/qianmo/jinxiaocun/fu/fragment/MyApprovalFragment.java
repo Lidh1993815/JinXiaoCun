@@ -18,6 +18,8 @@ import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.activity.CardDetailActivity;
+import com.qianmo.jinxiaocun.fu.activity.LeaveDetailActivity;
+import com.qianmo.jinxiaocun.fu.activity.ReimbursementDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
@@ -143,8 +145,12 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     startActivity(CardDetailActivity.class);
                 } else if (position == 1) {
                     //进入请假详情
+                    startActivity(LeaveDetailActivity.class);
+
                 }else if (position == 2) {
                     //进入报销详情
+                    startActivity(ReimbursementDetailActivity.class);
+
                 }else if (position == 3) {
                     //进入物料详情
                 }

@@ -57,11 +57,11 @@ public class ApprovlaActivity extends BaseActivity {
                 break;
                 //报销申请
             case R.id.reim_apply:
-                startActivity(MyReleaseActivity.class, false);
+                startActivity(ReimbursementActivity.class, false);
                 break;
                 //物料申请
             case R.id.material_apply:
-                startActivity(MyReleaseActivity.class, false);
+                startActivity(MaterialActivity.class, false);
                 break;
         }
     }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/reim_detail_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/_15dp"
+        android:text="报销明细（1）"
+        android:textColor="@color/_9f9f9f"
+        android:textSize="10sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/reim_money" />
+
+        <TextView
+            style="@style/AddTaskContentStyle"
+            android:id="@+id/tv_card_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="200"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/reim_type" />
+
+        <TextView
+            style="@style/AddTaskContentStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="报销单"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="21dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/charge_detail" />
+
+        <TextView
+            style="@style/AddTaskContentStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_14"
+            android:text="报销单报销报销单报销单报销单报销单报销单报销单报销单报销单报销单报销单单"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+</LinearLayout>

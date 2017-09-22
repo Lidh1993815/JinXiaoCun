@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="10sp"
+            android:id="@+id/material_detail_position"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="9sp"
+            android:id="@+id/tv_delete_action"
+            android:paddingRight="@dimen/_15dp"
+            android:layout_alignParentRight="true"
+            android:paddingTop="@dimen/_15dp"
+            android:text="删除"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:text="@string/material_name" />
+
+        <EditText
+            android:id="@+id/tv_card_time"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="@string/please_input_material_name"
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:layout_marginTop="@dimen/_1dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/num" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="@string/please_input_material_name"
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="44dp"
+        android:id="@+id/add_material_used"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_1dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_14sp"
+            android:layout_gravity="center_vertical"
+            android:text="+添加领用物品" />
+
+    </LinearLayout>
+</LinearLayout>
