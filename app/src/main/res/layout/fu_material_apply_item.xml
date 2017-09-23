@@ -37,15 +37,13 @@
 
         <TextView
             style="@style/AddTaskTitleStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/material_name" />
 
         <EditText
             android:id="@+id/tv_card_time"
-            android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@null"

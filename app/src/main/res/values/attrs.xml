@@ -50,4 +50,10 @@
         <attr name="textMarginTop" format="dimension|reference" />
         <attr name="textMarginBottom" format="dimension|reference" />
     </declare-styleable>
+
+    <declare-styleable name="SwipeMenuView">
+        <attr name="swipeEnable" format="boolean"/>
+        <attr name="ios" format="boolean"/>
+        <attr name="leftSwipe" format="boolean"/>
+    </declare-styleable>
 </resources>

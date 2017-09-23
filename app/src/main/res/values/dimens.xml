@@ -28,4 +28,5 @@
     <dimen name="timeline_item_offset_left">55dp</dimen>
     <dimen name="timeline_item_node_radius">19dp</dimen>
     <dimen name="_38dp">38dp</dimen>
+    <dimen name="item_height">60dp</dimen>
 </resources>

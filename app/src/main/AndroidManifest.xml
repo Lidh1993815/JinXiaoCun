@@ -36,7 +36,10 @@
         <activity android:name=".fu.activity.LeaveDetailActivity" />
         <activity android:name=".fu.activity.ReimbursementActivity" />
         <activity android:name=".fu.activity.ReimbursementDetailActivity" />
-        <activity android:name=".fu.activity.MaterialActivity"></activity>
+        <activity android:name=".fu.activity.MaterialActivity" />
+        <activity android:name=".fu.activity.MaterialApplyDetailActivity" />
+        <activity android:name=".fu.activity.TourShopManagerActivity"></activity>
+        <activity android:name=".fu.activity.TourTaskAddActivity"></activity>
     </application>
 
 </manifest>

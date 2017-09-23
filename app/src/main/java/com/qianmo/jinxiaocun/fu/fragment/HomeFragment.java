@@ -19,6 +19,7 @@ import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
+import com.qianmo.jinxiaocun.fu.activity.TourShopManagerActivity;
 import com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
@@ -105,33 +106,34 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
-                //任务
+            //任务
             case 0:
                 startActivity(TaskActivity.class);
                 break;
-                //寻店管理
+            //巡店管理
             case 1:
+                startActivity(TourShopManagerActivity.class);
                 break;
-                //考勤
+            //考勤
             case 2:
                 break;
-                //促销管理
+            //促销管理
             case 3:
                 break;
-                //审批
+            //审批
             case 4:
                 startActivity(ApprovlaActivity.class);
                 break;
-                //进货管理
+            //进货管理
             case 5:
                 break;
-                //销售管理
+            //销售管理
             case 6:
                 break;
-                //库存管理
+            //库存管理
             case 7:
                 break;
-                //钱流管理
+            //钱流管理
             case 8:
                 break;
         }

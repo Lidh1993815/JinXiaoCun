@@ -17,10 +17,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
-import com.qianmo.jinxiaocun.fu.activity.CardDetailActivity;
-import com.qianmo.jinxiaocun.fu.activity.LeaveDetailActivity;
-import com.qianmo.jinxiaocun.fu.activity.MaterialApplyDetailActivity;
-import com.qianmo.jinxiaocun.fu.activity.ReimbursementDetailActivity;
+import com.qianmo.jinxiaocun.fu.activity.TaskDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
@@ -39,7 +36,7 @@ import butterknife.Unbinder;
  * desc   :
  * version: 1.0
  */
-public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     /**
      * 服务器端一共多少条数据
      */
@@ -77,8 +74,8 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         }
     }
 
-    public static MyApprovalFragment newInstance(int status) {
-        MyApprovalFragment fragment = new MyApprovalFragment();
+    public static TourShopFragment newInstance(int status) {
+        TourShopFragment fragment = new TourShopFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("approvalStatus", status);
         fragment.setArguments(bundle);
@@ -141,22 +138,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (position == 0) {
-                    //进入打卡详情
-                    startActivity(CardDetailActivity.class);
-                } else if (position == 1) {
-                    //进入请假详情
-                    startActivity(LeaveDetailActivity.class);
-
-                }else if (position == 2) {
-                    //进入报销详情
-                    startActivity(ReimbursementDetailActivity.class);
-
-                }else if (position == 3) {
-                    //进入物料详情
-                    startActivity(MaterialApplyDetailActivity.class);
-
-                }
+                    startActivity(TaskDetailActivity.class);
             }
 
         });
@@ -201,6 +183,8 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         mCurrentCounter = 0;
         mSwipeRefreshLayout.setRefreshing(true);
         mRecyclerView.setRefreshing(true);//同时调用LuRecyclerView的setRefreshing方法
+        //  mTaskAdapter.setDataList(datas);
+        // dismissSwipeRefresh(mSwipeRefreshLayout,3000);
         requestDataFromNet();
     }
 
@@ -213,7 +197,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_task_recycle_item;
+            return R.layout.fu_tour_shop_item;
         }
 
         @Override

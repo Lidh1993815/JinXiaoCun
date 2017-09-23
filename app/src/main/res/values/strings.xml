@@ -12,7 +12,7 @@
     <string name="alarm_notify">报警通知</string>
     <string name="basis_app">基础应用</string>
     <string name="task">任务</string>
-    <string name="tour_shop_manager">寻店管理</string>
+    <string name="tour_shop_manager">巡店管理</string>
     <string name="attendance">考勤</string>
     <string name="promotion_manager">促销管理</string>
     <string name="puchase_manager">进货管理</string>
@@ -86,4 +86,7 @@
     <string name="num">数量：</string>
     <string name="receive_detail">领用详情：</string>
     <string name="detail_description">请输入物品领用详情说明</string>
+    <string name="tour_shop_inquire">巡店查询</string>
+    <string name="shop_name">门店名称</string>
+    <string name="my_tour">我的巡店</string>
 </resources>
