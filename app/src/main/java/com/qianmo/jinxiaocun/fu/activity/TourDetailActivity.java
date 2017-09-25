@@ -6,17 +6,13 @@ import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
-/**
- * 添加巡店任务界面
- */
-public class TourTaskAddActivity extends BaseActivity {
+public class TourDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "添加巡店任务", "完成");
-
-        setContentView(requestView(R.layout.activity_tour_task_add));
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "巡店查询详情", "完成");
+        setContentView(requestView(R.layout.activity_tour_detail));
     }
 
     @Override

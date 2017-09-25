@@ -17,9 +17,10 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
-import com.qianmo.jinxiaocun.fu.activity.TourDetailActivity;
+import com.qianmo.jinxiaocun.fu.activity.TaskDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.decoration.FullyLinearLayoutManager;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 
@@ -36,7 +37,7 @@ import butterknife.Unbinder;
  * desc   :
  * version: 1.0
  */
-public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MyCardRecordFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     /**
      * 服务器端一共多少条数据
      */
@@ -74,8 +75,8 @@ public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout
         }
     }
 
-    public static TourShopFragment newInstance(int status) {
-        TourShopFragment fragment = new TourShopFragment();
+    public static MyCardRecordFragment newInstance(int status) {
+        MyCardRecordFragment fragment = new MyCardRecordFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("approvalStatus", status);
         fragment.setArguments(bundle);
@@ -138,7 +139,7 @@ public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                    startActivity(TourDetailActivity.class);
+                    startActivity(TaskDetailActivity.class);
             }
 
         });
@@ -168,14 +169,28 @@ public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout
     private void initView() {
         mTaskAdapter = new TaskAdapter(getContext());//实例化适配器
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
+
         LuDividerDecoration divider = new LuDividerDecoration.Builder(getContext(), mLuRecyclerViewAdapter)
                 .setHeight(R.dimen._6dp)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
-        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,divider);//创建RecycleView
+     //   setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,divider);//创建RecycleView
 
+        //setLayoutManager放在setAdapter之前配置
+        mRecyclerView.setLayoutManager(new FullyLinearLayoutManager(getContext()));
+        mRecyclerView.setAdapter(mLuRecyclerViewAdapter);
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(divider);//设置RecycleView的分割线
+        mRecyclerView.setLoadMoreEnabled(true);
+        //如果使用了自动加载更多，就不要添加FooterView了
+        //mLuRecyclerViewAdapter.addFooterView(new SampleFooter(this));
+        //设置底部加载颜色
+        mRecyclerView.setFooterViewColor(R.color.colorPrimary, R.color.gray, R.color._eeeeee);
+        //设置底部加载文字提示
+        mRecyclerView.setFooterViewHint("拼命加载中", "别扯了，到底了！", "网络不给力啊，点击再试一次吧");
     }
 
     @Override
@@ -197,7 +212,7 @@ public class TourShopFragment extends BaseFragment implements SwipeRefreshLayout
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_tour_shop_item;
+            return R.layout.fu_task_recycle_item;
         }
 
         @Override

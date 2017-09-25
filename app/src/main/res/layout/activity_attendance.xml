@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.AttendanceActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:minHeight="70dp">
+        <TextView
+            android:layout_width="@dimen/_38dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginLeft="@dimen/_16dp"
+            android:layout_marginBottom="@dimen/_16dp"
+            android:background="@mipmap/touxiangy"
+            android:text="克山"
+            android:id="@+id/attendance_name_bg"
+            android:textSize="@dimen/_13sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/_38dp" />
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_toRightOf="@+id/attendance_name_bg"
+            android:layout_marginLeft="@dimen/_16dp"
+            android:id="@+id/attendance_name"
+            android:text="黄克山"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:textColor="@color/_8c969f"
+            android:textSize="@dimen/_12sp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:layout_toRightOf="@+id/attendance_name_bg"
+            android:layout_below="@+id/attendance_name"
+            android:layout_marginLeft="@dimen/_16dp"
+            android:text="销售部门"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/punch_card_record"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5dp"
+            android:textColor="@color/black"
+            android:paddingLeft="46dp"
+            android:gravity="center_vertical"
+            android:text="上班时间 9:00"
+            android:minHeight="50dp"
+            android:layout_height="wrap_content" />
+        <com.qianmo.jinxiaocun.fu.widget.AttendanceButton
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+
+            android:layout_height="wrap_content"
+            app:content_text="上班打卡"
+            app:circle_color="@color/colorPrimary"
+            android:id="@+id/attendance_button"
+            app:current_time_text_size="@dimen/_18sp"
+            app:content_text_size="24sp"
+            app:radius="80dp"
+            app:ring_bg_color="#afe1e1"
+            app:narrow_down="10dp"
+            app:ring_size="10dp"
+            app:space="1dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

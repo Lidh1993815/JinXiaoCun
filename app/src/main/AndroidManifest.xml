@@ -38,8 +38,11 @@
         <activity android:name=".fu.activity.ReimbursementDetailActivity" />
         <activity android:name=".fu.activity.MaterialActivity" />
         <activity android:name=".fu.activity.MaterialApplyDetailActivity" />
-        <activity android:name=".fu.activity.TourShopManagerActivity"></activity>
-        <activity android:name=".fu.activity.TourTaskAddActivity"></activity>
+        <activity android:name=".fu.activity.TourShopManagerActivity" />
+        <activity android:name=".fu.activity.TourTaskAddActivity" />
+        <activity android:name=".fu.activity.TourDetailActivity" />
+        <activity android:name=".fu.activity.AttendanceActivity" />
+        <activity android:name=".fu.activity.CardRecordActivity"></activity>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.activity.AlarmNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
+import com.qianmo.jinxiaocun.fu.activity.AttendanceActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.TourShopManagerActivity;
@@ -116,6 +117,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 break;
             //考勤
             case 2:
+                startActivity(AttendanceActivity.class);
+
                 break;
             //促销管理
             case 3:

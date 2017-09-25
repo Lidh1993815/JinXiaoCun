@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+    android:scrollbars="none"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.TourDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_eeeeee"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="门店名称" />
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="巡店人员："
+                android:textColor="@color/_8c969f" />
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="巡店人员电话："
+                android:textColor="@color/_8c969f" />
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_marginTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_12dp"
+                android:text="汇报给："
+                android:textColor="@color/_8c969f" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="签到时间：" />
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="签退时间："
+                android:textColor="@color/_8c969f" />
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_marginTop="@dimen/_16dp"
+                android:paddingBottom="@dimen/_12dp"
+                android:text="时常："
+                android:textColor="@color/_8c969f" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:background="@color/white"
+            android:minHeight="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_gravity="center_vertical"
+                android:text="@string/current_time" />
+
+            <TextView
+                android:id="@+id/tv_leave_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="浙江省杭州市下城区费加糖路588号"
+                android:textColor="@color/_9f9f9f"
+                android:textSize="@dimen/_14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:background="@color/white"
+            android:minHeight="145dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginTop="@dimen/_12dp"
+                android:text="@string/current_time" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:layout_marginRight="@dimen/_12dp"
+                        android:src="@mipmap/timg" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:src="@mipmap/timg" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:layout_marginRight="@dimen/_12dp"
+                        android:src="@mipmap/timg" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:src="@mipmap/timg" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:layout_marginRight="@dimen/_12dp"
+                        android:src="@mipmap/timg" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="11dp"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:src="@mipmap/timg" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/white"
+                android:minHeight="160dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AddTaskTitleStyle"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:text="@string/shop_description" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:background="@null"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/_9f9f9f"
+                    android:textSize="@dimen/_14sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:background="@color/white"
+            android:minHeight="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AddTaskTitleStyle"
+                android:layout_gravity="center_vertical"
+                android:text="@string/shop_scoring" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/please_input_scoring"
+                android:background="@null"
+                android:textColorHint="@color/_8c969f"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

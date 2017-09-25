@@ -18,6 +18,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.PagerAdapter;
 import com.qianmo.jinxiaocun.fu.fragment.TourShopFragment;
+import com.qianmo.jinxiaocun.fu.fragment.WaitTourShopFragment;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 
 import butterknife.BindView;
@@ -179,7 +180,7 @@ public class TourShopManagerActivity extends BaseActivity {
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startActivity(TaskAddActivity.class, false);
+                startActivity(TourTaskAddActivity.class, false);
                 return true;
             }
         });
@@ -215,7 +216,7 @@ public class TourShopManagerActivity extends BaseActivity {
     //为viewPager添加fragment
     public void setupViewPager() {
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPageAdapter.addFragment(TourShopFragment.newInstance(0), "待巡店");
+        mPageAdapter.addFragment(WaitTourShopFragment.newInstance(0), "待巡店");
         mPageAdapter.addFragment(TourShopFragment.newInstance(1), "已巡店");
         vpApproval.setAdapter(mPageAdapter);
     }

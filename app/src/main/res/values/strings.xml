@@ -89,4 +89,12 @@
     <string name="tour_shop_inquire">巡店查询</string>
     <string name="shop_name">门店名称</string>
     <string name="my_tour">我的巡店</string>
+    <string name="please_choose_shop">请选择门店</string>
+    <string name="please_choose_shop_time">请选择巡店时间</string>
+    <string name="input_tour_content">请输入巡店内容</string>
+    <string name="input_phone_num">请输入号码</string>
+    <string name="current_time">当前地址：</string>
+    <string name="shop_description">门店描述：</string>
+    <string name="shop_scoring">门店打分：</string>
+    <string name="please_input_scoring">请输入门店分数</string>
 </resources>

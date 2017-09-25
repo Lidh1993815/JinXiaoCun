@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
@@ -200,6 +201,16 @@ public abstract class BaseActivity extends FragmentActivity {
                     finish();
                 }
             });
+
+            TextView rightTextBtn = toolBar.getRightTextBtn();
+            if (rightTextBtn != null) {
+                rightTextBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        rightTextAction();
+                    }
+                });
+            }
         }
 
         if (type == 0) {
@@ -280,6 +291,10 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.init();
+
+    }
+
+    protected void rightTextAction() {
 
     }
 
