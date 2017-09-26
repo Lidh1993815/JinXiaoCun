@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:minHeight="70dp">
+
+    <TextView
+        android:id="@+id/tv_name_on_pic"
+        android:layout_width="@dimen/_38dp"
+        android:layout_height="@dimen/_38dp"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:background="@mipmap/touxiangy"
+        android:gravity="center"
+        android:text="克山"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sp" />
+
+    <TextView
+        android:id="@+id/attendance_name"
+        style="@style/AddTaskTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_toRightOf="@+id/tv_name_on_pic"
+        android:text="黄克山" />
+
+    <TextView
+        style="@style/AddTaskTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/attendance_name"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_toRightOf="@+id/tv_name_on_pic"
+        android:text="销售部门"
+        android:textColor="@color/_8c969f"
+        android:textSize="@dimen/_12sp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/_25dp"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/youjiantou"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+

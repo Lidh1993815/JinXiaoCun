@@ -97,4 +97,20 @@
     <string name="shop_description">门店描述：</string>
     <string name="shop_scoring">门店打分：</string>
     <string name="please_input_scoring">请输入门店分数</string>
+    <string name="attendance_days">出勤天数</string>
+    <string name="leave">休假</string>
+    <string name="lack_card_prompt">缺卡（有补打卡功能）</string>
+    <string name="thing_leave">事假</string>
+    <string name="desease_leave">病假</string>
+    <string name="abnormal_card_prompt">打卡异常（有补打卡功能）</string>
+    <string name="lack_prompt">旷工（有补打卡功能）</string>
+    <string name="purchase">采购进货</string>
+    <string name="purchase_prompt">进货、增加库存</string>
+    <string name="purchase_return">采购退货</string>
+    <string name="purchase_order">进货历史</string>
+    <string name="add">添加</string>
+    <string name="search">搜索</string>
+    <string name="warehousing_documents">入库单据：</string>
+    <string name="please_input_order">请输入单据</string>
+    <string name="order_status">订单状态：</string>
 </resources>

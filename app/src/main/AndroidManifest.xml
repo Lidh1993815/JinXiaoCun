@@ -42,7 +42,12 @@
         <activity android:name=".fu.activity.TourTaskAddActivity" />
         <activity android:name=".fu.activity.TourDetailActivity" />
         <activity android:name=".fu.activity.AttendanceActivity" />
-        <activity android:name=".fu.activity.CardRecordActivity"></activity>
+        <activity android:name=".fu.activity.CardRecordActivity" />
+        <activity android:name=".fu.activity.SubCardRecordDetailActivity" />
+        <activity android:name=".fu.activity.PromotionManagementActivity" />
+        <activity android:name=".fu.activity.PurchaseManagerActivity" />
+        <activity android:name=".fu.activity.PurchaseHistoryActivity" />
+        <activity android:name=".fu.activity.SearchOrderActivity"></activity>
     </application>
 
 </manifest>

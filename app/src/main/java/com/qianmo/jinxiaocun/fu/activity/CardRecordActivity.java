@@ -2,15 +2,14 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.PagerAdapter;
-import com.qianmo.jinxiaocun.fu.fragment.ApprovalNotifyFragment;
 import com.qianmo.jinxiaocun.fu.fragment.MyCardRecordFragment;
+import com.qianmo.jinxiaocun.fu.fragment.MySubCardRecordFragment;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -93,31 +92,23 @@ public class CardRecordActivity extends BaseActivity {
     //为viewPager添加fragment
     public void setupViewPager() {
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPageAdapter.addFragment(MyCardRecordFragment.newInstance(0), "");
-        mPageAdapter.addFragment(MyCardRecordFragment.newInstance(1), "");
+        mPageAdapter.addFragment(new MyCardRecordFragment(), "");
+        mPageAdapter.addFragment(new MySubCardRecordFragment(), "");
         mViewPager.setAdapter(mPageAdapter);
-        /*mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        TransactionDetailFragment fragment = new TransactionDetailFragment();
-        fragment.setArguments(bundle);
-        pageAdapter.addFragment(fragment,"");
-        StatisticalAnalysisFragment analysisFragment = new StatisticalAnalysisFragment();
-        analysisFragment.setArguments(bundle);
-        pageAdapter.addFragment(analysisFragment,"");
-        mViewPager.setAdapter(pageAdapter);*/
     }
-
+    //设置头部选中和未选中时的背景
     private void selectRight() {
-        toolbar_right.setBackground(getResources().getDrawable(R.drawable.tv_right_select_bg));
+        toolbar_right.setBackgroundDrawable(getResources().getDrawable(R.drawable.tv_right_select_bg));
         toolbar_left.setTextColor(getResources().getColor(R.color.colorPrimary));
         toolbar_right.setTextColor(Color.WHITE);
-        toolbar_left.setBackground(getResources().getDrawable(R.drawable.tv_left_unselect_bg));
+        toolbar_left.setBackgroundDrawable(getResources().getDrawable(R.drawable.tv_left_unselect_bg));
     }
 
     private void selectLeft() {
-        toolbar_left.setBackground(getResources().getDrawable(R.drawable.tv_left_select_bg));
+        toolbar_left.setBackgroundDrawable(getResources().getDrawable(R.drawable.tv_left_select_bg));
         toolbar_right.setTextColor(getResources().getColor(R.color.colorPrimary));
         toolbar_left.setTextColor(Color.WHITE);
-        toolbar_right.setBackground(getResources().getDrawable(R.drawable.tv_right_unselect_bg));
+        toolbar_right.setBackgroundDrawable(getResources().getDrawable(R.drawable.tv_right_unselect_bg));
 
     }
 }

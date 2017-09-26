@@ -42,7 +42,7 @@ public class AttendanceActivity extends BaseActivity {
     //toolbar右侧的点击事件
     @Override
     protected void rightTextAction() {
-        startActivity(CardRecordActivity.class);
+        startActivity(CardRecordActivity.class,false);
     }
 
     @Override

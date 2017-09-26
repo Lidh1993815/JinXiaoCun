@@ -1,35 +1,24 @@
-package com.qianmo.jinxiaocun.fu.fragment;
+package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
-import com.qianmo.jinxiaocun.main.base.BaseFragment;
+import com.qianmo.jinxiaocun.main.base.BaseActivity;
+import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
-/**
- * author : wizardev
- * e-mail : wizarddev@163.com
- * time   : 2017/09/18
- * desc   :
- * version: 1.0
- */
-public class MyCardRecordFragment extends BaseFragment {
+public class SubCardRecordDetailActivity extends BaseActivity {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = requestView(inflater, R.layout.my_card_record_fragment);
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "黄克山的考勤", -1);
+        setContentView(requestView(R.layout.activity_sub));
         initData();//初始化数据
         initView();
         initEvent();
-        return view;
     }
 
     @Override
@@ -67,10 +56,5 @@ public class MyCardRecordFragment extends BaseFragment {
 
         }
 
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 }

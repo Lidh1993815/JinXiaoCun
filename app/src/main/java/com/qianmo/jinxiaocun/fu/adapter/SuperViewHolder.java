@@ -10,10 +10,11 @@ import android.view.View;
 public class SuperViewHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> views;
-
+    private View mConvertView;
     public SuperViewHolder(View itemView) {
         super(itemView);
         this.views = new SparseArray<>();
+        mConvertView = itemView;
     }
 
     @SuppressWarnings("unchecked")
@@ -24,5 +25,9 @@ public class SuperViewHolder extends RecyclerView.ViewHolder {
             views.put(viewId, view);
         }
         return (T) view;
+    }
+
+    public View getConvertView() {
+        return mConvertView;
     }
 }

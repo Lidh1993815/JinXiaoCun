@@ -8,6 +8,7 @@
     <dimen name="_10sp">10sp</dimen>
     <dimen name="_8dp">8dp</dimen>
     <dimen name="_1dp">1dp</dimen>
+    <dimen name="line_height_size">0.3dp</dimen>
     <dimen name="_12sp">12sp</dimen>
     <dimen name="_75dp">75dp</dimen>
     <dimen name="_13sp">13sp</dimen>
@@ -29,4 +30,11 @@
     <dimen name="timeline_item_node_radius">19dp</dimen>
     <dimen name="_38dp">38dp</dimen>
     <dimen name="item_height">60dp</dimen>
+    <dimen name="_50dp">50dp</dimen>
+    <dimen name="_3dp">3dp</dimen>
+    <dimen name="_90dp">90dp</dimen>
+    <dimen name="_16sp">16sp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_14dp">14dp</dimen>
+    <dimen name="_24dp">24dp</dimen>
 </resources>
