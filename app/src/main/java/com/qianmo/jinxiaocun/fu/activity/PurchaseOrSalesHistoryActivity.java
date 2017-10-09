@@ -170,7 +170,7 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
             public void onItemClick(View view, int position) {
                 if (type != null && type.equals("sales")) {
 
-                    startActivity(SalesOrdersDetailActivity.class);
+                    startActivity(SalesOrdersDetailActivity.class,false);
                 }
             }
 
