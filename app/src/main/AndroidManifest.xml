@@ -46,8 +46,14 @@
         <activity android:name=".fu.activity.SubCardRecordDetailActivity" />
         <activity android:name=".fu.activity.PromotionManagementActivity" />
         <activity android:name=".fu.activity.PurchaseManagerActivity" />
-        <activity android:name=".fu.activity.PurchaseHistoryActivity" />
-        <activity android:name=".fu.activity.SearchOrderActivity"></activity>
+        <activity android:name=".fu.activity.PurchaseOrSalesHistoryActivity" />
+        <activity android:name=".fu.activity.SearchOrderActivity" />
+        <activity android:name=".fu.activity.PurchaseOrdersActivity" />
+        <activity android:name=".fu.activity.SalesManagerActivity" />
+        <activity android:name=".fu.activity.SalesSearchOrderActivity" />
+        <activity android:name=".fu.activity.NewSalesOrdersActivity" />
+        <activity android:name=".fu.activity.ChooseProductActivity" />
+        <activity android:name=".fu.activity.SalesOrdersDetailActivity"></activity>
     </application>
 
 </manifest>

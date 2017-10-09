@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/_eeeeee"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                style="@style/ItemHorizontalStyle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_member"
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/member" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_member"
+                    android:text="xxx有限公司"
+                    android:textColor="@color/_9f9f9f"
+                    android:textSize="@dimen/_15sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/sales_shop" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门店01"
+                    android:textColor="@color/_9f9f9f"
+                    android:textSize="@dimen/_15sp" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/_30dp">
+
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    style="@style/MinGrayLightText"
+                    android:layout_marginLeft="@dimen/_14dp"
+                    android:text="商品明细" />
+
+                <TextView
+                    style="@style/MinBlackText"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:layout_toLeftOf="@+id/total_price"
+                    android:text="合计：20" />
+
+                <TextView
+                    android:id="@+id/total_price"
+                    style="@style/MinOrangeText"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_13dp"
+                    android:text="￥600.00" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sales_product_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/sales_form" />
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:layout_marginLeft="0dp"
+                    android:text="团购/零售" />
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/line_height_size"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/sales_orders" />
+
+                <TextView
+
+                    android:layout_marginLeft="0dp"
+                    style="@style/ConditionTitleStyle"
+                    android:text="XDX222012154223" />
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/line_height_size"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/prepare_by" />
+
+                <TextView
+
+                    android:layout_marginLeft="0dp"
+                    style="@style/ConditionTitleStyle"
+                    android:text="黄可山" />
+            </LinearLayout>
+            <LinearLayout
+
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/line_height_size"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/business_date" />
+
+                <TextView
+
+                    android:layout_marginLeft="0dp"
+                    style="@style/ConditionTitleStyle"
+                    android:text="2017-10-09" />
+            </LinearLayout>
+        </LinearLayout>l
+    </ScrollView>
+
+
+</com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout>

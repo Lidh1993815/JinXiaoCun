@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.SearchOrderActivity">
+
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_member"
+            style="@style/ConditionTitleStyle"
+            android:text="@string/member" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_member"
+            android:text="@string/please_choose_member"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/documents" />
+
+        <EditText
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_order_search" />
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_prepare_by"
+            style="@style/ConditionTitleStyle"
+            android:text="@string/prepare_by" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_prepare_by"
+            android:text="@string/please_choose_prepare_by"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            style="@style/ConditionTitleStyle"
+            android:text="@string/start_time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_start_time"
+            android:text="@string/click_choose_date"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            style="@style/ConditionTitleStyle"
+            android:text="@string/end_time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_end_time"
+            android:text="@string/click_choose_date"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/btn_primary_fillet_bg_ripple"
+        android:clickable="true"
+        android:gravity="center"
+        android:minHeight="@dimen/_40dp"
+        android:text="@string/search"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sp" />
+</LinearLayout>

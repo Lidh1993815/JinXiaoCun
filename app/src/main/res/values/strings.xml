@@ -113,4 +113,24 @@
     <string name="warehousing_documents">入库单据：</string>
     <string name="please_input_order">请输入单据</string>
     <string name="order_status">订单状态：</string>
+    <string name="supply_warehouse">供货仓：</string>
+    <string name="warehouse">入库仓：</string>
+    <string name="sales_order">销售单</string>
+    <string name="sales_prompt">卖货、出货</string>
+    <string name="sales_return">销售退货单</string>
+    <string name="return_prompt">退货</string>
+    <string name="sales_report">销售报表</string>
+    <string name="member">会员：</string>
+    <string name="please_choose_member">请选择会员</string>
+    <string name="documents">单据：</string>
+    <string name="please_input_order_search">请输入单据查询</string>
+    <string name="prepare_by">制单人：</string>
+    <string name="please_choose_prepare_by">请选择制单人</string>
+    <string name="please_input_member_name">请输入会员名称</string>
+    <string name="sales_shop">门店出售：</string>
+    <string name="use_group_buy">以团购的形式销售</string>
+    <string name="search_product">搜索商品</string>
+    <string name="sales_form">销售形式：</string>
+    <string name="sales_orders">销售单据：</string>
+    <string name="business_date">业务日期：</string>
 </resources>

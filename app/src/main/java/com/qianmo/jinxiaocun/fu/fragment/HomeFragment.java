@@ -20,6 +20,7 @@ import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.AttendanceActivity;
 import com.qianmo.jinxiaocun.fu.activity.PromotionManagementActivity;
 import com.qianmo.jinxiaocun.fu.activity.PurchaseManagerActivity;
+import com.qianmo.jinxiaocun.fu.activity.SalesManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.TourShopManagerActivity;
@@ -136,6 +137,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 break;
             //销售管理
             case 6:
+                startActivity(SalesManagerActivity.class);
                 break;
             //库存管理
             case 7:

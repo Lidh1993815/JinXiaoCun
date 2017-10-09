@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.PurchaseManagerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_90dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:id="@+id/sales_order"
+            android:background="@drawable/btn_white_ripple"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_jinhuo_manager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/xiaoshoudan" />
+
+            <TextView
+                android:id="@+id/tv_purchase"
+                style="@style/MiddleBlackText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/_25dp"
+                android:layout_toRightOf="@+id/iv_jinhuo_manager"
+                android:text="@string/sales_order" />
+
+            <TextView
+                style="@style/MinGrayLightText"
+                android:layout_alignLeft="@+id/tv_purchase"
+                android:layout_below="@+id/tv_purchase"
+                android:layout_marginTop="@dimen/_15dp"
+                android:layout_toRightOf="@+id/iv_jinhuo_manager"
+                android:text="@string/sales_prompt" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/_eeeeee" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:id="@+id/sales_order_return"
+            android:background="@drawable/btn_white_ripple"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_return_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/tuihuod" />
+
+            <TextView
+                android:id="@+id/tv_sales"
+                style="@style/MiddleBlackText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/_25dp"
+                android:layout_toRightOf="@+id/iv_return_order"
+                android:text="@string/sales_return" />
+
+            <TextView
+                style="@style/MinGrayLightText"
+                android:layout_alignLeft="@+id/tv_sales"
+                android:layout_below="@+id/tv_sales"
+                android:layout_marginTop="@dimen/_15dp"
+                android:layout_toRightOf="@+id/iv_return_order"
+                android:text="@string/return_prompt" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:clickable="true"
+        android:id="@+id/sales_report"
+        android:background="@drawable/btn_white_ripple"
+        android:minHeight="85dp">
+
+        <ImageView
+            android:id="@+id/iv_inquire_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginTop="@dimen/dp_18"
+            android:src="@mipmap/xsbaobiao" />
+
+        <TextView
+            android:id="@+id/tv_inquire"
+            style="@style/MiddleBlackText"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_toRightOf="@+id/iv_inquire_order"
+            android:text="@string/sales_report" />
+
+        <TextView
+            style="@style/MinGrayLightText"
+            android:layout_alignLeft="@+id/tv_inquire"
+            android:layout_below="@+id/tv_inquire"
+            android:layout_marginBottom="19dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="统计员工、门店、品牌销售明细" />
+    </RelativeLayout>
+</LinearLayout>

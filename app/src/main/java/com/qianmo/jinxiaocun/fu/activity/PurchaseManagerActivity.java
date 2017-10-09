@@ -39,7 +39,7 @@ public class PurchaseManagerActivity extends BaseActivity {
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.purchase_order_history:
-                startActivity(PurchaseHistoryActivity.class,false);
+                startActivity(PurchaseOrSalesHistoryActivity.class,false);
                 break;
             case R.id.purchase_order_inquire:
                 break;

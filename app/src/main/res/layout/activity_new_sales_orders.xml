@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.PurchaseOrdersActivity">
+
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_above="@+id/total_layout"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/_eeeeee"
+            android:orientation="vertical"
+            tools:context="com.qianmo.jinxiaocun.fu.activity.PurchaseOrdersActivity">
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_1dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/member" />
+
+                <EditText
+                    style="@style/EditHintStyle"
+                    android:hint="@string/please_input_member_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_1dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/sales_shop" />
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:layout_marginLeft="0dp"
+                    android:text="门店01（自动生成）" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/MinGrayLightText"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/_30dp"
+                android:paddingLeft="@dimen/_15dp"
+                android:text="选择商品" />
+
+            <com.github.jdsjlzx.recyclerview.LuRecyclerView
+                android:id="@+id/addGoodsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1dp" />
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12dp" />
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/use_group_buy" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/total_layout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+
+        android:layout_height="@dimen/_50dp">
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="合计："
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/_f6706d"
+            android:textSize="@dimen/_15sp"
+            android:text="￥600.00"
+            android:layout_marginRight="@dimen/_25dp"
+            android:layout_toLeftOf="@+id/tv_sales"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="@dimen/_120dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sp"
+            android:layout_alignParentRight="true"
+            android:text="出售"
+            android:id="@+id/tv_sales"
+            android:background="@drawable/btn_primary_ripple"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</RelativeLayout>
+
+

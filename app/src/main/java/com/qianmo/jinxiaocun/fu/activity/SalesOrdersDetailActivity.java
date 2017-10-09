@@ -2,11 +2,13 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
-import com.qianmo.jinxiaocun.fu.decoration.TaskProgressDecoration;
+import com.qianmo.jinxiaocun.fu.decoration.FuDividerDecoration;
 import com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
@@ -15,32 +17,28 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-public class CardDetailActivity extends BaseActivity {
- /*   @BindView(R.id.rv_task_progress_list)
-    RecyclerView mRecyclerView;*/
-    Unbinder unbinder;
-    @BindView(R.id.swipe_refresh_layout)
-    ForbiddenSwipeRefreshLayout mSwipeRefreshLayout;
+/**
+ * 销售单详情界面
+ */
+public class SalesOrdersDetailActivity extends BaseActivity {
+
+
+    @BindView(R.id.main_swipe_refresh)
+    ForbiddenSwipeRefreshLayout mainSwipeRefresh;
+    @BindView(R.id.sales_product_detail)
+    RecyclerView mRecyclerView;
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private ArrayList<String> datas = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "补打卡详情", -1);
-        setContentView(requestView(R.layout.activity_card_detail));
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "销售单详情", -1);
+        setContentView(requestView(R.layout.activity_sales_orders_detail));
         ButterKnife.bind(this);
-       // initData();
-       // initView();
-       // initEvent();
+        initData();
+        initView();
     }
-
-    @Override
-    public void requestInit() {
-
-    }
-
     private void initData() {
 
         //模拟组装10个数据
@@ -51,33 +49,27 @@ public class CardDetailActivity extends BaseActivity {
 
     }
 
-    private void initEvent() {
-        onRefresh();
-    }
-
     private void initView() {
-      //  setupSwipeRefresh(mSwipeRefreshLayout);
+        mainSwipeRefresh.setRefreshing(true);
+        dismissSwipeRefresh(mainSwipeRefresh, 1000);
+
         mTaskAdapter = new TaskAdapter(this);//实例化适配器
-        //设置decoration
-        TaskProgressDecoration decoration = new TaskProgressDecoration(this);
-
-        //setLayoutManager放在setAdapter之前配置
-       /* mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mTaskAdapter);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(decoration);*/
-    }
-
-    public void onRefresh() {
-        mSwipeRefreshLayout.setRefreshing(true);
         mTaskAdapter.setDataList(datas);
-        dismissSwipeRefresh(mSwipeRefreshLayout, 1000);
-        //requestDataFromNet();
+        //setLayoutManager放在setAdapter之前配置
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mTaskAdapter);
+        FuDividerDecoration divider = new FuDividerDecoration.Builder(this)
+                .setHeight(R.dimen.line_height_size)
+                //  .setPadding(R.dimen.default_divider_padding)
+                .setColorResource(R.color._eeeeee)
+                .setHeaderDivide(true)
+                .build();
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addItemDecoration(divider);
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public void requestInit() {
 
     }
 
@@ -90,7 +82,7 @@ public class CardDetailActivity extends BaseActivity {
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_task_recycle_item;
+            return R.layout.fu_sales_detail_item;
         }
 
         @Override

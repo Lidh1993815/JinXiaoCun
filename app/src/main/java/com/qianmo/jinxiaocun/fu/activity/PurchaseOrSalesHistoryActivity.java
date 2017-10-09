@@ -1,6 +1,7 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -28,9 +30,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 进货历史界面
+ * 进货历史和销售历史界面
  */
-public class PurchaseHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class PurchaseOrSalesHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     /**
      * 服务器端一共多少条数据
@@ -60,9 +62,14 @@ public class PurchaseHistoryActivity extends BaseActivity implements SwipeRefres
 
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
+    private String type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
+
         setContentView(R.layout.activity_purchase_history);
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).fitsSystemWindows(true).init();
         ButterKnife.bind(this);
@@ -82,27 +89,44 @@ public class PurchaseHistoryActivity extends BaseActivity implements SwipeRefres
             }
         });
         mToolbar.inflateMenu(R.menu.search_and_add_menu);
+
+        if (type != null && type.equals("sales")) {
+            //销售历史
+            TextView toolbarTitle = mToolbar.findViewById(R.id.toolbar_title);
+            toolbarTitle.setText("销售历史");
+        }
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.search_menu:
-                        startActivity(SearchOrderActivity.class, false);
+                        if (type != null && type.equals("sales")) {
+                            startActivity(SalesSearchOrderActivity.class, false);
+                        } else {
+                            startActivity(SearchOrderActivity.class, false);
+                        }
                         break;
                     case R.id.add_menu:
-                      //  startActivity(TaskAddActivity.class, false);
+                        if (type != null && type.equals("sales")) {
+                            startActivity(NewSalesOrdersActivity.class, false);
+                        } else {
+                            startActivity(PurchaseOrdersActivity.class, false);
+                        }
                         break;
                 }
 
                 return true;
             }
         });
+
+
     }
 
     @Override
     public void requestInit() {
 
     }
+
     private void initData() {
         handler = new Handler() {
             @Override
@@ -144,7 +168,10 @@ public class PurchaseHistoryActivity extends BaseActivity implements SwipeRefres
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(TaskDetailActivity.class);
+                if (type != null && type.equals("sales")) {
+
+                    startActivity(SalesOrdersDetailActivity.class);
+                }
             }
 
         });
@@ -180,7 +207,7 @@ public class PurchaseHistoryActivity extends BaseActivity implements SwipeRefres
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
-        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,divider);//创建RecycleView
+        setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
 
     }
 
