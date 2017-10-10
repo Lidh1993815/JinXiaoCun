@@ -55,43 +55,7 @@
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
-        android:background="@color/white"
-        android:minHeight="100dp"
+    <include layout="@layout/apply_layout" />
 
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/AddTaskTitleStyle"
-                android:layout_marginTop="@dimen/_16dp"
-                android:text="@string/approver"
-                android:textSize="@dimen/_15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                android:text="(点击头像可删除)"
-                android:textColor="@color/_9f9f9f"
-                android:textSize="@dimen/_12sp" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="17dp"
-            android:layout_marginLeft="@dimen/dp_14"
-            android:layout_marginTop="@dimen/dp_14"
-            android:src="@mipmap/tianjia" />
-    </LinearLayout>
 
 </LinearLayout>

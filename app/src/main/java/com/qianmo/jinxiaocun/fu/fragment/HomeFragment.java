@@ -18,6 +18,7 @@ import com.qianmo.jinxiaocun.fu.activity.AlarmNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovalNotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.AttendanceActivity;
+import com.qianmo.jinxiaocun.fu.activity.MoneyManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.PromotionManagementActivity;
 import com.qianmo.jinxiaocun.fu.activity.PurchaseManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.SalesManagerActivity;
@@ -144,6 +145,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 break;
             //钱流管理
             case 8:
+                startActivity(MoneyManagerActivity.class);
                 break;
         }
     }

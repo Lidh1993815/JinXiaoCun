@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.NewMoneyOrderActivity">
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/type" />
+
+        <TextView
+            android:id="@+id/tv_order_type"
+            style="@style/ConditionTitleStyle"
+            android:layout_marginLeft="0dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/project_options"
+            android:id="@+id/tv_order_status"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_choose_project"
+            android:layout_toRightOf="@+id/tv_order_status"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp"
+            android:text="请选择项目" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_1dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/form_title" />
+
+        <EditText
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_titre" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/_1dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/cost_amount" />
+
+        <EditText
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_cost" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/white"
+        android:minHeight="160dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/cost_description" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:background="@null"
+            android:hint="@string/please_input_content"
+            android:inputType="textMultiLine"
+            android:lineSpacingMultiplier="1.2"
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+    <include layout="@layout/apply_layout" />
+
+</LinearLayout>

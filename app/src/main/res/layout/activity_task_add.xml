@@ -166,7 +166,7 @@
             android:layout_marginBottom="17dp"
             android:layout_marginLeft="@dimen/dp_14"
             android:layout_marginTop="@dimen/dp_14"
-            android:src="@mipmap/tianjia" />
+            android:src="@mipmap/tianjia01" />
     </LinearLayout>
 
 </LinearLayout>

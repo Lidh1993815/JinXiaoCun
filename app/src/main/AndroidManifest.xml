@@ -53,7 +53,10 @@
         <activity android:name=".fu.activity.SalesSearchOrderActivity" />
         <activity android:name=".fu.activity.NewSalesOrdersActivity" />
         <activity android:name=".fu.activity.ChooseProductActivity" />
-        <activity android:name=".fu.activity.SalesOrdersDetailActivity"></activity>
+        <activity android:name=".fu.activity.SalesOrdersDetailActivity" />
+        <activity android:name=".fu.activity.MoneyManagerActivity" />
+        <activity android:name=".fu.activity.NewMoneyOrderActivity" />
+        <activity android:name=".fu.activity.ChooseCostProjectActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_120dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_new_income_order"
+            android:text="新建收入单"
+            android:drawableTop="@mipmap/shouru"
+            style="@style/BottomDialogText" />
+        <TextView
+            android:text="新建费用单"
+            android:id="@+id/tv_new_expenditure_order"
+            android:drawableTop="@mipmap/zhichu"
+            style="@style/BottomDialogText" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="@dimen/_1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_44dp"
+        android:id="@+id/tv_cancel"
+        android:background="@color/white"
+        android:textColor="@color/_9e9e9e"
+        android:textSize="@dimen/_12sp"
+        android:gravity="center"
+        android:text="@string/cancel"/>
+</LinearLayout>
