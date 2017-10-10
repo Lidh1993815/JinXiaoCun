@@ -1,9 +1,14 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
@@ -12,7 +17,6 @@ import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
-import com.qianmo.jinxiaocun.fu.widget.SampleFooter;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -23,6 +27,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 选择商品界面
@@ -33,16 +38,25 @@ public class ChooseProductActivity extends BaseActivity {
     LuRecyclerView brandList;//品牌列表
     @BindView(R.id.product_list)
     LuRecyclerView productList;//商品列表
+    @BindView(R.id.tv_search)
+    TextView tvSearch;
+    @BindView(R.id.et_search_content)
+    EditText etSearchContent;
+    @BindView(R.id.edit_parent_layout)
+    RelativeLayout editParentLayout;
+
+
     private LeftAdapter mLeftAdapter = null;//数据适配器
     private RightAdapter mRightAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
 
     private ArrayList<String> leftDatas = new ArrayList<>();
     private ArrayList<String> rightDatas = new ArrayList<>();
-    private SampleFooter mSampleFooter;
     private Map<TextView, Integer> textMap = new HashMap<>();
     private boolean isClick = false;
+    private boolean isStartAnimate = false;
     private static final String TAG = "ChooseProductActivity";
+    private int curValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,4 +191,66 @@ public class ChooseProductActivity extends BaseActivity {
         mTaskAdapter.addAll(list);
         mCurrentCounter += list.size();
     }*/
+
+    @OnClick({R.id.tv_search})
+    public void clickAction(View view) {
+
+        switch (view.getId()) {
+            case R.id.tv_search:
+
+                if (!isStartAnimate) {
+                    doAnimation();
+                }
+                break;
+        }
+    }
+
+    private void doAnimation() {
+        final ValueAnimator vm = ValueAnimator.ofInt((int) tvSearch.getX(), (int) editParentLayout.getX());
+        vm.setDuration(200);
+        vm.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                curValue = (int) valueAnimator.getAnimatedValue();
+                Log.i(TAG, "top: " + tvSearch.getTop());
+                tvSearch.layout(curValue, 0, curValue + tvSearch.getWidth(), tvSearch.getHeight());
+            }
+        });
+        vm.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                isStartAnimate = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                vm.removeAllUpdateListeners();
+                tvSearch.setVisibility(View.GONE);
+                etSearchContent.setVisibility(View.VISIBLE);
+
+                focusAndShowSoftInput();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        vm.start();
+
+    }
+
+    //弹出软件盘
+    private void focusAndShowSoftInput() {
+        etSearchContent.setFocusable(true);
+        etSearchContent.setFocusableInTouchMode(true);
+        etSearchContent.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) etSearchContent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(etSearchContent, 0);
+    }
 }

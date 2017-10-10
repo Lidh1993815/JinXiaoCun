@@ -144,4 +144,10 @@
     <string name="please_input_cost">请输入费用金额</string>
     <string name="cost_description">费用描述：</string>
     <string name="please_input_content">请输入内容</string>
+    <string name="inventory_search">库存查询</string>
+    <string name="inventory_status">库存状况</string>
+    <string name="inventory_check">库存盘点</string>
+    <string name="accurate_inventory">精确盘点库存</string>
+    <string name="inventory_alarm">库存警报</string>
+    <string name="alert_description">上限、下限等警报</string>
 </resources>
