@@ -1,7 +1,8 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
@@ -27,12 +31,12 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * 进货历史和销售历史界面
+ * 库存查询界面
  */
-public class PurchaseOrSalesHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
-
+public class SearchInventoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     /**
      * 服务器端一共多少条数据
      */
@@ -47,13 +51,18 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
      * 已经获取到多少条数据了
      */
     private static int mCurrentCounter = 0;
-
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.rv_purchase_order_list)
     LuRecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.tv_search)
+    TextView tvSearch;
+    @BindView(R.id.et_search_content)
+    EditText etSearchContent;
+    @BindView(R.id.edit_parent_layout)
+    RelativeLayout editParentLayout;
 
 
     private TaskAdapter mTaskAdapter = null;//数据适配器
@@ -61,19 +70,23 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
 
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
-    private String type;
+    private boolean isStartAnimate = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        type = intent.getStringExtra("type");
-        setContentView(R.layout.activity_purchase_history);
+        setContentView(R.layout.activity_search_inventory);
         ButterKnife.bind(this);
         setupToolbar();
         initData();
         initView();
         initEvent();
+    }
+
+    @Override
+    public void requestInit() {
+
     }
 
     private void setupToolbar() {
@@ -84,43 +97,22 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
                 finish();
             }
         });
-        mToolbar.inflateMenu(R.menu.search_and_add_menu);
-
-        if (type != null && type.equals("sales")) {
-            //销售历史
-            TextView toolbarTitle = mToolbar.findViewById(R.id.toolbar_title);
-            toolbarTitle.setText("销售历史");
-        }
+        mToolbar.inflateMenu(R.menu.scanning_and_search_menu);
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.scanning_menu:
+                        // startActivity(PurchaseOrdersActivity.class, false);
+                        break;
                     case R.id.search_menu:
-                        if (type != null && type.equals("sales")) {
-                            startActivity(SalesSearchOrderActivity.class, false);
-                        } else {
-                            startActivity(SearchOrderActivity.class, false);
-                        }
+                        startActivity(SearchInventoryProductActivity.class, false);
                         break;
-                    case R.id.add_menu:
-                        if (type != null && type.equals("sales")) {
-                            startActivity(NewSalesOrdersActivity.class, false);
-                        } else {
-                            startActivity(PurchaseOrdersActivity.class, false);
-                        }
-                        break;
-                }
 
+                }
                 return true;
             }
         });
-
-
-    }
-
-    @Override
-    public void requestInit() {
-
     }
 
     private void initData() {
@@ -164,10 +156,7 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (type != null && type.equals("sales")) {
-
-                    startActivity(SalesOrdersDetailActivity.class,false);
-                }
+                startActivity(ProductDetailActivity.class, false);
             }
 
         });
@@ -198,10 +187,10 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
         mTaskAdapter = new TaskAdapter(this);//实例化适配器
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
         LuDividerDecoration divider = new LuDividerDecoration.Builder(this, mLuRecyclerViewAdapter)
-                .setHeight(R.dimen._6dp)
+                .setHeight(R.dimen.line_height_size)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
-                .setHeaderDivide(true)
+                .setHeaderDivide(false)
                 .build();
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
 
@@ -231,7 +220,7 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
 
         @Override
         public int getLayoutId() {
-            return R.layout.purchase_order_item;
+            return R.layout.fu_inventory_recycle_item;
         }
 
         @Override
@@ -268,4 +257,62 @@ public class PurchaseOrSalesHistoryActivity extends BaseActivity implements Swip
         }.start();
     }
 
+    @OnClick({R.id.tv_search})
+    public void clickAction(View view) {
+
+        switch (view.getId()) {
+            case R.id.tv_search:
+
+                if (!isStartAnimate) {
+                    doAnimation();
+                }
+                break;
+        }
+    }
+
+    private void doAnimation() {
+        final ValueAnimator vm = ValueAnimator.ofInt((int) tvSearch.getX(), (int) editParentLayout.getX());
+        vm.setDuration(200);
+        vm.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int curValue = (int) valueAnimator.getAnimatedValue();
+                tvSearch.layout(curValue, 0, curValue + tvSearch.getWidth(), tvSearch.getHeight());
+            }
+        });
+        vm.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                isStartAnimate = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                vm.removeAllUpdateListeners();
+                tvSearch.setVisibility(View.GONE);
+                etSearchContent.setVisibility(View.VISIBLE);
+
+                focusAndShowSoftInput();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        vm.start();
+    }
+    //弹出软件盘
+    private void focusAndShowSoftInput() {
+        etSearchContent.setFocusable(true);
+        etSearchContent.setFocusableInTouchMode(true);
+        etSearchContent.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) etSearchContent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(etSearchContent, 0);
+    }
 }

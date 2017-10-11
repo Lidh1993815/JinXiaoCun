@@ -150,4 +150,17 @@
     <string name="accurate_inventory">精确盘点库存</string>
     <string name="inventory_alarm">库存警报</string>
     <string name="alert_description">上限、下限等警报</string>
+    <string name="classification">分类：</string>
+    <string name="please_choose_class">请选择分类</string>
+    <string name="brand">品牌：</string>
+    <string name="please_choose_brand">请选择品牌</string>
+    <string name="spec_model">规格型号：</string>
+    <string name="please_input_spec">请输入规格型号</string>
+    <string name="inventory_min">最小库存：</string>
+    <string name="please_input_min_inventory">请输入最小库存数量</string>
+    <string name="inventory_max">最大库存：</string>
+    <string name="please_input_max_inventory">请输入最大库存</string>
+    <string name="maturity_time">到期时间：</string>
+    <string name="month_sales_detail">30天销售情况</string>
+    <string name="total_inventory">总库存</string>
 </resources>

@@ -290,8 +290,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.init();
-
+        mImmersionBar.statusBarColor(R.color.colorPrimary).init();
     }
 
     protected void rightTextAction() {

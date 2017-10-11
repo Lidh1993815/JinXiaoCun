@@ -57,7 +57,12 @@
         <activity android:name=".fu.activity.MoneyManagerActivity" />
         <activity android:name=".fu.activity.NewMoneyOrderActivity" />
         <activity android:name=".fu.activity.ChooseCostProjectActivity" />
-        <activity android:name=".fu.activity.InventoryManagerActivity"></activity>
+        <activity android:name=".fu.activity.InventoryManagerActivity" />
+        <activity android:name=".fu.activity.SearchInventoryActivity" />
+        <activity android:name=".fu.activity.SearchInventoryProductActivity" />
+        <activity android:name=".fu.activity.ProductDetailActivity">
+
+        </activity>
     </application>
 
 </manifest>

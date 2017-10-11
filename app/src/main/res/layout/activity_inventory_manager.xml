@@ -17,7 +17,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:clickable="true"
-            android:id="@+id/sales_order"
+            android:id="@+id/inventory_search"
             android:background="@drawable/btn_white_ripple"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -54,7 +54,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:clickable="true"
-            android:id="@+id/sales_order_return"
+            android:id="@+id/inventory_check"
             android:background="@drawable/btn_white_ripple"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5dp"
         android:clickable="true"
-        android:id="@+id/sales_report"
+        android:id="@+id/inventory_alarm"
         android:background="@drawable/btn_white_ripple"
         android:minHeight="85dp">
 
