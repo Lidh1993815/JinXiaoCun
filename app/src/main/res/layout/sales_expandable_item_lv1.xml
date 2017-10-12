@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e5e5e5"
+    android:orientation="vertical">
+    <TextView
+        style="@style/MiddleGrayDarkText"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:text="2017-06-01 星期一"
+        android:layout_marginBottom="@dimen/_13dp"
+        android:layout_marginTop="@dimen/_13dp" />
+
+    <TextView
+        style="@style/MiddleGrayDarkText"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_centerVertical="true"
+        android:text="50"
+        android:layout_alignParentRight="true"
+         />
+</RelativeLayout>

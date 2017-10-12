@@ -46,6 +46,7 @@ public class InventoryManagerActivity extends BaseActivity {
                 break;
             //库存盘点
             case R.id.inventory_check:
+                startActivity(CheckHistoryActivity.class,false);
                 break;
             //库存警报
             case R.id.inventory_alarm:

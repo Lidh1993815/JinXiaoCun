@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.SearchOrderActivity">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/warehousing_documents"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="商品01"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/product_id"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="1234567854"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/spec_model"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="型号规格01"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/unit"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="个"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/own_brand"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="品牌01"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/category"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="日用百货"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_5dp"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/life"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="30"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/origin"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:text="xxxxxxxxxx"
+            android:layout_marginLeft="0dp"
+            style="@style/ConditionTitleStyle" />
+    </LinearLayout>
+</LinearLayout>

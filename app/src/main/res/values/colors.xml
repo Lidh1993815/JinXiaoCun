@@ -12,12 +12,14 @@
     <color name="btn_pressed_color">#4ebbbc</color>
     <color name="gray">#979797</color>
     <color name="_eeeeee">#eeeeee</color>
+    <color name="_c0c0c0">#c0c0c0</color>
     <color name="white">#ffffff</color>
     <color name="_959595">#959595</color>
     <color name="_464646">#464646</color>
     <color name="black">#000</color>
     <color name="light_gray">#8c969f</color>
     <color name="_9f9f9f">#9f9f9f</color>
+    <color name="_4c94ef">#4c94ef</color>
     <color name="_f6706d">#f6706d</color>
     <color name="mdtp_accent_color">#009688</color>
     <color name="mdtp_accent_color_dark">#00796b</color>

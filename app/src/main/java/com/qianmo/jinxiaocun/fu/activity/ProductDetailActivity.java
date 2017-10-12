@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
-import com.qianmo.jinxiaocun.fu.adapter.PagerAdapter;
 import com.qianmo.jinxiaocun.fu.fragment.MonthDetailFragment;
 import com.qianmo.jinxiaocun.fu.fragment.TotalInventoryFragment;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
@@ -32,7 +31,6 @@ public class ProductDetailActivity extends BaseActivity {
     TextView tvMonthSalesDetail;
     @BindView(R.id.tv_total_inventory)
     TextView tvTotalInventory;
-    private PagerAdapter mPageAdapter;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -63,7 +61,7 @@ public class ProductDetailActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_month_sales_detail, R.id.tv_total_inventory})
+    @OnClick({R.id.tv_month_sales_detail, R.id.tv_total_inventory,R.id.tv_see_detail})
     public void clickAction(View view) {
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -72,14 +70,18 @@ public class ProductDetailActivity extends BaseActivity {
             case R.id.tv_month_sales_detail:
                 clickLeft();
                 fragmentTransaction.replace(R.id.fragment_content, new MonthDetailFragment());
+                fragmentTransaction.commit();
                 break;
             //总库存
             case R.id.tv_total_inventory:
                 clickRight();
                 fragmentTransaction.replace(R.id.fragment_content, new TotalInventoryFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.tv_see_detail:
+                startActivity(ProductDetail2Activity.class,false);
                 break;
         }
-        fragmentTransaction.commit();
     }
 
     private void clickRight() {

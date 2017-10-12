@@ -163,4 +163,11 @@
     <string name="maturity_time">到期时间：</string>
     <string name="month_sales_detail">30天销售情况</string>
     <string name="total_inventory">总库存</string>
+    <string name="product_id">商品编号：</string>
+    <string name="unit">单位：</string>
+    <string name="own_brand">所属品牌：</string>
+    <string name="category">所属分类：</string>
+    <string name="life">保质期：</string>
+    <string name="origin">产地：</string>
+    <string name="check_history">盘点历史</string>
 </resources>

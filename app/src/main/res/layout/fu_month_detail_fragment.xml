@@ -4,81 +4,59 @@
     android:layout_height="match_parent"
     android:background="@color/_eeeeee"
     android:orientation="vertical">
-
     <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:gravity="center_vertical">
-
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:text="库存数量" />
-        <TextView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_15dp"
-            style="@style/MiddleGrayLightText"
-            android:text="100" />
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:layout_marginTop="@dimen/line_height_size"
-        android:gravity="center_vertical">
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:text="库存日均销量" />
-        <TextView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_15dp"
-            style="@style/MiddleGrayLightText"
-            android:text="50" />
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:layout_marginTop="@dimen/line_height_size"
-        android:gravity="center_vertical">
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:text="库存日均销量" />
-        <TextView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_15dp"
-            style="@style/MiddleGrayLightText"
-            android:text="50" />
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:layout_marginTop="@dimen/line_height_size"
-        android:gravity="center_vertical">
-
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:text="库存可售天数" />
-        <TextView
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_15dp"
-            style="@style/MiddleGrayLightText"
-            android:text="3" />
-    </RelativeLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_15dp"
-        android:layout_marginBottom="@dimen/_15dp"
+        android:minHeight="260dp"
+        android:background="@color/white"
+        android:layout_height="260dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sp"
+            android:text="单位：个"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:background="@drawable/gray_bg_shape"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/_8dp"
+            android:minHeight="@dimen/_25dp"
+            android:text="2017-9"
+            android:id="@+id/tv_choose_month"
+            android:layout_marginTop="@dimen/_8dp"
+            android:paddingLeft="9dp"
+            android:drawablePadding="@dimen/_8dp"
+            android:drawableRight="@mipmap/xiajiant"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/_16dp"
+            android:layout_height="wrap_content" />
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tv_choose_month"
+            android:layout_marginLeft="@dimen/_16dp"
+            android:layout_marginRight="@dimen/_16dp"
+            android:id="@+id/line_chart"
+            android:layout_height="match_parent">
+        </com.github.mikephil.charting.charts.LineChart>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/_40dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/_15dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@mipmap/xian"
+        android:drawablePadding="@dimen/_15dp"
+        android:textSize="@dimen/_14sp"
+        android:textColor="@color/black"
+        android:text="月份总销量 1280"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            style="@style/MinGrayLightText"
-            android:text="库存预警可售天数下限：2"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/_14dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            style="@style/MinGrayLightText"
-
-            android:text="库存预警可售天数上限：10"
-            android:layout_marginRight="@dimen/_14dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    </TextView>
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/secondary_recycle"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

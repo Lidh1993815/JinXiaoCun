@@ -49,6 +49,33 @@ public class MoneyManagerActivity extends BaseActivity implements View.OnClickLi
         setContentView(requestView(R.layout.activity_money_manager));
         ButterKnife.bind(this);
         setupViewPager();
+        initEvent();
+    }
+
+    private void initEvent() {
+        vpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    tvIncome.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    tvExpenditure.setTextColor(Color.BLACK);
+                } else {
+                    tvIncome.setTextColor(Color.BLACK);
+
+                    tvExpenditure.setTextColor(getResources().getColor(R.color.colorPrimary));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void showBottomDialog() {
@@ -89,6 +116,8 @@ public class MoneyManagerActivity extends BaseActivity implements View.OnClickLi
                 break;
         }
     }
+
+
 
     //为viewPager添加fragment
     public void setupViewPager() {

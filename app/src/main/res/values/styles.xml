@@ -181,6 +181,13 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="MiddleGrayDarkText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/_14sp</item>
+        <item name="android:textColor">@color/_626262</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="MinBlackText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">@dimen/_12sp</item>
@@ -246,4 +253,6 @@
     <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/fu_choose_checkbox_selector</item>
     </style>
+
+    <color name="_626262">#626262</color>
 </resources>
