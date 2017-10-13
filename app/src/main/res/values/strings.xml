@@ -114,7 +114,7 @@
     <string name="please_input_order">请输入单据</string>
     <string name="order_status">订单状态：</string>
     <string name="supply_warehouse">供货仓：</string>
-    <string name="warehouse">入库仓：</string>
+    <string name="warehouse_in">入库仓：</string>
     <string name="sales_order">销售单</string>
     <string name="sales_prompt">卖货、出货</string>
     <string name="sales_return">销售退货单</string>
@@ -170,4 +170,13 @@
     <string name="life">保质期：</string>
     <string name="origin">产地：</string>
     <string name="check_history">盘点历史</string>
+    <string name="please_input_prepare_name">请输入制单人名称</string>
+    <string name="warehouse">仓库：</string>
+    <string name="inventory_detail">盘点明细</string>
+    <string name="check">盘点</string>
+    <string name="edit">编辑</string>
+    <string name="commit_check">提交盘点</string>
+    <string name="check_alarm">将按此盘点结果调整商品库存数量，确认要执行库存调整吗？</string>
+    <string name="confirm">确认</string>
+    <string name="order_number">单号：</string>
 </resources>

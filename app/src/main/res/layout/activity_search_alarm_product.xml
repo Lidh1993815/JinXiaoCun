@@ -6,23 +6,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/_eeeeee"
-    tools:context="com.qianmo.jinxiaocun.fu.activity.PurchaseOrdersActivity">
+    tools:context="com.qianmo.jinxiaocun.fu.activity.SearchOrderActivity">
     <RelativeLayout
         android:layout_marginTop="@dimen/line_height_size"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         style="@style/ItemHorizontalStyle">
         <TextView
-            android:text="@string/supply_warehouse"
-            android:id="@+id/tv_order_status"
+            android:text="@string/classification"
+            android:id="@+id/tv_classification"
             style="@style/ConditionTitleStyle" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_order_status"
+            android:layout_toRightOf="@+id/tv_classification"
             android:textColor="@color/_9f9f9f"
             android:textSize="@dimen/_15sp"
-            android:text="xxx分公司总仓" />
+            android:text="@string/please_choose_class" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/line_height_size"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/brand"
+            android:id="@+id/tv_brand"
+            style="@style/ConditionTitleStyle" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_brand"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="@dimen/_15sp"
+            android:text="@string/please_choose_brand" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
@@ -31,45 +55,28 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <LinearLayout
+        android:layout_marginTop="@dimen/line_height_size"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_1dp"
         android:gravity="center_vertical"
         style="@style/ItemHorizontalStyle">
         <TextView
-            android:text="@string/warehouse_in"
+            android:text="@string/spec_model"
             style="@style/ConditionTitleStyle" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_order_status"
-            android:textColor="@color/_9f9f9f"
-            android:textSize="@dimen/_15sp"
-            android:text="门店01（自动生成）" />
+        <EditText
+            android:hint="@string/please_input_spec"
+            style="@style/EditHintStyle" />
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
-        android:minHeight="@dimen/_30dp"
-        android:background="@color/white"
-        style="@style/MinGrayLightText"
-        android:text="选择商品"
-        android:paddingLeft="@dimen/_15dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/_5dp" />
-    <com.github.jdsjlzx.recyclerview.LuRecyclerView
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_1dp"
-        android:id="@+id/addGoodsList"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_5dp"
-        android:gravity="center_vertical"
-        style="@style/ItemHorizontalStyle">
-        <TextView
-            android:text="业务日期："
-            style="@style/ConditionTitleStyle" />
-        <TextView
-            android:text="2017-10-09"
-            style="@style/ConditionTitleStyle" />
-    </LinearLayout>
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
+        android:minHeight="@dimen/_40dp"
+        android:text="@string/search"
+        android:textSize="@dimen/_14sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:background="@drawable/btn_primary_fillet_bg_ripple"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_height="wrap_content" />
 </LinearLayout>

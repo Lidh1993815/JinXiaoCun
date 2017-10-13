@@ -1,14 +1,19 @@
-package com.qianmo.jinxiaocun.fu.fragment;
+package com.qianmo.jinxiaocun.fu.activity;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -16,87 +21,97 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
-import com.qianmo.jinxiaocun.fu.activity.CheckDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
-import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
-import com.qianmo.jinxiaocun.main.base.BaseFragment;
+import com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout;
+import com.qianmo.jinxiaocun.main.base.BaseActivity;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import butterknife.OnClick;
 
 /**
- * author : wizardev
- * e-mail : wizarddev@163.com
- * time   : 2017/09/18
- * desc   :
- * version: 1.0
+ * 库存报警
  */
-public class CheckProductFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-    /**
-     * 服务器端一共多少条数据
-     */
+public class InventoryAlarmActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+
+    // 服务器端一共多少条数据
     private static final int TOTAL_COUNTER = 34;
-
-    /**
-     * 每一页展示多少条数据
-     */
+    // 每一页展示多少条数据
     private static final int REQUEST_COUNT = 15;
-
-    /**
-     * 已经获取到多少条数据了
-     */
+    // 已经获取到多少条数据了
     private static int mCurrentCounter = 0;
-    @BindView(R.id.rv_approval_list)
-    LuRecyclerView mRecyclerView;
-    Unbinder unbinder;
-    @BindView(R.id.swipe_refresh_layout)
-    WrapSwipeRefreshLayout mSwipeRefreshLayout;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tv_search)
+    TextView tvSearch;
+    @BindView(R.id.et_search_content)
+    EditText etSearchContent;
+    @BindView(R.id.edit_parent_layout)
+    RelativeLayout editParentLayout;
+    @BindView(R.id.rv_inventory_alarm_list)
+    LuRecyclerView mRecyclerView;
+    @BindView(R.id.main_swipe_refresh)
+    ForbiddenSwipeRefreshLayout mSwipeRefreshLayout;
+    private boolean isStartAnimate = false;
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
 
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
-
-    private int approvalStatus;
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            approvalStatus = arguments.getInt("approvalStatus");
-        }
-    }
-
-    public static CheckProductFragment newInstance(int status) {
-        CheckProductFragment fragment = new CheckProductFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("approvalStatus", status);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = requestView(inflater, R.layout.fu_approval_notify_fragment);
-        unbinder = ButterKnife.bind(this, view);
-        initData();//初始化数据
+        setContentView(R.layout.activity_inventory_alarm);
+        ButterKnife.bind(this);
+        initData();
         initView();
+        setupToolbar();
         initEvent();
-        return view;
     }
 
     @Override
     public void requestInit() {
 
     }
+    private void setupToolbar() {
+        //左箭头事件
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mToolbar.inflateMenu(R.menu.scanning_and_search_menu);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.scanning_menu:
+                      //  startActivity(SearchCheckHistoryActivity.class, false);
+                        break;
+                    case R.id.search_menu:
+                        startActivity(SearchAlarmProductActivity.class, false);
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+    @OnClick({R.id.tv_search})
+    public void clickAction(View view) {
 
+        switch (view.getId()) {
+            case R.id.tv_search:
+                if (!isStartAnimate) {
+                    doAnimation();
+                }
+                break;
+        }
+    }
     private void initData() {
         handler = new Handler() {
             @Override
@@ -136,7 +151,7 @@ public class CheckProductFragment extends BaseFragment implements SwipeRefreshLa
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(CheckDetailActivity.class, false);
+             //   startActivity(SearchAlarmProductActivity.class, false);
             }
 
         });
@@ -156,16 +171,24 @@ public class CheckProductFragment extends BaseFragment implements SwipeRefreshLa
         onRefresh();
     }
 
+
+
     private void initView() {
-        mTaskAdapter = new TaskAdapter(getContext());//实例化适配器
+        mTaskAdapter = new TaskAdapter(this);//实例化适配器
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
-        LuDividerDecoration divider = new LuDividerDecoration.Builder(getContext(), mLuRecyclerViewAdapter)
+        LuDividerDecoration divider = new LuDividerDecoration.Builder(this, mLuRecyclerViewAdapter)
                 .setHeight(R.dimen._1dp)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
+
+    }
+
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
@@ -188,7 +211,7 @@ public class CheckProductFragment extends BaseFragment implements SwipeRefreshLa
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_check_product_recycler_item;
+            return R.layout.fu_alarm_recycle_item;
         }
 
         @Override
@@ -225,9 +248,52 @@ public class CheckProductFragment extends BaseFragment implements SwipeRefreshLa
         }.start();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    //执行动画
+    private void doAnimation() {
+        final ValueAnimator vm = ValueAnimator.ofInt((int) tvSearch.getX(), (int) editParentLayout.getX());
+        vm.setDuration(200);
+        vm.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int curValue = (int) valueAnimator.getAnimatedValue();
+                tvSearch.layout(curValue, 0, curValue + tvSearch.getWidth(), tvSearch.getHeight());
+            }
+        });
+        vm.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                isStartAnimate = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                vm.removeAllUpdateListeners();
+                tvSearch.setVisibility(View.GONE);
+                etSearchContent.setVisibility(View.VISIBLE);
+
+                focusAndShowSoftInput();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        vm.start();
+
+    }
+
+    //弹出软件盘
+    private void focusAndShowSoftInput() {
+        etSearchContent.setFocusable(true);
+        etSearchContent.setFocusableInTouchMode(true);
+        etSearchContent.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) etSearchContent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(etSearchContent, 0);
     }
 }

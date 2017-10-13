@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 二级菜单的适配器
+ * @param <T>
+ */
 public abstract class BaseMultiAdapter<T extends MultiItemEntity> extends RecyclerView.Adapter<SuperViewHolder> {
     protected Context mContext;
     private LayoutInflater mInflater;

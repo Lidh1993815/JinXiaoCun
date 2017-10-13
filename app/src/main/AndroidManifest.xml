@@ -62,7 +62,12 @@
         <activity android:name=".fu.activity.SearchInventoryProductActivity" />
         <activity android:name=".fu.activity.ProductDetailActivity" />
         <activity android:name=".fu.activity.ProductDetail2Activity" />
-        <activity android:name=".fu.activity.CheckHistoryActivity"></activity>
+        <activity android:name=".fu.activity.CheckHistoryActivity" />
+        <activity android:name=".fu.activity.SearchCheckHistoryActivity" />
+        <activity android:name=".fu.activity.CheckOrderActivity" />
+        <activity android:name=".fu.activity.CheckDetailActivity" />
+        <activity android:name=".fu.activity.InventoryAlarmActivity" />
+        <activity android:name=".fu.activity.SearchAlarmProductActivity"></activity>
     </application>
 
 </manifest>

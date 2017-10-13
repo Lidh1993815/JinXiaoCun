@@ -178,7 +178,7 @@ public class AlarmNotifyActivity extends BaseActivity implements SwipeRefreshLay
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
-
+            holder.getView(R.id.tv_mode_spec).setVisibility(View.GONE);
         }
 
     }

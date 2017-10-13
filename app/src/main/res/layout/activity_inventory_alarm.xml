@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:navigationIcon="@mipmap/zoujiant">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/inventory_alarm"
+                android:id="@+id/toolbar_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:minHeight="@dimen/_44dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/edit_parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8dp"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginRight="@dimen/_15dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@drawable/fu_edit_search_bg_shape"
+            android:minHeight="@dimen/_30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@mipmap/sous03"
+                android:drawablePadding="@dimen/_8dp"
+                android:gravity="center"
+                android:text="@string/search_product"
+                android:textColor="@color/_9f9f9f" />
+
+
+            <EditText
+                android:maxLines="1"
+                android:id="@+id/et_search_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:background="@null"
+                android:imeOptions="actionNone"
+                android:drawableLeft="@mipmap/sous03"
+                android:drawablePadding="@dimen/_8dp"
+                android:hint="@string/search_product"
+                android:textColor="@color/black"
+                android:textColorHint="@color/_9f9f9f"
+                android:textSize="@dimen/_13sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+    <com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout
+        android:id="@+id/main_swipe_refresh"
+        android:layout_width="match_parent"
+        android:clickable="false"
+
+        android:layout_height="match_parent">
+        <com.github.jdsjlzx.recyclerview.LuRecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv_inventory_alarm_list"
+            android:layout_height="match_parent"/>
+    </com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout>
+
+</LinearLayout>

@@ -62,10 +62,10 @@ public class CheckHistoryActivity extends BaseActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.search_menu:
-                        startActivity(SearchOrderActivity.class, false);
+                        startActivity(SearchCheckHistoryActivity.class, false);
                         break;
                     case R.id.add_menu:
-                        startActivity(PurchaseOrdersActivity.class, false);
+                        startActivity(CheckOrderActivity.class, false);
                         break;
                 }
 

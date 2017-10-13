@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView44"
+        style="@style/MinBlackText"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="商品01（规格型号）"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView45"
+        style="@style/MinGrayLightText"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="12dp"
+        android:text="盘点前数量：20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/textView46"
+        style="@style/MinGrayLightText"
+        android:layout_marginRight="135dp"
+        android:text="盘点数量：10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView45" />
+
+    <TextView
+        android:id="@+id/textView47"
+        style="@style/MinBlackText"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/_16dp"
+        android:layout_marginTop="13dp"
+        android:text="盈亏数量：-10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+    <TextView
+        android:id="@+id/textView48"
+        style="@style/MinBlackText"
+        android:text="盈亏金额：￥200.00"
+        app:layout_constraintStart_toStartOf="@+id/textView46"
+        app:layout_constraintTop_toTopOf="@+id/textView47" />
+</android.support.constraint.ConstraintLayout>

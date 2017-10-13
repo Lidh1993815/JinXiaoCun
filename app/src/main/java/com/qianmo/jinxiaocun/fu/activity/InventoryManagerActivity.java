@@ -50,6 +50,7 @@ public class InventoryManagerActivity extends BaseActivity {
                 break;
             //库存警报
             case R.id.inventory_alarm:
+                startActivity(InventoryAlarmActivity.class,false);
                 break;
         }
     }

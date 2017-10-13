@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
-import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
@@ -112,12 +111,6 @@ public class TaskNotifyActivity extends BaseActivity implements SwipeRefreshLayo
 
         });
 
-        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override

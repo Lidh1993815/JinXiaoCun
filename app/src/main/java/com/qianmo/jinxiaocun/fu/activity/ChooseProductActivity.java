@@ -3,6 +3,7 @@ package com.qianmo.jinxiaocun.fu.activity;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,15 +58,23 @@ public class ChooseProductActivity extends BaseActivity {
     private boolean isStartAnimate = false;
     private static final String TAG = "ChooseProductActivity";
     private int curValue;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "选择商品", -1);
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
         setContentView(requestView(R.layout.activity_choose_product));
         ButterKnife.bind(this);
         initData();
         initView();
+        initEvent();
+    }
+
+    private void initEvent() {
+
     }
 
     //初始化数据
@@ -140,23 +149,11 @@ public class ChooseProductActivity extends BaseActivity {
                     for (TextView textView : textMap.keySet()) {
                         int i = textMap.get(textView);
                         if (i == position) {
-                            Log.i(TAG, "i= " + i + " and position= " + position);
                             textView.setTextColor(getResources().getColor(R.color.colorPrimary));
                         } else {
-                            Log.i(TAG, "onClick: ");
                             textView.setTextColor(getResources().getColor(R.color.black));
                         }
                     }
-                    /*for (Map.Entry<TextView, Integer> entry : textMap.entrySet()) {
-                        //System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-
-                        if (entry.getValue() == position) {
-                            brand.setTextColor(getResources().getColor(R.color.colorPrimary));
-                            Log.i(TAG, "key= " + entry.getKey() + " and value= " + entry.getValue());
-                        } else {
-                            brand.setTextColor(getResources().getColor(R.color.black));
-                        }
-                    }*/
                 }
             });
         }
@@ -177,6 +174,15 @@ public class ChooseProductActivity extends BaseActivity {
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (type != null && type.equals("check")) {
+                        //由盘点单进入，点击弹出对话框
+
+                    }
+                }
+            });
 
         }
 

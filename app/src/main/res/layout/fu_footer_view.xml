@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/scanning"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/saomiao"/>
+                android:src="@mipmap/saomiao_b"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
                 android:id="@+id/add_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/tianjia02"/>
+                android:src="@mipmap/tianjai"/>
         </LinearLayout>
     </LinearLayout>
 
