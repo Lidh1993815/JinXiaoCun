@@ -67,7 +67,10 @@
         <activity android:name=".fu.activity.CheckOrderActivity" />
         <activity android:name=".fu.activity.CheckDetailActivity" />
         <activity android:name=".fu.activity.InventoryAlarmActivity" />
-        <activity android:name=".fu.activity.SearchAlarmProductActivity"></activity>
+        <activity android:name=".fu.activity.SearchAlarmProductActivity" />
+        <activity android:name=".fu.activity.ForMeTaskDetailActivity" />
+        <activity android:name=".fu.activity.NewspaperActivity" />
+        <activity android:name=".fu.activity.StartTourShopActivity"></activity>
     </application>
 
 </manifest>

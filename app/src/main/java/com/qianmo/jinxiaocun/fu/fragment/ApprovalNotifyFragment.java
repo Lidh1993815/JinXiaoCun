@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
-import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.activity.ForMeTaskDetailActivity;
 import com.qianmo.jinxiaocun.fu.activity.TaskDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
@@ -138,16 +138,19 @@ public class ApprovalNotifyFragment extends BaseFragment implements SwipeRefresh
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                    startActivity(TaskDetailActivity.class);
+                if (approvalStatus == 0) {
+                    //待我执行的界面
+                    startActivity(ForMeTaskDetailActivity.class, false);
+
+                } else {
+                    //我发布的界面
+                    startActivity(TaskDetailActivity.class, false);
+
+                }
+
+
             }
 
-        });
-
-        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {

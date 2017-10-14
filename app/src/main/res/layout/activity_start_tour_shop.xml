@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+    android:scrollbars="none"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.TaskAddActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/_eeeeee"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/current_location" />
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="浙江省杭州市下城区费加唐路" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_5dp"
+        style="@style/ItemHorizontalStyle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/current_tour_shop" />
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="门店01" />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/report_to" />
+
+        <TextView
+            android:layout_toRightOf="@+id/tv_start_time"
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="溜溜" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/white"
+        android:minHeight="125dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/take_pictures" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/_14dp"
+            android:src="@mipmap/add_pic"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layout_marginBottom="@dimen/_14dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/white"
+        android:minHeight="160dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/shop_description" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16dp"
+            android:background="@null"
+            android:hint="@string/please_input_task_content"
+            android:inputType="textMultiLine"
+            android:lineSpacingMultiplier="1.2"
+            android:textColorHint="@color/_9f9f9f"
+            android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
