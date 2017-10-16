@@ -1,6 +1,7 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -79,7 +80,10 @@ public class PurchaseOrdersActivity extends BaseActivity implements View.OnClick
                 break;
             //添加
             case R.id.add_order:
-                ToastUtils.MyToast(PurchaseOrdersActivity.this,"添加");
+              //  ToastUtils.MyToast(PurchaseOrdersActivity.this,"添加");
+                Intent intent = new Intent(this, ChooseProductActivity.class);
+                intent.putExtra("type", "purchaseOrder");
+                startActivity(intent);
                 break;
         }
     }

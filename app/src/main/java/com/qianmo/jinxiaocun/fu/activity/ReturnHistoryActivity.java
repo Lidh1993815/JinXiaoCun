@@ -1,12 +1,14 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -19,7 +21,6 @@ import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
-import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
 import java.util.ArrayList;
 
@@ -27,9 +28,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 促销管理界面即促销活动
+ * 退货历史界面
  */
-public class PromotionManagementActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+
     /**
      * 服务器端一共多少条数据
      */
@@ -44,34 +46,68 @@ public class PromotionManagementActivity extends BaseActivity implements SwipeRe
      * 已经获取到多少条数据了
      */
     private static int mCurrentCounter = 0;
-    @BindView(R.id.rv_promotion_list)
+
+    @BindView(R.id.rv_purchase_order_list)
     LuRecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
+
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
 
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
+    private String type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "促销活动", R.mipmap.add);
-        ImageView rightImageBtn = toolBar.getRightImageBtn();
-        setContentView(requestView(R.layout.activity_promotion_management));
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
+        setContentView(R.layout.activity_return);
         ButterKnife.bind(this);
-        if (rightImageBtn != null) {
-            //跳转到创建市场活动的界面
-            rightImageBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(CreateMarketActivity.class,false);
-                }
-            });
-        }
-        initData();//初始化数据
+        setupToolbar();
+        initData();
         initView();
         initEvent();
+    }
+
+    private void setupToolbar() {
+        //左箭头事件
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mToolbar.inflateMenu(R.menu.search_and_add_menu);
+
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.search_menu:
+                        startActivity(SearchOrderActivity.class, false);
+                        break;
+                    case R.id.add_menu:
+                        startActivity(PurchaseOrdersActivity.class, false);
+                        break;
+                }
+
+                return true;
+            }
+        });
+
+
+    }
+
+    @Override
+    public void requestInit() {
+
     }
 
     private void initData() {
@@ -115,7 +151,10 @@ public class PromotionManagementActivity extends BaseActivity implements SwipeRe
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                if (type != null && type.equals("sales")) {
 
+                    startActivity(SalesOrdersDetailActivity.class, false);
+                }
             }
 
         });
@@ -132,7 +171,7 @@ public class PromotionManagementActivity extends BaseActivity implements SwipeRe
             public void onLoadMore() {
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
-                    requestDataFromNet();
+                    requestDataFromNet();//从网络获取数据
                 } else {
                     //the end
                     mRecyclerView.setNoMore(true);
@@ -146,16 +185,12 @@ public class PromotionManagementActivity extends BaseActivity implements SwipeRe
         mTaskAdapter = new TaskAdapter(this);//实例化适配器
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
         LuDividerDecoration divider = new LuDividerDecoration.Builder(this, mLuRecyclerViewAdapter)
-                .setHeight(R.dimen._1dp)
+                .setHeight(R.dimen._6dp)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
+                .setHeaderDivide(true)
                 .build();
-        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,divider);//创建RecycleView
-
-    }
-
-    @Override
-    public void requestInit() {
+        setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
 
     }
 
@@ -183,7 +218,7 @@ public class PromotionManagementActivity extends BaseActivity implements SwipeRe
 
         @Override
         public int getLayoutId() {
-            return R.layout.promotion_activity_item;
+            return R.layout.purchase_order_item;
         }
 
         @Override

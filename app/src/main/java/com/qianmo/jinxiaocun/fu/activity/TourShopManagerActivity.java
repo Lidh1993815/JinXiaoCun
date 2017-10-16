@@ -234,7 +234,13 @@ public class TourShopManagerActivity extends BaseActivity implements SwipeRefres
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
-
+            TextView textView = holder.getView(R.id.tv_start_tour);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(StartTourShopActivity.class,false);
+                }
+            });
         }
 
     }

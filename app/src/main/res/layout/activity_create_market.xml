@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.TaskAddActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_eeeeee"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_choose_shop"
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/choose_shop" />
+
+            <TextView
+                style="@style/MIddleGrayTextStyle"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@+id/tv_choose_shop"
+                android:text="@string/choose_shop" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_choose_brand"
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/choose_brand" />
+
+            <TextView
+                style="@style/MIddleGrayTextStyle"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@+id/tv_choose_brand"
+                android:text="@string/choose_brand" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="超市个洗柜组销售" />
+
+            <EditText
+                android:id="@+id/tv_leave_days"
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/can_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="超市个护柜组销售" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/can_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/sales_amount" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/site_area" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/shop_amount" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="@string/accommodation_amount" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="交通费用" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="广告费用" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="活动物料费用" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="其他费用" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_amount_total"
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="费用占比小结" />
+
+            <TextView
+                style="@style/MIddleGrayTextStyle"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_toRightOf="@+id/tv_amount_total"
+                android:text="自动生成" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="短促工资" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="外援工资" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="驻店人员工资" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="其他人员工资" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_wages_proportion"
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="工资占比小结" />
+
+            <TextView
+                style="@style/MIddleGrayTextStyle"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_toRightOf="@+id/tv_wages_proportion"
+                android:text="自动生成" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="短促人数" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="外援人数" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="驻店人员数" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/line_height_size"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ModdleBlackText"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:text="其他人员数" />
+
+            <EditText
+                style="@style/EditHintStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_18dp"
+                android:hint="@string/must_fill" />
+        </LinearLayout>
+        <RelativeLayout
+            style="@style/ItemHorizontalStyle"
+            android:gravity="center_vertical"
+           >
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                style="@style/AddTaskTitleStyle"
+                android:layout_gravity="center_vertical"
+                android:text="@string/start_time" />
+
+            <TextView
+                android:id="@+id/tv_start_time_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_start_time"
+                android:text="2017-8-20"
+                android:textColor="@color/_9f9f9f"
+                android:textSize="@dimen/_14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+
+        <RelativeLayout
+           style="@style/ItemHorizontalStyle"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                style="@style/AddTaskTitleStyle"
+                android:layout_gravity="center_vertical"
+                android:text="@string/end_time" />
+
+            <TextView
+                android:id="@+id/tv_end_time_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_end_time"
+                android:text="2017-8-20"
+                android:textColor="@color/_9f9f9f"
+                android:textSize="@dimen/_14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_15dp"
+                android:src="@mipmap/youjiantou" />
+        </RelativeLayout>
+
+        <include layout="@layout/apply_layout" />
+    </LinearLayout>
+</ScrollView>

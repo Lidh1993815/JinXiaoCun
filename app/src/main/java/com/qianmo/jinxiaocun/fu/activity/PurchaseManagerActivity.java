@@ -2,6 +2,7 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.qianmo.jinxiaocun.R;
@@ -21,6 +22,8 @@ public class PurchaseManagerActivity extends BaseActivity {
     RelativeLayout purchaseOrderHistory;
     @BindView(R.id.purchase_order_inquire)
     RelativeLayout purchaseOrderInquire;
+    @BindView(R.id.return_layout)
+    LinearLayout returnLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +38,20 @@ public class PurchaseManagerActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.purchase_order_history, R.id.purchase_order_inquire})
+    @OnClick({R.id.purchase_order_history, R.id.purchase_order_inquire,R.id.return_layout})
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.purchase_order_history:
-                startActivity(PurchaseOrSalesHistoryActivity.class,false);
+                startActivity(PurchaseOrSalesHistoryActivity.class, false);
+                break;
+            case R.id.return_layout:
+                //跳转到退货历史界面
+                startActivity(ReturnHistoryActivity.class, false);
+
                 break;
             case R.id.purchase_order_inquire:
                 break;
+
         }
     }
 }

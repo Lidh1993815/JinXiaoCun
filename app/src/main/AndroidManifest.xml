@@ -70,7 +70,9 @@
         <activity android:name=".fu.activity.SearchAlarmProductActivity" />
         <activity android:name=".fu.activity.ForMeTaskDetailActivity" />
         <activity android:name=".fu.activity.NewspaperActivity" />
-        <activity android:name=".fu.activity.StartTourShopActivity"></activity>
+        <activity android:name=".fu.activity.StartTourShopActivity" />
+        <activity android:name=".fu.activity.CreateMarketActivity" />
+        <activity android:name=".fu.activity.ReturnHistoryActivity"></activity>
     </application>
 
 </manifest>

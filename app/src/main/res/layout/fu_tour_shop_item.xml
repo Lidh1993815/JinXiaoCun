@@ -50,12 +50,13 @@
             android:background="@drawable/text_radius_bg"
             android:minWidth="@dimen/dp_60"
             android:minHeight="@dimen/dp_18"
+
             android:layout_marginTop="@dimen/_8dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:textSize="@dimen/_12sp"
             android:textColor="@color/white"
-            android:id="@+id/tv_task_status"
+            android:id="@+id/tv_start_tour"
             android:text="开始巡店"
             android:layout_height="wrap_content" />
     </LinearLayout>

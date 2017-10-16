@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +16,10 @@ import android.widget.TextView;
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
+import com.othershe.nicedialog.BaseNiceDialog;
+import com.othershe.nicedialog.NiceDialog;
+import com.othershe.nicedialog.ViewConvertListener;
+import com.othershe.nicedialog.ViewHolder;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
@@ -180,12 +185,60 @@ public class ChooseProductActivity extends BaseActivity {
                     if (type != null && type.equals("check")) {
                         //由盘点单进入，点击弹出对话框
 
+                    } else if (type != null && type.equals("purchaseOrder")) {
+                        //由进货单进入，点击弹出对话框
+                        showChooseNumDialog();
                     }
                 }
             });
 
         }
 
+    }
+
+    private void showChooseNumDialog() {
+        //调整选择商品的数量
+        NiceDialog.init().setLayoutId(R.layout.choose_num_dialog)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    protected void convertView(ViewHolder viewHolder, BaseNiceDialog baseNiceDialog) {
+
+                        final EditText editText = viewHolder.getView(R.id.et_num);
+                        viewHolder.getView(R.id.img_decrease).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String content = editText.getText().toString().trim();
+                                if (!TextUtils.isEmpty(content)) {
+                                    int num = Integer.valueOf(content);
+                                    if (num == 0) {
+                                        num = 0;
+                                    } else {
+                                        num--;
+                                    }
+                                    editText.setText(num + "");
+                                }
+                            }
+                        });
+
+                        viewHolder.getView(R.id.img_plus).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String content = editText.getText().toString().trim();
+                                if (!TextUtils.isEmpty(content)) {
+                                    int num = Integer.valueOf(content);
+                                    num++;
+                                    editText.setText(num + "");
+                                }
+                            }
+                        });
+                        viewHolder.getView(R.id.tv_add);
+
+                    }
+                })
+                .setDimAmount(0.5f)
+                .setMargin(38)
+                .setOutCancel(true)
+                .show(getSupportFragmentManager());
     }
 
     private void notifyDataSetChanged() {

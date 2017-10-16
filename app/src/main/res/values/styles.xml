@@ -267,5 +267,13 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="MIddleGrayTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/_9f9f9f</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+    </style>
+
     <color name="_626262">#626262</color>
 </resources>
