@@ -195,4 +195,5 @@
     <string name="shop_amount">门店费用</string>
     <string name="accommodation_amount">住宿费用</string>
     <string name="return_history">退货历史</string>
+    <string name="sales_detail_of_shop">按门店销售明细</string>
 </resources>

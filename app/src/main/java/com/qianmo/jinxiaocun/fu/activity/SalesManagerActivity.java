@@ -46,9 +46,13 @@ public class SalesManagerActivity extends BaseActivity {
                 Intent intent = new Intent(SalesManagerActivity.this, PurchaseOrSalesHistoryActivity.class);
                 intent.putExtra("type", "sales");
                 startActivity(intent);
-               // startActivity(PurchaseOrSalesHistoryActivity.class,false);
+                // startActivity(PurchaseOrSalesHistoryActivity.class,false);
                 break;
             case R.id.sales_order_return:
+                break;
+            case R.id.sales_report:
+                //用户报表
+                startActivity(SalesDetailOfShopActivity.class,false);
                 break;
         }
     }

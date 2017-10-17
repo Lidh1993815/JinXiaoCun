@@ -72,7 +72,8 @@
         <activity android:name=".fu.activity.NewspaperActivity" />
         <activity android:name=".fu.activity.StartTourShopActivity" />
         <activity android:name=".fu.activity.CreateMarketActivity" />
-        <activity android:name=".fu.activity.ReturnHistoryActivity"></activity>
+        <activity android:name=".fu.activity.ReturnHistoryActivity" />
+        <activity android:name=".fu.activity.SalesDetailOfShopActivity"></activity>
     </application>
 
 </manifest>

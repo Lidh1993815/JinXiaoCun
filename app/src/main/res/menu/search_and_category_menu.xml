@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search_menu"
+        app:showAsAction="always"
+        android:title="@string/search"
+        android:icon="@mipmap/suosuo" />
+    <item
+        android:id="@+id/category_menu"
+        android:title="分类"
+        app:showAsAction="always"
+        android:icon="@mipmap/fenlei" />
+</menu>
