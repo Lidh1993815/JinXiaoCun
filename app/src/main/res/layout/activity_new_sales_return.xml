@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_eeeeee"
+
+    tools:context="com.qianmo.jinxiaocun.fu.activity.PurchaseOrdersActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/_eeeeee"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_1dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/member" />
+
+                <EditText
+                    style="@style/EditHintStyle"
+                    android:layout_toRightOf="@+id/tv_order_status"
+                    android:hint="@string/please_input_membre_name" />
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/line_height_size"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_order_status"
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/store_in" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_order_status"
+                    android:text="@string/please_choose_shop"
+                    android:textColor="@color/_9f9f9f"
+                    android:textSize="@dimen/_15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_15dp"
+                    android:src="@mipmap/youjiantou" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/MinGrayLightText"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/_30dp"
+                android:paddingLeft="@dimen/_15dp"
+                android:text="选择商品" />
+
+            <com.github.jdsjlzx.recyclerview.LuRecyclerView
+                android:id="@+id/addGoodsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@color/white"
+                android:minHeight="140dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AddTaskTitleStyle"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:text="@string/return_reason" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:background="@null"
+                    android:hint="@string/please_input_reson"
+                    android:inputType="textMultiLine"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textColorHint="@color/_9f9f9f"
+                    android:textSize="@dimen/_14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="@string/promoter" />
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="黄克山（自动生成）" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ItemHorizontalStyle"
+                android:layout_marginTop="@dimen/_1dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="业务日期：" />
+
+                <TextView
+                    style="@style/ConditionTitleStyle"
+                    android:text="2017-10-09" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+
+        android:layout_height="@dimen/_50dp">
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="合计数量：20"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="￥600.00"
+            style="@style/MinOrangeText"
+            android:textSize="@dimen/_15sp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="26dp"
+            android:layout_toLeftOf="@+id/tv_check_confirm"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="@dimen/_120dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sp"
+            android:layout_alignParentRight="true"
+            android:text="@string/return_prompt"
+            android:id="@+id/tv_check_confirm"
+            android:clickable="true"
+            android:background="@drawable/btn_primary_ripple"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,7 +29,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+/**
+ * 按品牌销售明细
+ */
+public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     /**
      * 服务器端一共多少条数据
@@ -53,19 +55,15 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-
-
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
-
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
     private BaseNiceDialog mBaseNiceDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        setContentView(R.layout.activity_sales_detail_of_shop);
+        setContentView(R.layout.activity_sales_detail_of_brand);
         ButterKnife.bind(this);
         setupToolbar();
         initData();
@@ -94,9 +92,12 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                         showBottomChooseDialog();
                         break;
                 }
+
                 return true;
             }
         });
+
+
     }
 
     private void showBottomChooseDialog() {
@@ -104,12 +105,12 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                 .setConvertListener(new ViewConvertListener() {
                     @Override
                     protected void convertView(ViewHolder viewHolder,BaseNiceDialog baseNiceDialog) {
-                        viewHolder.getView(R.id.tv_sales_detail_shop).setVisibility(View.GONE);
-                        viewHolder.getView(R.id.tv_sales_detail_brand).setOnClickListener(SalesDetailOfShopActivity.this);
-                       // viewHolder.getView(R.id.tv_sales_detail_shop).setOnClickListener(SalesDetailOfShopActivity.this);
-                        viewHolder.getView(R.id.tv_sales_detail_seller).setOnClickListener(SalesDetailOfShopActivity.this);
+                        viewHolder.getView(R.id.tv_sales_detail_brand).setVisibility(View.GONE);
+                        //viewHolder.getView(R.id.tv_sales_detail_brand).setOnClickListener(SalesDetailOfBrandActivity.this);
+                        viewHolder.getView(R.id.tv_sales_detail_shop).setOnClickListener(SalesDetailOfBrandActivity.this);
+                        viewHolder.getView(R.id.tv_sales_detail_seller).setOnClickListener(SalesDetailOfBrandActivity.this);
                         mBaseNiceDialog = baseNiceDialog;
-                        viewHolder.getView(R.id.tv_cancel).setOnClickListener(SalesDetailOfShopActivity.this);
+                        viewHolder.getView(R.id.tv_cancel).setOnClickListener(SalesDetailOfBrandActivity.this);
                     }
                 })
                 .setDimAmount(0.5f)
@@ -145,6 +146,8 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                         }
                         datas.add("");
                     }
+
+
                     addItems(datas);
 
                     if (mSwipeRefreshLayout.isRefreshing()) {
@@ -153,6 +156,7 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                     mRecyclerView.refreshComplete(REQUEST_COUNT);
                     notifyDataSetChanged();
                 }
+
             }
         };
     }
@@ -209,27 +213,21 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
 
     }
 
-
     @Override
     public void onClick(View view) {
-        //viewHolder.getView(R.id.tv_sales_detail_brand).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_sales_detail_shop).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_sales_detail_seller).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_cancel).setOnClickListener(SalesDetailOfShopActivity.this);
         switch (view.getId()) {
             //按品牌销售明细
-            case R.id.tv_sales_detail_brand:
+            /*case R.id.tv_sales_detail_brand:
                 startActivity(SalesDetailOfBrandActivity.class);
-                break;
-                //按店铺销售明细
-           /* case R.id.tv_sales_detail_shop:
-                startActivity(SalesDetailOfShopActivity.class);
                 break;*/
-                //按销售员销售明细
+            //按店铺销售明细
+            case R.id.tv_sales_detail_shop:
+                startActivity(SalesDetailOfShopActivity.class);
+                break;
+            //按销售员销售明细
             case R.id.tv_sales_detail_seller:
                 break;
             case R.id.tv_cancel:
-               // mBaseNiceDialog.dismiss();
                 break;
         }
         mBaseNiceDialog.dismiss();
@@ -280,5 +278,4 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
             }
         }.start();
     }
-
 }

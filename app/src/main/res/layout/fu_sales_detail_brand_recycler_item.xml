@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13dp"
+        android:text="商品01"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView61"
+        style="@style/MinGrayLightText"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="型号规格：xxxx"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+    <TextView
+        android:id="@+id/textView62"
+        style="@style/MinGrayLightText"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:text="销售数量：25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+    <TextView
+        android:id="@+id/textView63"
+        style="@style/MinGrayLightText"
+        android:layout_marginBottom="12dp"
+        app:layout_goneMarginBottom="@dimen/_12dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:text="销售单价：￥60.00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+    <TextView
+        android:id="@+id/textView68"
+        style="@style/MinGrayLightText"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginTop="13dp"
+        android:text="（商品编号：2112314234）"
+        app:layout_constraintStart_toEndOf="@+id/textView59"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView69"
+        style="@style/MinGrayLightText"
+        android:layout_marginRight="100dp"
+        android:text="总销售额￥1500.00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView61" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView63"
+        android:layout_height="wrap_content">
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

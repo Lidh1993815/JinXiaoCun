@@ -49,6 +49,7 @@
 
     <TextView
         style="@style/MinGrayLightText"
+        android:id="@+id/approval_status"
         android:layout_alignEnd="@+id/purchase_order_price"
         android:layout_alignRight="@+id/purchase_order_price"
         android:layout_below="@+id/purchase_order_id"

@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/sales_detail_of_shop"
+                    android:text="@string/sales_detail_of_brand"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sp" />
             </android.support.v7.widget.Toolbar>

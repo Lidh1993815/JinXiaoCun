@@ -7,18 +7,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
+import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
-import com.othershe.nicedialog.BaseNiceDialog;
-import com.othershe.nicedialog.NiceDialog;
-import com.othershe.nicedialog.ViewConvertListener;
-import com.othershe.nicedialog.ViewHolder;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
@@ -30,7 +29,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+/**
+ * 退货历史界面
+ */
+public class SalesOrPurchaseReturnHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     /**
      * 服务器端一共多少条数据
@@ -53,6 +55,8 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
 
 
     private TaskAdapter mTaskAdapter = null;//数据适配器
@@ -60,12 +64,15 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
 
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
-    private BaseNiceDialog mBaseNiceDialog;
+    private String type;
+    private static final String TAG = "SalesOrPurchaseReturnHi";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        setContentView(R.layout.activity_sales_detail_of_shop);
+        type = intent.getStringExtra("type");
+        setContentView(R.layout.activity_return);
         ButterKnife.bind(this);
         setupToolbar();
         initData();
@@ -81,42 +88,38 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                 finish();
             }
         });
-        mToolbar.inflateMenu(R.menu.search_and_category_menu);
+        mToolbar.inflateMenu(R.menu.search_and_add_menu);
+        if (type != null && type.equals("sales")) {
+            //销售退货历史
+            toolbarTitle.setText("销售退货历史");
+        } else {
+            toolbarTitle.setText("退货历史");
+        }
+
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.search_menu:
-                        startActivity(BrandSearchActivity.class, false);
+                        startActivity(SearchOrderActivity.class, false);
                         break;
-                    case R.id.category_menu:
-                        //弹出底部对话框
-                        showBottomChooseDialog();
+                    case R.id.add_menu:
+                        Log.i(TAG, "onMenuItemClick: "+type);
+                        if (type != null && type.equals("sales")) {
+                            //销售退货历史
+                            startActivity(NewSalesReturnActivity.class, false);
+                        } else {
+                            startActivity(PurchaseOrdersActivity.class, false);
+                        }
+
                         break;
                 }
+
                 return true;
             }
         });
-    }
 
-    private void showBottomChooseDialog() {
-        NiceDialog.init().setLayoutId(R.layout.fu_choose_catagory_dialog)
-                .setConvertListener(new ViewConvertListener() {
-                    @Override
-                    protected void convertView(ViewHolder viewHolder,BaseNiceDialog baseNiceDialog) {
-                        viewHolder.getView(R.id.tv_sales_detail_shop).setVisibility(View.GONE);
-                        viewHolder.getView(R.id.tv_sales_detail_brand).setOnClickListener(SalesDetailOfShopActivity.this);
-                       // viewHolder.getView(R.id.tv_sales_detail_shop).setOnClickListener(SalesDetailOfShopActivity.this);
-                        viewHolder.getView(R.id.tv_sales_detail_seller).setOnClickListener(SalesDetailOfShopActivity.this);
-                        mBaseNiceDialog = baseNiceDialog;
-                        viewHolder.getView(R.id.tv_cancel).setOnClickListener(SalesDetailOfShopActivity.this);
-                    }
-                })
-                .setDimAmount(0.5f)
-                .setShowBottom(true)
-                .setOutCancel(true)
-                .setAnimStyle(R.style.MyBottomPopWindowAnim)
-                .show(getSupportFragmentManager());
+
     }
 
     @Override
@@ -145,6 +148,8 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                         }
                         datas.add("");
                     }
+
+
                     addItems(datas);
 
                     if (mSwipeRefreshLayout.isRefreshing()) {
@@ -153,6 +158,7 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                     mRecyclerView.refreshComplete(REQUEST_COUNT);
                     notifyDataSetChanged();
                 }
+
             }
         };
     }
@@ -162,9 +168,19 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(ShopDealDetailActivity.class, false);
+                if (type != null && type.equals("sales")) {
+                    //跳转到销售退货单详情界面
+                    startActivity(SalesReturnDetailActivity.class, false);
+                }
             }
 
+        });
+
+        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -192,6 +208,7 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
                 .setHeaderDivide(true)
                 .build();
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
+
     }
 
     @Override
@@ -209,32 +226,6 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
 
     }
 
-
-    @Override
-    public void onClick(View view) {
-        //viewHolder.getView(R.id.tv_sales_detail_brand).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_sales_detail_shop).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_sales_detail_seller).setOnClickListener(SalesDetailOfShopActivity.this);
-//        viewHolder.getView(R.id.tv_cancel).setOnClickListener(SalesDetailOfShopActivity.this);
-        switch (view.getId()) {
-            //按品牌销售明细
-            case R.id.tv_sales_detail_brand:
-                startActivity(SalesDetailOfBrandActivity.class);
-                break;
-                //按店铺销售明细
-           /* case R.id.tv_sales_detail_shop:
-                startActivity(SalesDetailOfShopActivity.class);
-                break;*/
-                //按销售员销售明细
-            case R.id.tv_sales_detail_seller:
-                break;
-            case R.id.tv_cancel:
-               // mBaseNiceDialog.dismiss();
-                break;
-        }
-        mBaseNiceDialog.dismiss();
-    }
-
     //设置RecycleView的适配器
     private class TaskAdapter extends ListBaseAdapter<String> {
 
@@ -244,12 +235,19 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_shop_sales_recycler_item;
+            return R.layout.purchase_order_item;
         }
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            //设置审核状态的显示隐藏
+            TextView approvalStatus = holder.getView(R.id.approval_status);
+            if (type != null && type.equals("sales")) {
+                approvalStatus.setVisibility(View.GONE);
+            } else {
+                approvalStatus.setVisibility(View.VISIBLE);
 
+            }
         }
 
     }

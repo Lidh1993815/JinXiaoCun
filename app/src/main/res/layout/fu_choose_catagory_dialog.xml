@@ -10,28 +10,31 @@
         android:background="@color/white"
         android:gravity="center"
         android:textSize="@dimen/_16sp"
+        android:id="@+id/tv_sales_detail_brand"
         android:textColor="@color/colorPrimary"
-        android:text="按品牌明细"
+        android:text="@string/sales_detail_brand"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/_1dp"
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/_44dp"
+        android:id="@+id/tv_sales_detail_shop"
+        android:gravity="center"
+        android:textSize="@dimen/_16sp"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/sales_detail_shop"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginTop="@dimen/_1dp"
         android:layout_width="match_parent"
         android:minHeight="@dimen/_44dp"
         android:gravity="center"
-        android:textSize="@dimen/_16sp"
-        android:background="@color/white"
-        android:textColor="@color/colorPrimary"
-        android:text="按品牌明细"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="@dimen/_1dp"
-        android:layout_width="match_parent"
-        android:minHeight="@dimen/_44dp"
-        android:gravity="center"
         android:background="@color/white"
         android:textSize="@dimen/_16sp"
+        android:id="@+id/tv_sales_detail_seller"
         android:textColor="@color/colorPrimary"
-        android:text="按品牌明细"
+        android:text="@string/sales_detail_seller"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginTop="@dimen/_1dp"
@@ -40,7 +43,8 @@
         android:background="@color/white"
         android:gravity="center"
         android:textSize="@dimen/_16sp"
-        android:textColor="@color/colorPrimary"
-        android:text="按品牌明细"
+        android:id="@+id/tv_cancel"
+        android:textColor="@color/gray"
+        android:text="@string/cancel"
         android:layout_height="wrap_content" />
 </LinearLayout>

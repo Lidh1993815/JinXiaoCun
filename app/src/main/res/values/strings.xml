@@ -196,4 +196,12 @@
     <string name="accommodation_amount">住宿费用</string>
     <string name="return_history">退货历史</string>
     <string name="sales_detail_of_shop">按门店销售明细</string>
+    <string name="please_input_membre_name">请输入客户名称</string>
+    <string name="store_in">存入门店：</string>
+    <string name="return_reason">退货原因：</string>
+    <string name="promoter">促销员：</string>
+    <string name="sales_detail_brand">按品牌明细汇总</string>
+    <string name="sales_detail_shop">按门店明细汇总</string>
+    <string name="sales_detail_seller">按销售员明细汇总</string>
+    <string name="sales_detail_of_brand">按品牌销售明细</string>
 </resources>

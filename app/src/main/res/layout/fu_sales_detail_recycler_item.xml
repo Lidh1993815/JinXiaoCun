@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_14dp"
+        android:layout_marginTop="@dimen/_14dp"
+        android:text="XS15447875486798"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView60"
+        style="@style/MinGrayLightText"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="13dp"
+        android:textColor="@color/white"
+        android:text="销售单"
+        android:background="@drawable/fu_orange_fillet_shap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView61"
+        style="@style/MinGrayLightText"
+        android:layout_marginLeft="@dimen/_14dp"
+        android:layout_marginTop="12dp"
+        android:text="单据：2017-03-04 08：00"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+    <TextView
+        android:id="@+id/textView62"
+        style="@style/MinGrayLightText"
+
+        android:layout_marginLeft="@dimen/_14dp"
+        android:layout_marginTop="12dp"
+        android:text="会员：单熊"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+    <TextView
+        android:id="@+id/textView63"
+        style="@style/MinGrayLightText"
+
+        android:layout_marginLeft="@dimen/_14dp"
+        android:layout_marginTop="12dp"
+        android:text="门店：门店01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+    <TextView
+        android:id="@+id/textView64"
+        style="@style/MinGrayLightText"
+        android:layout_marginRight="100dp"
+        android:text="制单人员：胡强生"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView63" />
+
+    <TextView
+        android:id="@+id/textView65"
+        style="@style/MinGrayLightText"
+
+        android:layout_marginLeft="@dimen/_14dp"
+        android:layout_marginTop="12dp"
+        android:text="销售量：50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+    <TextView
+        android:id="@+id/textView66"
+        style="@style/MinGrayLightText"
+        android:text="仓库：门店01"
+        app:layout_constraintStart_toStartOf="@+id/textView64"
+        app:layout_constraintTop_toTopOf="@+id/textView65" />
+
+    <TextView
+        android:id="@+id/textView67"
+        style="@style/MinGrayLightText"
+
+        android:layout_marginBottom="11dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:text="单据总金额：￥3000.00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView65" />
+</android.support.constraint.ConstraintLayout>

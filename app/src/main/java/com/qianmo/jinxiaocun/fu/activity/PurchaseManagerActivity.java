@@ -46,7 +46,7 @@ public class PurchaseManagerActivity extends BaseActivity {
                 break;
             case R.id.return_layout:
                 //跳转到退货历史界面
-                startActivity(ReturnHistoryActivity.class, false);
+                startActivity(SalesOrPurchaseReturnHistoryActivity.class, false);
 
                 break;
             case R.id.purchase_order_inquire:

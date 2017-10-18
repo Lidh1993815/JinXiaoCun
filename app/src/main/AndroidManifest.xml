@@ -72,8 +72,14 @@
         <activity android:name=".fu.activity.NewspaperActivity" />
         <activity android:name=".fu.activity.StartTourShopActivity" />
         <activity android:name=".fu.activity.CreateMarketActivity" />
-        <activity android:name=".fu.activity.ReturnHistoryActivity" />
-        <activity android:name=".fu.activity.SalesDetailOfShopActivity"></activity>
+        <activity android:name=".fu.activity.SalesOrPurchaseReturnHistoryActivity" />
+        <activity android:name=".fu.activity.SalesDetailOfShopActivity" />
+        <activity android:name=".fu.activity.NewSalesReturnActivity" />
+        <activity android:name=".fu.activity.SalesReturnDetailActivity" />
+        <activity android:name=".fu.activity.ShopDealDetailActivity" />
+        <activity android:name=".fu.activity.BrandSearchActivity" />
+        <activity android:name=".fu.activity.SalesDetailOfBrandActivity" />
+        <activity android:name=".fu.activity.BrandDealDetailActivity"></activity>
     </application>
 
 </manifest>

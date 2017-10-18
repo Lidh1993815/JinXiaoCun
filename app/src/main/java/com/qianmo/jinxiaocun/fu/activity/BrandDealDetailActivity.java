@@ -9,13 +9,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
-import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
+import com.othershe.nicedialog.NiceDialog;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
@@ -27,10 +28,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * 退货历史界面
- */
-public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class BrandDealDetailActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     /**
      * 服务器端一共多少条数据
@@ -67,7 +65,7 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
-        setContentView(R.layout.activity_return);
+        setContentView(R.layout.activity_brand_deal_detail);
         ButterKnife.bind(this);
         setupToolbar();
         initData();
@@ -83,9 +81,13 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
                 finish();
             }
         });
-        mToolbar.inflateMenu(R.menu.search_and_add_menu);
+        mToolbar.inflateMenu(R.menu.search_and_category_menu);
 
-
+        if (type != null && type.equals("sales")) {
+            //销售历史
+            TextView toolbarTitle = mToolbar.findViewById(R.id.toolbar_title);
+            toolbarTitle.setText("销售历史");
+        }
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -93,8 +95,9 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
                     case R.id.search_menu:
                         startActivity(SearchOrderActivity.class, false);
                         break;
-                    case R.id.add_menu:
-                        startActivity(PurchaseOrdersActivity.class, false);
+                    case R.id.category_menu:
+                        //弹出底部对话框
+                        showBottomChooseDialog();
                         break;
                 }
 
@@ -103,6 +106,15 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
         });
 
 
+    }
+
+    private void showBottomChooseDialog() {
+        NiceDialog.init().setLayoutId(R.layout.fu_choose_catagory_dialog)
+                .setDimAmount(0.5f)
+                .setShowBottom(true)
+                .setOutCancel(true)
+                .setAnimStyle(R.style.MyBottomPopWindowAnim)
+                .show(getSupportFragmentManager());
     }
 
     @Override
@@ -151,19 +163,9 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (type != null && type.equals("sales")) {
-
-                    startActivity(SalesOrdersDetailActivity.class, false);
-                }
+                startActivity(SalesOrdersDetailActivity.class, false);
             }
 
-        });
-
-        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -218,7 +220,7 @@ public class ReturnHistoryActivity extends BaseActivity implements SwipeRefreshL
 
         @Override
         public int getLayoutId() {
-            return R.layout.purchase_order_item;
+            return R.layout.fu_sales_detail_recycler_item;
         }
 
         @Override
