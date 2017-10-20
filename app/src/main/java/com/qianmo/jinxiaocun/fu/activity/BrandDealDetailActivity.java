@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
-import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
@@ -59,7 +61,7 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
     private ArrayList<String> datas = new ArrayList<>();
     private Handler handler;
     private String type;
-
+    private boolean isShowDropLayout = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +124,8 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
 
     }
 
+
+
     private void initData() {
         handler = new Handler() {
             @Override
@@ -160,13 +164,6 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
 
     private void initEvent() {
         mSwipeRefreshLayout.setOnRefreshListener(this);//监听下拉刷新
-        mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                startActivity(SalesOrdersDetailActivity.class, false);
-            }
-
-        });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
@@ -220,12 +217,32 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
 
         @Override
         public int getLayoutId() {
-            return R.layout.fu_sales_detail_recycler_item;
+            return R.layout.fu_sales_detail_brand_recycler_item;
         }
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
-
+            final ConstraintLayout constraintLayout = holder.getView(R.id.drop_layout);
+            final  ImageView imageDrop = holder.getView(R.id.image_drop);
+            final LinearLayout layout = holder.getView(R.id.image_layout);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    isShowDropLayout = !isShowDropLayout;
+                    if (!isShowDropLayout) {
+                        constraintLayout.setVisibility(View.GONE);
+                        //为图片设置旋转动画
+                        imageDrop.setPivotX(imageDrop.getWidth()/2);
+                        imageDrop.setPivotY(imageDrop.getHeight()/2);//支点在图片中心
+                        imageDrop.setRotation(0);
+                    } else {
+                        constraintLayout.setVisibility(View.VISIBLE);
+                        imageDrop.setPivotX(imageDrop.getWidth()/2);
+                        imageDrop.setPivotY(imageDrop.getHeight()/2);//支点在图片中心
+                        imageDrop.setRotation(180);
+                    }
+                }
+            });
         }
 
     }

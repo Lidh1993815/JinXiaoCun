@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -211,6 +212,16 @@ public abstract class BaseActivity extends FragmentActivity {
                     }
                 });
             }
+            ImageView rightImageBtn = toolBar.getRightImageBtn();
+            if (rightImageBtn != null) {
+                rightImageBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        rightImageAction();
+                    }
+                });
+            }
+
         }
 
         if (type == 0) {
@@ -230,6 +241,10 @@ public abstract class BaseActivity extends FragmentActivity {
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.PIE_DETERMINATE);//改变加载进度条的样式
         return vLayout;
+    }
+    //toolbar右边ImageView的点击事件
+    protected void rightImageAction() {
+
     }
 
     public void showBlackDialog() {

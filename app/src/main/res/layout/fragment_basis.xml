@@ -70,6 +70,7 @@
     <RelativeLayout
         android:orientation="horizontal"
         style="@style/ItemHorizontalStyle"
+        android:id="@+id/number_manager"
         android:layout_marginTop="@dimen/_1dp">
         <TextView
             style="@style/TextViewAndDrawable"

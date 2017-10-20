@@ -166,7 +166,7 @@ public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRef
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(ShopDealDetailActivity.class, false);
+                startActivity(BrandDealDetailActivity.class, false);
             }
 
         });

@@ -19,67 +19,131 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--主Activity-->
         <activity android:name=".main.MainActivity" />
+        <!--任务通知界面-->
         <activity android:name=".fu.activity.TaskNotifyActivity" />
+        <!--审批通知界面-->
         <activity android:name=".fu.activity.ApprovalNotifyActivity" />
+        <!--报警通知界面-->
         <activity android:name=".fu.activity.AlarmNotifyActivity" />
+        <!--任务界面-->
         <activity android:name=".fu.activity.TaskActivity" />
+        <!--添加任务界面-->
         <activity android:name=".fu.activity.TaskAddActivity" />
+        <!--个人信息界面-->
         <activity android:name=".fu.activity.PersonalInfoActivity" />
+        <!--任务详情界面-->
         <activity android:name=".fu.activity.TaskDetailActivity" />
+        <!--审批界面-->
         <activity android:name=".fu.activity.ApprovlaActivity" />
+        <!--我要审批的界面-->
         <activity android:name=".fu.activity.MyApprovalActivity" />
+        <!--我发布的界面-->
         <activity android:name=".fu.activity.MyReleaseActivity" />
+        <!--打卡申请界面-->
         <activity android:name=".fu.activity.CardApplyActivity" />
+        <!--打开详情界面-->
         <activity android:name=".fu.activity.CardDetailActivity" />
+        <!--请假申请界面-->
         <activity android:name=".fu.activity.LeaveApplyActivity" />
+        <!--请假详情界面-->
         <activity android:name=".fu.activity.LeaveDetailActivity" />
+        <!--报销界面-->
         <activity android:name=".fu.activity.ReimbursementActivity" />
+        <!--报销详情界面-->
         <activity android:name=".fu.activity.ReimbursementDetailActivity" />
+        <!--物料界面-->
         <activity android:name=".fu.activity.MaterialActivity" />
+        <!--物料申请详情界面-->
         <activity android:name=".fu.activity.MaterialApplyDetailActivity" />
+        <!--巡店管理界面-->
         <activity android:name=".fu.activity.TourShopManagerActivity" />
+        <!--添加巡店任务界面-->
         <activity android:name=".fu.activity.TourTaskAddActivity" />
+        <!--巡店详情界面-->
         <activity android:name=".fu.activity.TourDetailActivity" />
+        <!--考勤界面-->
         <activity android:name=".fu.activity.AttendanceActivity" />
+        <!--打卡记录界面-->
         <activity android:name=".fu.activity.CardRecordActivity" />
+        <!--我下属的考勤界面-->
         <activity android:name=".fu.activity.SubCardRecordDetailActivity" />
+        <!--促销活动界面-->
         <activity android:name=".fu.activity.PromotionManagementActivity" />
+        <!--采购管理界面-->
         <activity android:name=".fu.activity.PurchaseManagerActivity" />
+        <!--采购或进货历史界面-->
         <activity android:name=".fu.activity.PurchaseOrSalesHistoryActivity" />
+        <!--搜索订单界面-->
         <activity android:name=".fu.activity.SearchOrderActivity" />
+        <!--进货单界面-->
         <activity android:name=".fu.activity.PurchaseOrdersActivity" />
+        <!--销售管理界面-->
         <activity android:name=".fu.activity.SalesManagerActivity" />
+        <!--查询销售单界面-->
         <activity android:name=".fu.activity.SalesSearchOrderActivity" />
+        <!--新建销售单界面-->
         <activity android:name=".fu.activity.NewSalesOrdersActivity" />
+        <!--选择商品界面-->
         <activity android:name=".fu.activity.ChooseProductActivity" />
+        <!--销售单详情界面-->
         <activity android:name=".fu.activity.SalesOrdersDetailActivity" />
+        <!--钱流管理界面-->
         <activity android:name=".fu.activity.MoneyManagerActivity" />
+        <!--新建费用单界面-->
         <activity android:name=".fu.activity.NewMoneyOrderActivity" />
+        <!--项目费用界面-->
         <activity android:name=".fu.activity.ChooseCostProjectActivity" />
+        <!--库存管理界面-->
         <activity android:name=".fu.activity.InventoryManagerActivity" />
+        <!--库存查询界面-->
         <activity android:name=".fu.activity.SearchInventoryActivity" />
+        <!--查询商品库存界面-->
         <activity android:name=".fu.activity.SearchInventoryProductActivity" />
+        <!--商品详情界面-->
         <activity android:name=".fu.activity.ProductDetailActivity" />
+        <!--具体的商品详情界面-->
         <activity android:name=".fu.activity.ProductDetail2Activity" />
+        <!--盘点历史界面-->
         <activity android:name=".fu.activity.CheckHistoryActivity" />
+        <!--查询盘点历史界面-->
         <activity android:name=".fu.activity.SearchCheckHistoryActivity" />
+        <!--盘点单界面-->
         <activity android:name=".fu.activity.CheckOrderActivity" />
+        <!--库存盘点界面-->
         <activity android:name=".fu.activity.CheckDetailActivity" />
+        <!--库存报警界面-->
         <activity android:name=".fu.activity.InventoryAlarmActivity" />
+        <!--查询库存报警界面-->
         <activity android:name=".fu.activity.SearchAlarmProductActivity" />
+        <!--待我执行任务详情界面-->
         <activity android:name=".fu.activity.ForMeTaskDetailActivity" />
+        <!--日报界面-->
         <activity android:name=".fu.activity.NewspaperActivity" />
+        <!--开始巡店界面-->
         <activity android:name=".fu.activity.StartTourShopActivity" />
+        <!--创建市场活动界面-->
         <activity android:name=".fu.activity.CreateMarketActivity" />
+        <!--进货或出售历史界面-->
         <activity android:name=".fu.activity.SalesOrPurchaseReturnHistoryActivity" />
+        <!--按门店销售明细界面-->
         <activity android:name=".fu.activity.SalesDetailOfShopActivity" />
+        <!--新建销售退货单界面-->
         <activity android:name=".fu.activity.NewSalesReturnActivity" />
+        <!--销售退货单详情界面-->
         <activity android:name=".fu.activity.SalesReturnDetailActivity" />
+        <!--具体门店交易详情界面-->
         <activity android:name=".fu.activity.ShopDealDetailActivity" />
+        <!--品牌查询界面-->
         <activity android:name=".fu.activity.BrandSearchActivity" />
+        <!--按品牌销售明细界面-->
         <activity android:name=".fu.activity.SalesDetailOfBrandActivity" />
-        <activity android:name=".fu.activity.BrandDealDetailActivity"></activity>
+        <!--具体品牌交易详情界面-->
+        <activity android:name=".fu.activity.BrandDealDetailActivity" />
+        <!--会员管理界面-->
+        <activity android:name=".fu.activity.NumberManagerActivity" />
+        <activity android:name=".fu.activity.AddNumberActivity"></activity>
     </application>
 
 </manifest>

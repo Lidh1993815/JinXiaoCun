@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.activity.NumberManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.PersonalInfoActivity;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
@@ -30,6 +31,8 @@ public class BasisFragment extends BaseFragment {
     @BindView(R.id.personal_info_layout)
     RelativeLayout personalInfoLayout;
     Unbinder unbinder;
+    @BindView(R.id.number_manager)
+    RelativeLayout numberManager;
 
     @Nullable
     @Override
@@ -47,14 +50,18 @@ public class BasisFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.personal_info_layout)
+    @OnClick({R.id.personal_info_layout, R.id.number_manager})
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.personal_info_layout:
                 startActivity(PersonalInfoActivity.class);
                 break;
+            case R.id.number_manager:
+                startActivity(NumberManagerActivity.class);
+                break;
         }
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

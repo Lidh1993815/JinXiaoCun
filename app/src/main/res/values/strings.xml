@@ -204,4 +204,5 @@
     <string name="sales_detail_shop">按门店明细汇总</string>
     <string name="sales_detail_seller">按销售员明细汇总</string>
     <string name="sales_detail_of_brand">按品牌销售明细</string>
+    <string name="approval_manager">审批管理</string>
 </resources>

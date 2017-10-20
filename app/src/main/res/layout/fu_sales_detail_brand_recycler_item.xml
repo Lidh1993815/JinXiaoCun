@@ -40,14 +40,12 @@
     <TextView
         android:id="@+id/textView63"
         style="@style/MinGrayLightText"
-        android:layout_marginBottom="12dp"
-        app:layout_goneMarginBottom="@dimen/_12dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="8dp"
         android:text="销售单价：￥60.00"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+        app:layout_constraintTop_toBottomOf="@+id/textView62"
+        app:layout_goneMarginBottom="@dimen/_12dp" />
 
     <TextView
         android:id="@+id/textView68"
@@ -65,10 +63,106 @@
         android:text="总销售额￥1500.00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView61" />
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView63"
-        android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/textView70"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height_size"
+        android:layout_marginTop="12dp"
+        android:background="@color/_eeeeee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/drop_layout"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView70">
+
+        <TextView
+            android:id="@+id/textView71"
+            style="@style/MinGrayLightText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:text="品牌：品牌01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView73"
+            style="@style/MinGrayLightText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:text="销售数量：25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+        <TextView
+            android:id="@+id/textView74"
+            style="@style/MinGrayLightText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:text="销售单价：60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+        <TextView
+            android:id="@+id/textView75"
+            style="@style/MinGrayLightText"
+            android:layout_marginRight="140dp"
+            android:text="单位：个"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView73" />
+
+        <TextView
+            android:id="@+id/textView76"
+            style="@style/MinGrayLightText"
+            android:text="折扣（%）：100.00"
+            app:layout_constraintStart_toStartOf="@+id/textView75"
+            app:layout_constraintTop_toTopOf="@+id/textView74" />
+
+        <TextView
+            android:id="@+id/textView77"
+            style="@style/MinGrayLightText"
+            android:text="优惠金额：￥0"
+            app:layout_constraintStart_toStartOf="@+id/textView76"
+            app:layout_constraintTop_toTopOf="@+id/textView78" />
+
+        <TextView
+            android:id="@+id/textView78"
+            style="@style/MinGrayLightText"
+
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:text="金额：￥1500.00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView74" />
     </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/_30dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:id="@+id/image_layout"
+        android:layout_marginRight="15dp"
+        android:layout_height="@dimen/_30dp">
+        <ImageView
+            android:id="@+id/image_drop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/xiajiant" />
+    </LinearLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>

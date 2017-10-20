@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/pending_approval"
+                android:text="@string/approval_manager"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content" />
         </LinearLayout>
