@@ -16,10 +16,14 @@ public class AddNumberActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "添加会员", -1);
         setContentView(requestView(R.layout.activity_add_number));
+
     }
+
 
     @Override
     public void requestInit() {
 
     }
+
+
 }
