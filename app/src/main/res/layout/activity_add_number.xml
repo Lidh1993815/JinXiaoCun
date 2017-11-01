@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qianmo.jinxiaocun.fu.activity.AddNumberActivity">
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.SearchOrderActivity">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/number_name"
+            style="@style/ConditionTitleStyle" />
+        <EditText
+            android:hint="@string/please_input_member_name"
+            style="@style/EditHintStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/line_height_size"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/contact"
+            style="@style/ConditionTitleStyle" />
+        <EditText
+            android:hint="@string/please_input_contact_person"
+            style="@style/EditHintStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/phone"
+            style="@style/ConditionTitleStyle" />
+        <EditText
+            android:hint="@string/please_input_phone_num"
+            style="@style/EditHintStyle" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/line_height_size"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        style="@style/ItemHorizontalStyle">
+        <TextView
+            android:text="@string/gender"
+            style="@style/ConditionTitleStyle" />
+        <EditText
+            android:layout_width="match_parent"
+            style="@style/EditHintStyle" />
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

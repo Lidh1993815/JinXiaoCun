@@ -2,6 +2,7 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
@@ -23,8 +24,11 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
     @BindView(R.id.tv_card_time)
     TextView tvCardTime;
 
+    @BindView(R.id.img_add_people)
+    ImageView mAddPeople;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "补打卡申请", "完成");
 
@@ -32,11 +36,14 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.tv_card_time)
+    @OnClick({R.id.tv_card_time,R.id.img_add_people})
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.tv_card_time:
                 createDatePickerDialog();
+                break;
+            case R.id.img_add_people:
+                startActivity(ChoosePeopleActivity.class,false);
                 break;
         }
     }

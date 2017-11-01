@@ -6,8 +6,7 @@
     android:layout_marginTop="@dimen/_5dp"
     android:background="@color/white"
     android:minHeight="100dp"
-    android:orientation="vertical"
-    tools:showIn="@layout/activity_leave">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +35,7 @@
         android:layout_marginBottom="17dp"
         android:layout_marginLeft="@dimen/dp_14"
         android:layout_marginTop="@dimen/dp_14"
+        android:id="@+id/img_add_people"
         android:src="@mipmap/tianjia" />
 </LinearLayout>
 

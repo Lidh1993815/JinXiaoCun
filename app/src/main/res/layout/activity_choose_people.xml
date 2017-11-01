@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qianmo.jinxiaocun.fu.activity.NumberManagerActivity">
+    tools:context="com.qianmo.jinxiaocun.fu.activity.ChoosePeopleActivity">
 
 </android.support.constraint.ConstraintLayout>
