@@ -20,6 +20,7 @@ import com.qianmo.jinxiaocun.fu.activity.ApprovlaActivity;
 import com.qianmo.jinxiaocun.fu.activity.AttendanceActivity;
 import com.qianmo.jinxiaocun.fu.activity.InventoryManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.MoneyManagerActivity;
+import com.qianmo.jinxiaocun.fu.activity.NotifyActivity;
 import com.qianmo.jinxiaocun.fu.activity.PromotionManagementActivity;
 import com.qianmo.jinxiaocun.fu.activity.PurchaseManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.SalesManagerActivity;
@@ -59,7 +60,16 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        toolBar = new MyToolBar(getContext(), -1, "首页", "");
+        toolBar = new MyToolBar(getContext(), -1, "首页", R.mipmap.xiaoxin);
+        if (toolBar.getRightImageBtn() != null) {
+            toolBar.getRightImageBtn().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到通知界面
+                    startActivity(NotifyActivity.class,false);
+                }
+            });
+        }
         View view = requestView(inflater, R.layout.fragment_home);
         unbinder = ButterKnife.bind(this, view);
         initView();//初始化视图
