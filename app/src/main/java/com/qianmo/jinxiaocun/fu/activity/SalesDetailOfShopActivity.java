@@ -22,6 +22,7 @@ import com.othershe.nicedialog.ViewHolder;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.widget.SalesDetailHeader;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 
@@ -187,10 +188,11 @@ public class SalesDetailOfShopActivity extends BaseActivity implements SwipeRefr
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
         LuDividerDecoration divider = new LuDividerDecoration.Builder(this, mLuRecyclerViewAdapter)
                 .setHeight(R.dimen._6dp)
-                //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
+        SalesDetailHeader header = new SalesDetailHeader(this);
+        mLuRecyclerViewAdapter.addHeaderView(header);
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
     }
 

@@ -22,14 +22,19 @@ import com.othershe.nicedialog.NiceDialog;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.widget.SalesDetailHeader;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
+import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 按品牌明细界面
+ */
 public class BrandDealDetailActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     /**
@@ -51,7 +56,7 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
     LuRecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.toolbar)
+//    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
 
@@ -67,9 +72,10 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
-        setContentView(R.layout.activity_brand_deal_detail);
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "按品牌销售明细", R.mipmap.sous);
+        setContentView(requestView(R.layout.activity_brand_deal_detail));
         ButterKnife.bind(this);
-        setupToolbar();
+     //   setupToolbar();
         initData();
         initView();
         initEvent();
@@ -187,8 +193,10 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
                 .setHeight(R.dimen._6dp)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
-                .setHeaderDivide(true)
+                .setHeaderDivide(false)
                 .build();
+        SalesDetailHeader header = new SalesDetailHeader(this);
+        mLuRecyclerViewAdapter.addHeaderView(header);
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
 
     }
@@ -265,7 +273,7 @@ public class BrandDealDetailActivity extends BaseActivity implements SwipeRefres
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                     handler.sendEmptyMessage(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

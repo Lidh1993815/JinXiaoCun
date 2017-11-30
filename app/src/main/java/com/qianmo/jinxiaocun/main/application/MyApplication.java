@@ -34,9 +34,10 @@ public class MyApplication extends Application {
 //        OkhttpBase.BASE_URL = "http://192.168.0.118/git/nobaba_server_PHP/api/";
 
         //外网
-//        OkhttpBase.BASE_URL = "http://nbbsj.nongbabi.cn/git/nobaba_server_PHP/api/";
-        OkhttpBase.BASE_URL = "http://192.168.0.133:8080";
-        OkhttpBase.H5 = "http://www.nongbabi.com/";//h5地址
+        OkhttpBase.BASE_URL = "http://touzigang.haohuajinrong.cn/HKoption";
+
+//        OkhttpBase.BASE_URL = "http://192.168.0.133:8080";
+//        OkhttpBase.H5 = "http://www.nongbabi.com/";//h5地址
     }
 
     @Override

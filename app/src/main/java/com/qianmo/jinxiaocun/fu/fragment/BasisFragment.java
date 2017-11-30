@@ -12,6 +12,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.activity.NumberManagerActivity;
 import com.qianmo.jinxiaocun.fu.activity.PersonalInfoActivity;
+import com.qianmo.jinxiaocun.fu.activity.SwitchShopActivity;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -33,6 +34,8 @@ public class BasisFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.number_manager)
     RelativeLayout numberManager;
+    @BindView(R.id.switchShopLayout)
+    RelativeLayout mSwitchShopLayout;
 
     @Nullable
     @Override
@@ -50,14 +53,20 @@ public class BasisFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.personal_info_layout, R.id.number_manager})
+    @OnClick({R.id.personal_info_layout, R.id.number_manager,R.id.switchShopLayout})
     public void clickAction(View view) {
         switch (view.getId()) {
+            //个人信息
             case R.id.personal_info_layout:
                 startActivity(PersonalInfoActivity.class);
                 break;
+                //会员管理
             case R.id.number_manager:
                 startActivity(NumberManagerActivity.class);
+                break;
+                //切换门店
+            case R.id.switchShopLayout:
+                startActivity(SwitchShopActivity.class);
                 break;
         }
     }

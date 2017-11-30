@@ -39,7 +39,6 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/sales_report_header_layout" />
 
         <com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"

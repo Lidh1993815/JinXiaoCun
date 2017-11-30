@@ -96,8 +96,8 @@ public class ExpandableItemAdapter extends BaseMultiAdapter<MultiItemEntity> {
    // }
 
     private void bindEntityItem(SuperViewHolder holder, final int position, final Person person) {
-//        TextView textView = holder.getView(R.id.info_text);
-//        textView.setText(person.name + " parent pos: " + position);
+//        TextView addressName = holder.getView(R.id.info_text);
+//        addressName.setText(person.name + " parent pos: " + position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

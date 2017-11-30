@@ -31,7 +31,7 @@
     <string name="please_input_bonus">请输入奖金</string>
     <string name="please_input_fine">请输入罚款</string>
     <string name="supplier_management">供应商管理</string>
-    <string name="client_manager">客户管理</string>
+    <string name="client_manager">会员管理</string>
     <string name="store_switch">门店切换</string>
     <string name="wages_section">工资条</string>
     <string name="date_of_birth">出生日期：</string>
@@ -211,4 +211,10 @@
     <string name="phone">手机：</string>
     <string name="please_input_phone_num">请输入手机号码</string>
     <string name="gender">性别：</string>
+    <string name="notify">通知</string>
+    <string name="sales_by_normal">以正常形式销售</string>
+    <string name="sales_by_promotion">以促销形式销售</string>
+    <string name="sales_price">销售价:</string>
+    <string name="please_input_shop_name">请输入门店名称</string>
+    <string name="subordinate">下级</string>
 </resources>

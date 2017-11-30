@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.othershe.nicedialog.BaseNiceDialog;
@@ -62,6 +63,7 @@ public class ChooseProductActivity extends BaseActivity {
     private boolean isClick = false;
     private boolean isStartAnimate = false;
     private static final String TAG = "ChooseProductActivity";
+    private static final int REQUEST_MODITY = 10001;
     private int curValue;
     private String type;
 
@@ -111,6 +113,19 @@ public class ChooseProductActivity extends BaseActivity {
                 .setColorResource(R.color._eeeeee)
                 .build();
         setupRecycleView(recyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
+        if (adapter instanceof RightAdapter) {
+            mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    if (type.equals("sales")) {
+                        //从新建销售单界面跳转过来的，点击跳转到修改商品界面
+                        startActivityForResult(new Intent(ChooseProductActivity.this,ModifyChooseProductActivity.class),REQUEST_MODITY);
+                    }
+                }
+            });
+        }
+        
+
         recyclerView.setLoadMoreEnabled(false);
     }
 

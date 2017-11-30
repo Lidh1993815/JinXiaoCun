@@ -3,6 +3,7 @@
     package="com.qianmo.jinxiaocun">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".main.application.MyApplication"
@@ -143,10 +144,13 @@
         <activity android:name=".fu.activity.BrandDealDetailActivity" />
         <!-- 会员管理界面 -->
         <activity android:name=".fu.activity.NumberManagerActivity" />
-        <!--添加会员界面-->
+        <!-- 添加会员界面 -->
         <activity android:name=".fu.activity.AddNumberActivity" />
-        <!--选择人员界面-->
-        <activity android:name=".fu.activity.ChoosePeopleActivity"></activity>
+        <activity android:name=".fu.activity.NotifyActivity" />
+        <!-- 选择人员界面 -->
+        <activity android:name=".fu.activity.ChoosePeopleActivity" />
+        <activity android:name=".fu.activity.ModifyChooseProductActivity" />
+        <activity android:name=".fu.activity.SwitchShopActivity"></activity>
     </application>
 
 </manifest>

@@ -36,5 +36,6 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:3.3.0'
     implementation project(':LRecycleViewLibrary')
     compile 'com.github.Othershe:NiceDialog:1.1.4'
+    compile 'com.google.code.gson:gson:2.7'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }

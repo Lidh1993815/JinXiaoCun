@@ -1,5 +1,6 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import com.othershe.nicedialog.ViewHolder;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.widget.SalesDetailHeader;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 
@@ -58,7 +60,7 @@ public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRef
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
     private ArrayList<String> datas = new ArrayList<>();
-    private Handler handler;
+    private static Handler handler;
     private BaseNiceDialog mBaseNiceDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,7 @@ public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRef
 
     }
 
+    @SuppressLint("HandlerLeak")
     private void initData() {
         handler = new Handler() {
             @Override
@@ -195,6 +198,8 @@ public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRef
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
+        SalesDetailHeader header = new SalesDetailHeader(this);
+        mLuRecyclerViewAdapter.addHeaderView(header);//为Recycler添加头部
         setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
     }
 
@@ -270,7 +275,7 @@ public class SalesDetailOfBrandActivity extends BaseActivity implements SwipeRef
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                     handler.sendEmptyMessage(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
