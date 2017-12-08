@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.PagerAdapter;
+import com.qianmo.jinxiaocun.fu.fragment.ChooseMySubRecordFragment;
 import com.qianmo.jinxiaocun.fu.fragment.MyCardRecordFragment;
-import com.qianmo.jinxiaocun.fu.fragment.MySubCardRecordFragment;
+import com.qianmo.jinxiaocun.fu.fragment.MyAllSubCardRecordFragment;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -33,7 +34,7 @@ public class CardRecordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "打卡记录", "记录");
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "打卡记录", -1);
         setContentView(requestView(R.layout.activity_card_record));
         ButterKnife.bind(this);
         initView();
@@ -93,7 +94,7 @@ public class CardRecordActivity extends BaseActivity {
     public void setupViewPager() {
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
         mPageAdapter.addFragment(new MyCardRecordFragment(), "");
-        mPageAdapter.addFragment(new MySubCardRecordFragment(), "");
+        mPageAdapter.addFragment(new ChooseMySubRecordFragment(), "");
         mViewPager.setAdapter(mPageAdapter);
     }
     //设置头部选中和未选中时的背景

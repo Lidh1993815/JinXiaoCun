@@ -20,6 +20,7 @@ public class AttendanceActivity extends BaseActivity {
 
     @BindView(R.id.attendance_button)
     AttendanceButton attendanceButton;
+    private boolean isWork = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,12 @@ public class AttendanceActivity extends BaseActivity {
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.attendance_button:
-                attendanceButton.setContentText("下班打卡");
-                ToastUtils.MyToast(this,"点击");
+                isWork = !isWork;
+                if (isWork) {
+                    attendanceButton.setContentText("下班打卡");
+                } else {
+                    attendanceButton.setContentText("上班打卡");
+                }
                 break;
         }
     }

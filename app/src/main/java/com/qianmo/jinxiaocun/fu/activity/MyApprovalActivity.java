@@ -1,5 +1,6 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -36,6 +37,7 @@ public class MyApprovalActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_task);
         ButterKnife.bind(this);
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).init();
@@ -81,9 +83,10 @@ public class MyApprovalActivity extends BaseActivity{
 
     //为viewPager添加fragment
     public void setupViewPager() {
+        //1,待审批，2,审核完成
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPageAdapter.addFragment(MyApprovalFragment.newInstance(0), "待我审批的");
-        mPageAdapter.addFragment(MyApprovalFragment.newInstance(1), "我已审批的");
+        mPageAdapter.addFragment(MyApprovalFragment.newInstance(1), "待我审批的");
+        mPageAdapter.addFragment(MyApprovalFragment.newInstance(2), "我已审批的");
         vpApproval.setAdapter(mPageAdapter);
     }
 }

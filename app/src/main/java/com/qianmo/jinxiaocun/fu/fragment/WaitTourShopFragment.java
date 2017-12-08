@@ -17,9 +17,15 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.adapter.SwipeMenuAdapter;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
+import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
+import com.qianmo.jinxiaocun.main.okhttp.base.OkhttpBase;
+import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -35,7 +41,7 @@ import butterknife.Unbinder;
  * desc   :
  * version: 1.0
  */
-public class WaitTourShopFragment extends BaseFragment{
+public class WaitTourShopFragment extends BaseFragment implements OnActionListener {
     /**
      * 服务器端一共多少条数据
      */
@@ -44,7 +50,7 @@ public class WaitTourShopFragment extends BaseFragment{
     /**
      * 每一页展示多少条数据
      */
-    private static final int REQUEST_COUNT = 15;
+    private static final int REQUEST_COUNT = 10;
 
     /**
      * 已经获取到多少条数据了
@@ -58,8 +64,8 @@ public class WaitTourShopFragment extends BaseFragment{
 
     private SwipeMenuAdapter mDataAdapter = null;//可以右划删除的数据适配器
     private ArrayList<String> datas = new ArrayList<>();
-    private int approvalStatus;
-
+    private int mApprovalStatus;
+    private int mCurrentPage=1;
     private PreviewHandler mHandler = new PreviewHandler(this);
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private static final String TAG = "WaitTourShopFragment";
@@ -70,7 +76,7 @@ public class WaitTourShopFragment extends BaseFragment{
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            approvalStatus = arguments.getInt("approvalStatus");
+            mApprovalStatus = arguments.getInt("approvalStatus");
         }
     }
 
@@ -87,7 +93,8 @@ public class WaitTourShopFragment extends BaseFragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = requestView(inflater, R.layout.fu_tour_shop_fragment);
         unbinder = ButterKnife.bind(this, view);
-        initData();//初始化数据
+      //  requestData();
+
         initView();
         initEvent();
         return view;
@@ -97,12 +104,15 @@ public class WaitTourShopFragment extends BaseFragment{
     public void requestInit() {
 
     }
-    private void initData() {
-        for (int i = 0; i < 10; i++) {
+    @Override
+    public void requestData() {
+        super.requestData();
+        OkhttpParam okhttpParam = new OkhttpParam();
+        //http://hzq.s1.natapp.cc/app/patrol_store?start=1&length=20&patrolStoreStatus=1&staffId=1
+        String uri ="http://hzq.s1.natapp.cc/app/patrol_store?start="+mCurrentPage+"&length="
+                +REQUEST_COUNT+"&patrolStoreStatus="+mApprovalStatus+"&staffId="+ SPUtil.getInstance().getStaffId();
 
-            datas.add("");
-            mCurrentCounter += datas.size();
-        }
+        OkhttpUtils.sendRequest(1001, 0, uri, okhttpParam, this);
     }
 
     private void initEvent() {
@@ -201,6 +211,21 @@ public class WaitTourShopFragment extends BaseFragment{
     private void addItems(ArrayList<String> list) {
         mDataAdapter.addAll(list);
         mCurrentCounter += list.size();
+    }
+
+    @Override
+    public void onActionSuccess(int actionId, String ret) {
+
+    }
+
+    @Override
+    public void onActionServerFailed(int actionId, int httpStatus) {
+
+    }
+
+    @Override
+    public void onActionException(int actionId, String exception) {
+
     }
 
     private static class PreviewHandler extends Handler {

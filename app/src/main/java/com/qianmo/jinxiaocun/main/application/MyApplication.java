@@ -31,10 +31,10 @@ public class MyApplication extends Application {
         context=getApplicationContext();
         application = this;
 ////        内网 地址
-//        OkhttpBase.BASE_URL = "http://192.168.0.118/git/nobaba_server_PHP/api/";
+        OkhttpBase.BASE_URL = "http://192.168.0.189:8080/app";
 
         //外网
-        OkhttpBase.BASE_URL = "http://touzigang.haohuajinrong.cn/HKoption";
+//        OkhttpBase.BASE_URL = "http://app.touzigang.net/HKoption";
 
 //        OkhttpBase.BASE_URL = "http://192.168.0.133:8080";
 //        OkhttpBase.H5 = "http://www.nongbabi.com/";//h5地址

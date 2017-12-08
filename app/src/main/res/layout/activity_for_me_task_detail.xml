@@ -113,7 +113,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_auditStatus"
 
                     style="@style/TaskDetailText"
                     android:layout_marginLeft="@dimen/_16dp"
@@ -126,7 +126,7 @@
                     android:id="@+id/expectec_bonus"
                     style="@style/TaskDetailText"
                     android:text="100"
-                    app:layout_constraintStart_toEndOf="@+id/textView12"
+                    app:layout_constraintStart_toEndOf="@+id/tv_auditStatus"
                     app:layout_constraintTop_toBottomOf="@+id/task_detail" />
 
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_marginStart="16dp"
                     android:text="@string/expected_fine"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_auditStatus" />
 
                 <TextView
                     android:id="@+id/expected_fine"

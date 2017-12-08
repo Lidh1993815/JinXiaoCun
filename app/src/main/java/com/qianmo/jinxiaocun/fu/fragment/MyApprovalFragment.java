@@ -1,14 +1,16 @@
 package com.qianmo.jinxiaocun.fu.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -17,16 +19,25 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.activity.CardDetailActivity;
 import com.qianmo.jinxiaocun.fu.activity.LeaveDetailActivity;
 import com.qianmo.jinxiaocun.fu.activity.MaterialApplyDetailActivity;
 import com.qianmo.jinxiaocun.fu.activity.ReimbursementDetailActivity;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.bean.ApprovalListBean;
+import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
+import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
+import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
+import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +50,7 @@ import butterknife.Unbinder;
  * desc   :
  * version: 1.0
  */
-public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnActionListener {
     /**
      * 服务器端一共多少条数据
      */
@@ -60,27 +71,27 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     @BindView(R.id.swipe_refresh_layout)
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
 
-    private TaskAdapter mTaskAdapter = null;//数据适配器
+    private ApprovalAdapter mDataAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
+    private int mApplyStatus;
+    private static final String TAG = "MyApprovalFragment";
+    private int totalCount;
+    private int currentSize = 0;
 
-    private ArrayList<String> datas = new ArrayList<>();
-    private Handler handler;
-
-    private int approvalStatus;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            approvalStatus = arguments.getInt("approvalStatus");
+            mApplyStatus = arguments.getInt("applyStatus");
         }
     }
 
     public static MyApprovalFragment newInstance(int status) {
         MyApprovalFragment fragment = new MyApprovalFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("approvalStatus", status);
+        bundle.putInt("applyStatus", status);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -90,7 +101,6 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = requestView(inflater, R.layout.fu_approval_notify_fragment);
         unbinder = ButterKnife.bind(this, view);
-        initData();//初始化数据
         initView();
         initEvent();
         return view;
@@ -100,72 +110,48 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     public void requestInit() {
 
     }
-    private void initData() {
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 1) {
-
-                    if (mSwipeRefreshLayout.isRefreshing()) {
-                        mTaskAdapter.clear();
-                        mCurrentCounter = 0;
-                    }
-
-                    int currentSize = mTaskAdapter.getItemCount();
-
-                    //模拟组装10个数据
-                    datas = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        if (datas.size() + currentSize >= TOTAL_COUNTER) {
-                            break;
-                        }
-                        datas.add("");
-                    }
-
-
-                    addItems(datas);
-
-                    if (mSwipeRefreshLayout.isRefreshing()) {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                    mRecyclerView.refreshComplete(REQUEST_COUNT);
-                    notifyDataSetChanged();
-                }
-
-            }
-        };
-    }
 
     private void initEvent() {
         mSwipeRefreshLayout.setOnRefreshListener(this);//监听下拉刷新
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (position == 0) {
-                    //进入打卡详情
-                    startActivity(CardDetailActivity.class);
-                } else if (position == 1) {
-                    //进入请假详情
-                    startActivity(LeaveDetailActivity.class);
+                ApprovalListBean.DataBean dataBean = mDataAdapter.getDataList().get(position);
+                int aType = dataBean.getAType();//申请的类型
+                switch (aType) {
+                    //请假
+                    case 1: {
+                        Intent intent = new Intent(getContext(), LeaveDetailActivity.class);
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
 
-                }else if (position == 2) {
-                    //进入报销详情
-                    startActivity(ReimbursementDetailActivity.class);
-
-                }else if (position == 3) {
-                    //进入物料详情
-                    startActivity(MaterialApplyDetailActivity.class);
-
+                    break;
+                    //补卡
+                    case 2: {
+                        Intent intent = new Intent(getContext(), CardDetailActivity.class);
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
+                    //物料
+                    case 3: {
+                        Intent intent = new Intent(getContext(), MaterialApplyDetailActivity.class);
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
+                    //报销
+                    case 4: {
+                        Intent intent = new Intent(getContext(), ReimbursementDetailActivity.class);
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
                 }
-            }
-
-        });
-
-        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public void onItemLongClick(View view, int position) {
 
             }
+
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -184,15 +170,15 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     }
 
     private void initView() {
-        mTaskAdapter = new TaskAdapter(getContext());//实例化适配器
-        mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
+        mDataAdapter = new ApprovalAdapter(getContext());//实例化适配器
+        mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mDataAdapter);
         LuDividerDecoration divider = new LuDividerDecoration.Builder(getContext(), mLuRecyclerViewAdapter)
                 .setHeight(R.dimen._6dp)
                 //  .setPadding(R.dimen.default_divider_padding)
                 .setColorResource(R.color._eeeeee)
                 .setHeaderDivide(true)
                 .build();
-        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,divider);//创建RecycleView
+        setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter, divider);//创建RecycleView
 
     }
 
@@ -204,10 +190,74 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         requestDataFromNet();
     }
 
-    //设置RecycleView的适配器
-    private class TaskAdapter extends ListBaseAdapter<String> {
+    @Override
+    public void onActionSuccess(int actionId, String ret) {
 
-        public TaskAdapter(Context context) {
+        switch (actionId) {
+            case 1001:
+                if (!TextUtils.isEmpty(ret)) {
+                    Log.i(TAG, "1001: " + ret);
+                    if (mSwipeRefreshLayout.isRefreshing()) {
+                        mDataAdapter.clear();
+                        mCurrentCounter = 0;
+                    }
+                    ApprovalListBean approvalListBean = (ApprovalListBean) JsonUitl.stringToObject(ret, ApprovalListBean.class);
+                    List<ApprovalListBean.DataBean> mDataList = approvalListBean.getData();
+                    totalCount = approvalListBean.getRecordsTotal();
+                    if (currentSize >= totalCount) {
+                        refreshFinish();
+                        break;
+                    }
+                    addItems(mDataList);
+
+                    refreshFinish();
+                    notifyDataSetChanged();
+
+                    break;
+                }
+                ToastUtils.MyToast(getContext(), "获取数据失败！");
+                break;
+           /* case 1002:
+                if (!TextUtils.isEmpty(ret)) {
+                    ResponseBean responseBean = (ResponseBean) JsonUitl.stringToObject(ret, ResponseBean.class);
+                    int status = responseBean.getCode();
+
+                    switch (status) {
+                        case 100:
+                            SearchStockActivity.this.finish();
+                            break;
+                        case 401:
+                            ToastUtils.MyToast(this, responseBean.getMsg());
+                            break;
+                    }
+                    break;
+                }*/
+        }
+
+    }
+
+    private void refreshFinish() {
+        mRecyclerView.refreshComplete(REQUEST_COUNT);
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
+
+    @Override
+    public void onActionServerFailed(int actionId, int httpStatus) {
+
+    }
+
+    @Override
+    public void onActionException(int actionId, String exception) {
+
+    }
+
+    //设置RecycleView的适配器
+    private class ApprovalAdapter extends ListBaseAdapter<ApprovalListBean.DataBean> {
+
+        public ApprovalAdapter(Context context) {
             super(context);
         }
 
@@ -218,36 +268,53 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            TextView tvTitle = holder.getView(R.id.tv_title);
+            TextView tvTime = holder.getView(R.id.tv_time);
+            TextView tvStatus = holder.getView(R.id.tv_status);
+            ApprovalListBean.DataBean dataBean = mDataList.get(position);
+            String staffName = dataBean.getStaffName();
+            if (!TextUtils.isEmpty(staffName)) {
+                tvTitle.setText(staffName);
+            }
+            String cTime = dataBean.getCTime();
+            if (!TextUtils.isEmpty(cTime)) {
+                tvTime.setText(cTime);
+            }
+            if (!TextUtils.isEmpty(int2StringStatus(dataBean.getAPplyStatus()))) {
+                tvStatus.setText(int2StringStatus(dataBean.getAPplyStatus()));
+            }
 
         }
+    }
 
+    private String int2StringStatus(int aType) {
+        switch (aType) {
+            case 1:
+                return "待审批";
+            case 2:
+                return "已经审批";
+        }
+        return null;
     }
 
     private void notifyDataSetChanged() {
         mLuRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItems(ArrayList<String> list) {
-        mTaskAdapter.addAll(list);
+    private void addItems(List<ApprovalListBean.DataBean> list) {
+        mDataAdapter.addAll(list);
         mCurrentCounter += list.size();
     }
 
+
     /**
-     * 模拟请求网络
+     * 获取数据
      */
     private void requestDataFromNet() {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(2000);
-                    handler.sendEmptyMessage(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        OkhttpParam okhttpParam = new OkhttpParam();
+        okhttpParam.putString("aAuditor", SPUtil.getInstance().getStaffId());
+        okhttpParam.putString("aPplyStatus", mApplyStatus + "");
+        OkhttpUtils.sendRequest(1001, 1, ApiConfig.MY_APPLY_CLOCK_DETAILS_LIST, okhttpParam, this);
     }
 
     @Override

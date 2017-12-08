@@ -146,10 +146,13 @@
         <activity android:name=".fu.activity.NumberManagerActivity" />
         <!-- 添加会员界面 -->
         <activity android:name=".fu.activity.AddNumberActivity" />
+        <!--通知界面-->
         <activity android:name=".fu.activity.NotifyActivity" />
         <!-- 选择人员界面 -->
         <activity android:name=".fu.activity.ChoosePeopleActivity" />
+        <!--修改选择商品-->
         <activity android:name=".fu.activity.ModifyChooseProductActivity" />
+        <!--门店转换-->
         <activity android:name=".fu.activity.SwitchShopActivity"></activity>
     </application>
 

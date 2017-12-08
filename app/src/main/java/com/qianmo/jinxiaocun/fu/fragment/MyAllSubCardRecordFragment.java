@@ -30,7 +30,7 @@ import butterknife.Unbinder;
  * desc   : 我下属的考勤界面
  * version: 1.0
  */
-public class MySubCardRecordFragment extends BaseFragment {
+public class MyAllSubCardRecordFragment extends BaseFragment {
     /**
      * 服务器端一共多少条数据
      */
@@ -57,7 +57,7 @@ public class MySubCardRecordFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = requestView(inflater, R.layout.my_sub_card_record_fragment);
+        View view = requestView(inflater, R.layout.my_all_sub_card_record_fragment);
         unbinder = ButterKnife.bind(this, view);
         initData();//初始化数据
         initView();

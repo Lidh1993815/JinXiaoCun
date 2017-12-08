@@ -111,7 +111,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tv_showProgressPrompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16dp"
@@ -124,7 +124,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tv_startName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -134,7 +134,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sp"
                 app:layout_constraintStart_toEndOf="@+id/frame_layout"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt" />
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                 android:layout_marginTop="@dimen/_15dp"
                 android:layout_marginLeft="19dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -172,11 +172,11 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sp"
                 android:text="发起任务"
-                app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintStart_toEndOf="@+id/tv_startName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/tv_startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -185,7 +185,7 @@
                 android:text="2017-7-7 16:40:30"
                 android:textColor="@color/_8c969f"
                 app:layout_constraintStart_toEndOf="@+id/frame_layout"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_startName" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content" />
             </FrameLayout>
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/tv_auditorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -239,7 +239,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tv_auditStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
@@ -248,7 +248,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sp"
                 android:text="未审核"
-                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintStart_toEndOf="@+id/tv_auditorName"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
@@ -260,7 +260,7 @@
                 android:text="2017-7-7 16:40:30"
                 android:paddingBottom="24dp"
                 app:layout_constraintStart_toEndOf="@id/frame_layout1"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/tv_auditorName"
                 android:textColor="@color/_8c969f"
                 />
         </android.support.constraint.ConstraintLayout>
