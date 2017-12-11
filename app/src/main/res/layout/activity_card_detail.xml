@@ -8,11 +8,14 @@
     android:background="@color/_eeeeee"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/_eeeeee"
+        android:layout_above="@+id/ll_applyDetail_bottomLayout"
         android:orientation="vertical"
         tools:context="com.qianmo.jinxiaocun.fu.activity.CardDetailActivity">
 
@@ -65,28 +68,9 @@
             </LinearLayout>
         </LinearLayout>
 
-
         <include layout="@layout/progress_detail" />
-        <!-- <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/_5dp"
-             android:background="@color/white"
-             android:orientation="vertical">
-
-             <TextView
-                 style="@style/CardDetailText"
-                 android:layout_marginLeft="@dimen/_16dp"
-                 android:layout_marginTop="@dimen/_16dp"
-                 android:text="@string/task_progress" />
-
-
-
-            <android.support.v7.widget.RecyclerView
-                 android:id="@+id/rv_task_progress_list"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent" />
-         </LinearLayout>-->
     </LinearLayout>
+    <include layout="@layout/apply_detail_bottom_layout" />
+</RelativeLayout>
 </com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout>
 

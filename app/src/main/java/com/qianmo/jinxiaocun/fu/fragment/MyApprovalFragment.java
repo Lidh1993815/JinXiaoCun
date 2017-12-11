@@ -73,7 +73,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
 
     private ApprovalAdapter mDataAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
-    private int mApplyStatus;
+    private int mApplyStatus;//1、待我审批，2、我已审批
     private static final String TAG = "MyApprovalFragment";
     private int totalCount;
 
@@ -121,6 +121,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     //请假
                     case 1: {
                         Intent intent = new Intent(getContext(), LeaveDetailActivity.class);
+                        if (mApplyStatus == 1) {
+                            //待我审批
+                            intent.putExtra("approvalType", 1);
+                        }
                         intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
                         startActivity(intent);
                     }
@@ -129,6 +133,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     //补卡
                     case 2: {
                         Intent intent = new Intent(getContext(), CardDetailActivity.class);
+                        if (mApplyStatus == 1) {
+                            //待我审批
+                            intent.putExtra("approvalType", 1);
+                        }
                         intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
                         startActivity(intent);
                     }
@@ -136,6 +144,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     //物料
                     case 3: {
                         Intent intent = new Intent(getContext(), MaterialApplyDetailActivity.class);
+                        if (mApplyStatus == 1) {
+                            //待我审批
+                            intent.putExtra("approvalType", 1);
+                        }
                         intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
                         startActivity(intent);
                     }
@@ -143,6 +155,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     //报销
                     case 4: {
                         Intent intent = new Intent(getContext(), ReimbursementDetailActivity.class);
+                        if (mApplyStatus == 1) {
+                            //待我审批
+                            intent.putExtra("approvalType", 1);
+                        }
                         intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
                         startActivity(intent);
                     }
@@ -212,8 +228,9 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     refreshFinish();
                     notifyDataSetChanged();
                     break;
+                } else {
+                    ToastUtils.MyToast(getContext(), "获取数据失败！");
                 }
-                ToastUtils.MyToast(getContext(), "获取数据失败！");
                 break;
            /* case 1002:
                 if (!TextUtils.isEmpty(ret)) {
@@ -270,9 +287,11 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
             TextView tvTime = holder.getView(R.id.tv_time);
             TextView tvStatus = holder.getView(R.id.tv_status);
             ApprovalListBean.DataBean dataBean = mDataList.get(position);
+            int aType = dataBean.getAType();
+
             String staffName = dataBean.getStaffName();
             if (!TextUtils.isEmpty(staffName)) {
-                tvTitle.setText(staffName);
+                tvTitle.setText(staffName+int2ApplyType(aType));
             }
             String cTime = dataBean.getCTime();
             if (!TextUtils.isEmpty(cTime)) {
@@ -283,6 +302,21 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
             }
 
         }
+    }
+
+    private String int2ApplyType(int aType) {
+        //审批类型 1,请假,2补卡,3物料,4报销
+        switch (aType) {
+            case 1:
+                return "的请假申请";
+            case 2:
+                return "的补卡申请";
+            case 3:
+                return "的物料申请";
+            case 4:
+                return "的报销申请";
+        }
+        return null;
     }
 
     private String int2StringStatus(int aType) {
@@ -318,6 +352,9 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         unbinder.unbind();
     }
 }

@@ -8,12 +8,15 @@
     android:background="@color/_eeeeee"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.qianmo.jinxiaocun.fu.activity.TaskNotifyActivity">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/_eeeeee"
         android:orientation="vertical"
+        android:layout_above="@+id/ll_applyDetail_bottomLayout"
         tools:context="com.qianmo.jinxiaocun.fu.activity.CardDetailActivity">
 
         <LinearLayout
@@ -39,7 +42,7 @@
 
                 <TextView
                     style="@style/CardDetailText"
-                    android:text="2017-6-19" />
+                    android:id="@+id/tv_leaveDetail_startTime" />
 
             </LinearLayout>
             <LinearLayout
@@ -58,7 +61,7 @@
 
                 <TextView
                     style="@style/CardDetailText"
-                    android:text="2017-6-19" />
+                    android:id="@+id/tv_leaveDetail_endTime" />
 
             </LinearLayout>
             <LinearLayout
@@ -71,13 +74,29 @@
 
                 <TextView
                     style="@style/CardDetailText"
-
-                    android:text="@string/leave_dyas" />
-
+                    android:text="@string/leaveType" />
 
                 <TextView
                     style="@style/CardDetailText"
-                    android:text="19" />
+                    android:id="@+id/tv_leaveDetail_type" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/CardDetailText"
+                    android:text="@string/leave_dyas" />
+
+                <TextView
+                    style="@style/CardDetailText"
+                    android:id="@+id/tv_leaveDetail_days"
+ />
 
             </LinearLayout>
             <LinearLayout
@@ -95,195 +114,16 @@
                     android:text="@string/leave_reson" />
 
                 <TextView
-                    android:id="@+id/tv_cardDetail_content"
+                    android:id="@+id/tv_leaveDetail_content"
                     style="@style/CardDetailText"
                     android:layout_width="wrap_content"
-                    android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+                    />
             </LinearLayout>
         </LinearLayout>
 
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_5dp"
-            android:background="@color/white"
-            android:minHeight="180dp"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_showProgressPrompt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16dp"
-                android:layout_marginLeft="@dimen/_16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/task_progress"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_startName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="18dp"
-                android:text="刘刘"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sp"
-                app:layout_constraintStart_toEndOf="@+id/frame_layout"
-                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/_38dp"
-                android:minWidth="@dimen/_38dp"
-                android:id="@+id/frame_layout"
-                android:layout_marginTop="@dimen/_15dp"
-                android:layout_marginLeft="19dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/yuan" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/_12sp"
-                    android:text="刘"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="27dp"
-                android:layout_marginLeft="27dp"
-                android:layout_marginTop="18dp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sp"
-                android:text="发起任务"
-                app:layout_constraintStart_toEndOf="@+id/tv_startName"
-                app:layout_constraintTop_toBottomOf="@+id/tv_showProgressPrompt" />
-
-            <TextView
-                android:id="@+id/tv_startTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="12dp"
-                android:text="2017-7-7 16:40:30"
-                android:textColor="@color/_8c969f"
-                app:layout_constraintStart_toEndOf="@+id/frame_layout"
-                app:layout_constraintTop_toBottomOf="@+id/tv_startName" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="1dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="38dp"
-                android:layout_marginLeft="@dimen/_38dp"
-                android:layout_marginTop="3dp"
-                android:background="@color/_eeeeee"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="3dp"
-                app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/_38dp"
-                android:minWidth="@dimen/_38dp"
-                android:layout_marginTop="3dp"
-                android:id="@+id/frame_layout1"
-                android:layout_marginLeft="19dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView10"
-                app:layout_constraintLeft_toLeftOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/yuan" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/_12sp"
-                    android:text="刘"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-            <TextView
-                android:id="@+id/tv_auditorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="5dp"
-                android:text="刘刘"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sp"
-                app:layout_constraintStart_toEndOf="@+id/frame_layout1"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/tv_auditStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="27dp"
-                android:layout_marginLeft="27dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sp"
-                android:text="未审核"
-                app:layout_constraintStart_toEndOf="@+id/tv_auditorName"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="@dimen/_12dp"
-                android:text="2017-7-7 16:40:30"
-                android:paddingBottom="24dp"
-                app:layout_constraintStart_toEndOf="@id/frame_layout1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_auditorName"
-                android:textColor="@color/_8c969f"
-                />
-        </android.support.constraint.ConstraintLayout>
-        <!-- <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/_5dp"
-             android:background="@color/white"
-             android:orientation="vertical">
-
-             <TextView
-                 style="@style/CardDetailText"
-                 android:layout_marginLeft="@dimen/_16dp"
-                 android:layout_marginTop="@dimen/_16dp"
-                 android:text="@string/task_progress" />
-
-
-
-            <android.support.v7.widget.RecyclerView
-                 android:id="@+id/rv_task_progress_list"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent" />
-         </LinearLayout>-->
+        <include layout="@layout/progress_detail" />
     </LinearLayout>
+    <include layout="@layout/apply_detail_bottom_layout" />
+</RelativeLayout>
 </com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout>
 

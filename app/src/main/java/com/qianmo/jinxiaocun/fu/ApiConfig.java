@@ -19,4 +19,7 @@ public interface ApiConfig {
     String TASK_STAFF = "/task/task_staff";
     //添加补卡审核
     String ADD_APPLY_FILL_CARD = "/apply_fill_card/add_applyfillcard";
+    //修改审批内容
+    String UPADTE_APPLYCLOCK_DETAILS = "/apply_fill_card/upadte_applyclock_details";
+
 }

@@ -3,16 +3,18 @@ package com.qianmo.jinxiaocun.fu.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
+import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
-import com.qianmo.jinxiaocun.fu.bean.ApplyMaterialDetailBean;
 import com.qianmo.jinxiaocun.fu.bean.CardDetailBean;
 import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
 import com.qianmo.jinxiaocun.fu.widget.ForbiddenSwipeRefreshLayout;
@@ -23,10 +25,9 @@ import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
 import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class CardDetailActivity extends BaseActivity implements OnActionListener {
@@ -53,22 +54,41 @@ public class CardDetailActivity extends BaseActivity implements OnActionListener
     TextView mTvAuditStatus;
     @BindView(R.id.tv_auditTime)
     TextView mTvAuditTime;
-    private TaskAdapter mTaskAdapter = null;//数据适配器
+    @BindView(R.id.ll_applyDetail_progressLayout)
+    ConstraintLayout mLlApplyDetailProgressLayout;
+    @BindView(R.id.ll_applyDetail_bottomLayout)
+    LinearLayout mLlApplyDetailBottomLayout;
+
     private static final String TAG = "CardDetailActivity";
+    @BindView(R.id.tv_applyDetail_execute)
+    TextView mTvApplyDetailExecute;
+    @BindView(R.id.tv_applyDetail_continueExecute)
+    TextView mTvApplyDetailContinueExecute;
     private int mAPplyClockId;
+    private int mApprovalType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         mAPplyClockId = intent.getIntExtra("aPplyClockId", 0);
+        mApprovalType = intent.getIntExtra("approvalType", 0);
+
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "补打卡详情", -1);
         setContentView(requestView(R.layout.activity_card_detail));
         ButterKnife.bind(this);
         requestData();
-        // initData();
-        // initView();
-        // initEvent();
+        initView();
+    }
+
+    private void initView() {
+        if (mApprovalType == 1) {
+            mLlApplyDetailProgressLayout.setVisibility(View.GONE);
+            mLlApplyDetailBottomLayout.setVisibility(View.VISIBLE);
+        } else {
+            mLlApplyDetailProgressLayout.setVisibility(View.VISIBLE);
+            mLlApplyDetailBottomLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -188,22 +208,19 @@ public class CardDetailActivity extends BaseActivity implements OnActionListener
 
     }
 
-    //设置RecycleView的适配器
-    private class TaskAdapter extends ListBaseAdapter<String> {
-
-        public TaskAdapter(Context context) {
-            super(context);
+    @OnClick({R.id.tv_applyDetail_execute, R.id.tv_applyDetail_continueExecute})
+    public void clickAction(View view) {
+        switch (view.getId()) {
+            case R.id.tv_applyDetail_execute:
+                //执行
+                Intent intent = new Intent(this, ExecuteOpinionActivity.class);
+                intent.putExtra("aPplyClockId", Contents.CARD);
+                startActivity(intent);
+                break;
+            case R.id.tv_applyDetail_continueExecute:
+                //继续审核
+                break;
         }
-
-        @Override
-        public int getLayoutId() {
-            return R.layout.fu_task_recycle_item;
-        }
-
-        @Override
-        public void onBindItemHolder(SuperViewHolder holder, int position) {
-
-        }
-
     }
+
 }

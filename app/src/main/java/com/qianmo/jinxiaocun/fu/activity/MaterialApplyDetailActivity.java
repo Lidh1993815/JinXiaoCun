@@ -3,11 +3,13 @@ package com.qianmo.jinxiaocun.fu.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
@@ -52,15 +54,22 @@ public class MaterialApplyDetailActivity extends BaseActivity implements OnActio
     TextView mTvStartFirstName;
     @BindView(R.id.tv_audit_firstName)
     TextView mTvAuditFirstName;
+    @BindView(R.id.ll_applyDetail_progressLayout)
+    ConstraintLayout mLlApplyDetailProgressLayout;
+    @BindView(R.id.ll_applyDetail_bottomLayout)
+    LinearLayout mLlApplyDetailBottomLayout;
     private MaterialApplyAdapter mMaterialApplyAdapter = null;//数据适配器
     private static final String TAG = "MaterialApplyDetailActi";
     private int mAPplyClockId;
+    private int mApprovalType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         mAPplyClockId = intent.getIntExtra("aPplyClockId", 0);
+        mApprovalType = intent.getIntExtra("approvalType", 0);
+
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "物料申请详情", -1);
         setContentView(requestView(R.layout.activity_material_apply_detail));
         ButterKnife.bind(this);
@@ -82,6 +91,14 @@ public class MaterialApplyDetailActivity extends BaseActivity implements OnActio
     }
 
     private void initView() {
+        mTvShowProgressPrompt.setText(R.string.audit_progress);
+        if (mApprovalType == 1) {
+            mLlApplyDetailProgressLayout.setVisibility(View.GONE);
+            mLlApplyDetailBottomLayout.setVisibility(View.VISIBLE);
+        } else {
+            mLlApplyDetailProgressLayout.setVisibility(View.VISIBLE);
+            mLlApplyDetailBottomLayout.setVisibility(View.GONE);
+        }
         mMaterialApplyAdapter = new MaterialApplyAdapter(this);
         mRecyclerView.setLayoutManager(new FullyLinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -171,7 +188,7 @@ public class MaterialApplyDetailActivity extends BaseActivity implements OnActio
     }
 
     //设置RecycleView的适配器
-     class MaterialApplyAdapter extends ListBaseAdapter<ApplyMaterialDetailBean.ApplyMaterielBean> {
+    class MaterialApplyAdapter extends ListBaseAdapter<ApplyMaterialDetailBean.ApplyMaterielBean> {
 
         public MaterialApplyAdapter(Context context) {
             super(context);

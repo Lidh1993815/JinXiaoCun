@@ -10,13 +10,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.bean.ApplyClockDetailBean;
+import com.qianmo.jinxiaocun.fu.bean.LoginResponseBean;
 import com.qianmo.jinxiaocun.fu.bean.PeopleInfoBean;
 import com.qianmo.jinxiaocun.fu.bean.ResponseBean;
 import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
+import com.qianmo.jinxiaocun.main.MainActivity;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
@@ -26,7 +30,14 @@ import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,21 +82,30 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
         super.rightTextAction();
         mCardTime = tvCardTime.getText().toString().trim();
         mCardApplyReason = mTvCardApplyReason.getText().toString().trim();
-        if (checkParam()) {
+        requestData();//提交补卡
+        /*if (checkParam()) {
             requestData();//提交补卡
-        }
+        }*/
     }
 
 
     @Override
     public void requestData() {
         super.requestData();
+        //"yyyy-MM-dd HH:mm:ss"
+        /*SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date parse = null;
+        try {
+             parse = sdf.parse(mCardTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
         OkhttpParam okhttpParam = new OkhttpParam();
-        okhttpParam.putString("fTime", mCardTime);
-        okhttpParam.putString("fContent", mCardApplyReason);
-        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(
-                Contents.CARD,2,Integer.parseInt(mStaffId))));
-        OkhttpUtils.sendRequest(1001, 1, ApiConfig.ADD_APPLY_FILL_CARD, okhttpParam, this);
+        okhttpParam.putString("fTime","2017-12-01 00:00:00");
+        okhttpParam.putString("fContent", "昨日下班比较冲忙忘记打卡");
+        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(2, 1, 3)));
+        Log.i(TAG, "requestData: "+JsonUitl.objectToString(new ApplyClockDetailBean(2, 1, 3)));
+        OkhttpUtils.sendRequest(1001, 1, "http://192.168.0.189:8080/app/apply_fill_card/add_applyfillcard", okhttpParam, this);
     }
 
     private boolean checkParam() {
@@ -249,6 +269,6 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
 
     @Override
     public void onActionException(int actionId, String exception) {
-        Log.i(TAG, "onActionException: ");
+        Log.i(TAG, "onActionException: "+exception);
     }
 }

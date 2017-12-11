@@ -72,11 +72,44 @@
             android:layout_marginRight="@dimen/_15dp"
             android:src="@mipmap/youjiantou" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:minHeight="44dp"
+        android:id="@+id/rl_leave_typeLayout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_leave_type"
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:text="@string/leaveType" />
+
+        <TextView
+            android:id="@+id/tv_leave_showType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/tv_leave_type"
+            android:text="2017-8-20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_1dp"
         android:background="@color/white"
         android:minHeight="44dp"
         android:orientation="horizontal">

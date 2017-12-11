@@ -219,4 +219,11 @@
     <string name="subordinate">下级</string>
     <string name="search_sub_name">搜索下属名称</string>
     <string name="all_company">全公司</string>
+    <string name="leaveType">请假类型：</string>
+    <string name="execute">执行</string>
+    <string name="continueExecute">继续审核</string>
+    <string name="audit_progress">审核进度</string>
+    <string name="please_input_advice">请填写意见</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
 </resources>

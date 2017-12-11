@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
@@ -29,11 +32,12 @@ public class MaterialActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private ArrayList<String> datas = new ArrayList<>();
+    private int size;
+    private static final String TAG = "MaterialActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "物料申请", "提交");
-
         setContentView(requestView(R.layout.activity_material));
         ButterKnife.bind(this);
         initData();
@@ -41,8 +45,27 @@ public class MaterialActivity extends BaseActivity {
     }
 
     @Override
+    protected void rightTextAction() {
+        super.rightTextAction();
+        Log.i(TAG, "rightTextAction: "+size);
+    }
+
+    @Override
     public void requestInit() {
 
+    }
+
+    @Override
+    public void requestData() {
+        super.requestData();
+
+       /* users = new SettingBean.ResultListBean[1 + mList.size()];
+
+        // 设置对象数组转JSON串
+        String jsonString = JSON.toJSONString(users);
+        // JSON串转设置对象列表
+        List<SettingBean.ResultListBean> PLSettings = JSON.parseArray(jsonString, SettingBean.ResultListBean.class);
+        okhttpParam.putString("pLSettings", JSONArray.toJSONString(PLSettings));*/
     }
 
     private void initData() {
@@ -103,6 +126,7 @@ public class MaterialActivity extends BaseActivity {
             TextView positionText = holder.getView(R.id.material_detail_position);
             int num = position + 1;
             positionText.setText("报销明细（"+num+"）");//设置显示的文字
+            size = mDataList.size();
         }
 
     }
