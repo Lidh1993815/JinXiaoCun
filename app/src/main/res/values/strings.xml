@@ -218,4 +218,5 @@
     <string name="please_input_shop_name">请输入门店名称</string>
     <string name="subordinate">下级</string>
     <string name="search_sub_name">搜索下属名称</string>
+    <string name="all_company">全公司</string>
 </resources>

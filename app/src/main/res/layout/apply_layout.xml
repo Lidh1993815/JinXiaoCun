@@ -28,14 +28,41 @@
             android:textSize="@dimen/_12sp" />
 
     </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/_12dp"
+    android:paddingBottom="@dimen/_12dp"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/avatar"
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_gravity="center">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_red_background" />
+
+        <TextView
+            android:id="@+id/tv_avatar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sp" />
+    </FrameLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
         android:layout_marginLeft="@dimen/dp_14"
-        android:layout_marginTop="@dimen/dp_14"
+        android:layout_gravity="center"
         android:id="@+id/img_add_people"
         android:src="@mipmap/tianjia" />
+</LinearLayout>
+
 </LinearLayout>
 

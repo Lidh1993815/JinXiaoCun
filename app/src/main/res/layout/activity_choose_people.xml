@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.qianmo.jinxiaocun.fu.activity.ChoosePeopleActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44dp"
+            android:background="@color/_eeeeee"
+            android:gravity="center"
+            android:minHeight="@dimen/_44dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/edit_parent_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@drawable/fu_edit_search_white_bg_shape"
+                android:minHeight="@dimen/_30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@mipmap/sous03"
+                    android:drawablePadding="@dimen/_8dp"
+                    android:gravity="center"
+                    android:text="@string/search"
+                    android:textColor="@color/_9f9f9f" />
+
+                <EditText
+                    android:id="@+id/et_search_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:background="@null"
+                    android:drawableLeft="@mipmap/sous03"
+                    android:drawablePadding="@dimen/_8dp"
+                    android:hint="@string/search"
+                    android:imeOptions="actionNone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/_9f9f9f"
+                    android:textSize="@dimen/_13sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_choosePeople"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/_eeeeee"
+        android:layout_height="1dp"/>
+    </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/bottom_layout"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_choosePeople_bottom"
+        android:layout_width="match_parent"
+        android:paddingRight="@dimen/_15sp"
+        android:layout_toLeftOf="@+id/tv_total_num"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_total_num"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/_15sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+</RelativeLayout>
+

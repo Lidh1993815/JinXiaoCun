@@ -20,13 +20,19 @@
             android:layout_gravity="center_vertical"
             android:text="@string/card_time" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="@color/_9f9f9f"
             android:id="@+id/tv_card_time"
-            android:text="@string/plaese_choose_time"
+            android:background="@null"
+            android:textIsSelectable="false"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"
+            android:textColorHint="@color/_9f9f9f"
+            android:hint="@string/plaese_choose_time"
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
@@ -45,6 +51,7 @@
 
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/tv_cardApply_reason"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"
             android:background="@null"

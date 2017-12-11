@@ -54,7 +54,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     /**
      * 服务器端一共多少条数据
      */
-    private static final int TOTAL_COUNTER = 34;
+
 
     /**
      * 每一页展示多少条数据
@@ -76,7 +76,6 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     private int mApplyStatus;
     private static final String TAG = "MyApprovalFragment";
     private int totalCount;
-    private int currentSize = 0;
 
 
     @Override
@@ -157,7 +156,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if (mCurrentCounter < TOTAL_COUNTER) {
+                if (mCurrentCounter < totalCount) {
                     // loading more
                     requestDataFromNet();//从网络获取数据
                 } else {
@@ -204,15 +203,14 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                     ApprovalListBean approvalListBean = (ApprovalListBean) JsonUitl.stringToObject(ret, ApprovalListBean.class);
                     List<ApprovalListBean.DataBean> mDataList = approvalListBean.getData();
                     totalCount = approvalListBean.getRecordsTotal();
+                    int currentSize = mDataAdapter.getItemCount();
                     if (currentSize >= totalCount) {
                         refreshFinish();
                         break;
                     }
                     addItems(mDataList);
-
                     refreshFinish();
                     notifyDataSetChanged();
-
                     break;
                 }
                 ToastUtils.MyToast(getContext(), "获取数据失败！");

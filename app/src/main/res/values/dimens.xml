@@ -43,4 +43,8 @@
     <dimen name="_17sp">17sp</dimen>
     <dimen name="_65dp">65dp</dimen>
     <dimen name="_18dp">18dp</dimen>
+    <dimen name="header_divider_height">1dp</dimen>
+    <dimen name="header_height">26dp</dimen>
+    <dimen name="header_textsize">15sp</dimen>
+    <dimen name="header_text_off_set_size">16dp</dimen>
 </resources>

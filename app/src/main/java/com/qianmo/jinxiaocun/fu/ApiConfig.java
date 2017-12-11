@@ -15,4 +15,8 @@ public interface ApiConfig {
     String MY_APPLY_CLOCK_DETAILS_LIST = "/apply_fill_card/my_apply_clock_details_list";
     //获取审批详情
     String APPLY_CLOCK_DETAILS_ID = "/apply_fill_card/apply_clock_details_id";
+    //获取审批人
+    String TASK_STAFF = "/task/task_staff";
+    //添加补卡审核
+    String ADD_APPLY_FILL_CARD = "/apply_fill_card/add_applyfillcard";
 }

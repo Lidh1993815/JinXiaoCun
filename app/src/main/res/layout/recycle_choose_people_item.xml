@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:minHeight="@dimen/dp_60"
+    android:paddingLeft="@dimen/_15dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/avatar"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_red_background" />
+
+        <TextView
+            android:id="@+id/tv_avatar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sp" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_toRightOf="@+id/avatar"
+        android:id="@+id/tv_name"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_17sp" />
+    <TextView
+        android:layout_toRightOf="@+id/avatar"
+        android:id="@+id/tv_position"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#949da6"
+        android:layout_marginBottom="11dp"
+        android:textSize="@dimen/_12sp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/iv_chooseStatus"
+        android:src="@drawable/dagou"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

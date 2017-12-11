@@ -92,9 +92,9 @@ public class ChooseMySubRecordFragment extends BaseFragment implements OnActionL
 
     @Override
     public void requestData() {
-        OkhttpParam okhttpParam = new OkhttpParam();
+       /* OkhttpParam okhttpParam = new OkhttpParam();
         okhttpParam.putString("cityCode", mParam);
-        OkhttpUtils.sendRequest(1001, 1, Contents.GET_CITY_LIST, okhttpParam, this);
+        OkhttpUtils.sendRequest(1001, 1, Contents.GET_CITY_LIST, okhttpParam, this);*/
     }
 
     private void initEvent() {

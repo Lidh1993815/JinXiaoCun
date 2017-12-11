@@ -9,6 +9,10 @@ package com.qianmo.jinxiaocun.fu;
  */
 
 public interface Contents {
-    //获取城市列表的接口
-    String GET_CITY_LIST="/main/getCityList";
+    //1,请假,2补卡,3物料,4报销
+    int LEAVE = 1;
+    int CARD = 2;
+    int MATERIAL = 3;
+    int REIM = 4;
+
 }

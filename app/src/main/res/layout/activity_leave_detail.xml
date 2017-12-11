@@ -95,7 +95,7 @@
                     android:text="@string/leave_reson" />
 
                 <TextView
-                    android:id="@+id/task_detail"
+                    android:id="@+id/tv_cardDetail_content"
                     style="@style/CardDetailText"
                     android:layout_width="wrap_content"
                     android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />

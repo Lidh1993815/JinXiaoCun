@@ -48,7 +48,7 @@
                 android:imeOptions="actionNone"
                 android:drawableLeft="@mipmap/sous03"
                 android:drawablePadding="@dimen/_8dp"
-                android:hint="@string/search_product"
+                android:hint="@string/search_sub_name"
                 android:textColor="@color/black"
                 android:textColorHint="@color/_9f9f9f"
                 android:textSize="@dimen/_13sp"

@@ -37,7 +37,7 @@
                     android:text="@string/card_time" />
 
                 <TextView
-                    android:id="@+id/task_title"
+                    android:id="@+id/tv_cardDetail_date"
                     style="@style/CardDetailText"
                     android:text="2017-6-19" />
 
@@ -58,7 +58,7 @@
                     android:text="@string/card_apply_content" />
 
                 <TextView
-                    android:id="@+id/task_detail"
+                    android:id="@+id/tv_cardDetail_content"
                     style="@style/CardDetailText"
                     android:layout_width="wrap_content"
                     android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
