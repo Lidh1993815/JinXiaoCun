@@ -82,28 +82,19 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
         super.rightTextAction();
         mCardTime = tvCardTime.getText().toString().trim();
         mCardApplyReason = mTvCardApplyReason.getText().toString().trim();
-        requestData();//提交补卡
-        /*if (checkParam()) {
+        if (checkParam()) {
             requestData();//提交补卡
-        }*/
+        }
     }
 
 
     @Override
     public void requestData() {
         super.requestData();
-        //"yyyy-MM-dd HH:mm:ss"
-        /*SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date parse = null;
-        try {
-             parse = sdf.parse(mCardTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
         OkhttpParam okhttpParam = new OkhttpParam();
-        okhttpParam.putString("fTime","2017-12-01 00:00:00");
-        okhttpParam.putString("fContent", "昨日下班比较冲忙忘记打卡");
-        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(2, 1, 3)));
+        okhttpParam.putString("fTime",mCardTime);
+        okhttpParam.putString("fContent", mCardApplyReason);
+        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(Contents.CARD, Integer.parseInt(SPUtil.getInstance().getStaffId()), Integer.parseInt(mStaffId))));
         Log.i(TAG, "requestData: "+JsonUitl.objectToString(new ApplyClockDetailBean(2, 1, 3)));
         OkhttpUtils.sendRequest(1001, 1, "http://192.168.0.189:8080/app/apply_fill_card/add_applyfillcard", okhttpParam, this);
     }

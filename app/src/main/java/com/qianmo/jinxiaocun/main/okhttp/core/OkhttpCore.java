@@ -151,7 +151,6 @@ public class OkhttpCore implements Runnable {
                         }
                     }
                     RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
-                    Log.i("wizardev", "run: "+jsonObject.toString());
                     request = new Request.Builder().url(url).post(requestBody).build();
                     Log.d("Debug POST-->", url + param != null ? url + param.getRequestParam() : url);
                 } else {
