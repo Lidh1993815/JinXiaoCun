@@ -21,5 +21,11 @@ public interface ApiConfig {
     String ADD_APPLY_FILL_CARD = "/apply_fill_card/add_applyfillcard";
     //修改审批内容
     String UPADTE_APPLYCLOCK_DETAILS = "/apply_fill_card/upadte_applyclock_details";
+    //添加报销申请
+    String ADD_APPLY_MATERIEL = "/apply_fill_card/add_apply_materiel";
+    //请假申请
+    String ADD_APPLYLEAVE = "/apply_fill_card/add_applyleave";
+    //获取我发布的审批
+    String MY_RELEASE_CHECK = "/apply_fill_card/my_release_check";
 
 }

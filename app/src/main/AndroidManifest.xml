@@ -13,6 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <activity android:name=".fu.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -149,12 +160,14 @@
         <!-- 通知界面 -->
         <activity android:name=".fu.activity.NotifyActivity" />
         <!-- 选择人员界面 -->
-        <activity android:name=".fu.activity.ChoosePeopleActivity"></activity>
+        <activity android:name=".fu.activity.ChoosePeopleActivity" />
         <!-- 修改选择商品 -->
         <activity android:name=".fu.activity.ModifyChooseProductActivity" />
         <!-- 门店转换 -->
         <activity android:name=".fu.activity.SwitchShopActivity" />
-        <activity android:name=".fu.activity.ExecuteOpinionActivity"></activity>
+        <!-- 审批意见界面 -->
+        <activity android:name=".fu.activity.ExecuteOpinionActivity" />
+        <activity android:name=".fu.activity.ChooseLeaveTypeActivity"></activity>
     </application>
 
 </manifest>

@@ -114,7 +114,7 @@ public class ExecuteOpinionActivity extends BaseActivity implements OnActionList
                     if (responseBean != null) {
                         String state = responseBean.getState();
                         if (state.equals("00000")) {
-                            ToastUtils.MyToast(ExecuteOpinionActivity.this,"申请成功！");
+                            ToastUtils.MyToast(ExecuteOpinionActivity.this,"审核成功！");
                             finish();
                         } else {
                             ToastUtils.MyToast(this, responseBean.getMsg());

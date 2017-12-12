@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@null"
+            android:inputType="number"
             android:hint="@string/please_input_material_name"
             android:textColorHint="@color/_9f9f9f"
             android:textSize="@dimen/_14sp" />

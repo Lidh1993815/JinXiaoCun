@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_toRightOf="@+id/tv_leave_type"
-            android:text="2017-8-20"
+            android:text="@string/pleaseChoose"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sp" />
 
@@ -143,6 +143,7 @@
             android:text="@string/leave_reson" />
 
         <EditText
+            android:id="@+id/et_leave_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"

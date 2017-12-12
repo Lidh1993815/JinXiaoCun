@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.LuDividerDecoration;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
-import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
@@ -36,7 +35,6 @@ import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
 import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,7 +57,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     /**
      * 每一页展示多少条数据
      */
-    private static final int REQUEST_COUNT = 15;
+    private static final int REQUEST_COUNT = 10;
 
     /**
      * 已经获取到多少条数据了
@@ -76,6 +74,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     private int mApplyStatus;//1、待我审批，2、我已审批
     private static final String TAG = "MyApprovalFragment";
     private int totalCount;
+    private boolean isCreated = false;
+    private boolean isVisiable = false;
+    private int mCurrentPage = 1;
+
 
 
     @Override
@@ -93,6 +95,34 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         bundle.putInt("applyStatus", status);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isCreated = true;
+        lazyLoadData();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser) {
+            isVisiable = true;
+            lazyLoadData();
+
+        } else {
+            isVisiable = false;
+        }
+        super.setUserVisibleHint(isVisibleToUser);
+
+        Log.i(TAG, "setUserVisibleHint: "+isVisibleToUser);
+    }
+
+    private void lazyLoadData() {
+        if (isCreated && isVisiable) {
+            //进行数据的加载
+            onRefresh();
+        }
     }
 
     @Nullable
@@ -172,8 +202,10 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                Log.i(TAG, "onLoadMore: "+totalCount);
                 if (mCurrentCounter < totalCount) {
                     // loading more
+                    mCurrentPage = mCurrentPage + 1;
                     requestDataFromNet();//从网络获取数据
                 } else {
                     //the end
@@ -181,7 +213,6 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
                 }
             }
         });
-        onRefresh();
     }
 
     private void initView() {
@@ -200,6 +231,7 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
     @Override
     public void onRefresh() {
         mCurrentCounter = 0;
+        mCurrentPage = 1;
         mSwipeRefreshLayout.setRefreshing(true);
         mRecyclerView.setRefreshing(true);//同时调用LuRecyclerView的setRefreshing方法
         requestDataFromNet();
@@ -343,9 +375,12 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
      * 获取数据
      */
     private void requestDataFromNet() {
+        Log.i(TAG, "requestDataFromNet: "+mCurrentPage);
         OkhttpParam okhttpParam = new OkhttpParam();
         okhttpParam.putString("aAuditor", SPUtil.getInstance().getStaffId());
         okhttpParam.putString("aPplyStatus", mApplyStatus + "");
+        okhttpParam.putString("start", mCurrentPage + "");
+        okhttpParam.putString("length", REQUEST_COUNT+"");
         OkhttpUtils.sendRequest(1001, 1, ApiConfig.MY_APPLY_CLOCK_DETAILS_LIST, okhttpParam, this);
     }
 

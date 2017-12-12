@@ -30,6 +30,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 物料申请详情界面
@@ -58,6 +59,10 @@ public class MaterialApplyDetailActivity extends BaseActivity implements OnActio
     ConstraintLayout mLlApplyDetailProgressLayout;
     @BindView(R.id.ll_applyDetail_bottomLayout)
     LinearLayout mLlApplyDetailBottomLayout;
+    @BindView(R.id.tv_applyDetail_execute)
+    TextView mTvApplyDetailExecute;
+    @BindView(R.id.tv_applyDetail_continueExecute)
+    TextView mTvApplyDetailContinueExecute;
     private MaterialApplyAdapter mMaterialApplyAdapter = null;//数据适配器
     private static final String TAG = "MaterialApplyDetailActi";
     private int mAPplyClockId;
@@ -185,6 +190,20 @@ public class MaterialApplyDetailActivity extends BaseActivity implements OnActio
         mMaterialApplyAdapter.addAll(list);
         mRecyclerView.setAdapter(mMaterialApplyAdapter);
 
+    }
+
+    @OnClick({R.id.tv_applyDetail_execute, R.id.tv_applyDetail_continueExecute})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_applyDetail_execute:
+                //执行
+                Intent intent = new Intent(this, ExecuteOpinionActivity.class);
+                intent.putExtra("aPplyClockId", mAPplyClockId);
+                startActivity(intent);
+                break;
+            case R.id.tv_applyDetail_continueExecute:
+                break;
+        }
     }
 
     //设置RecycleView的适配器

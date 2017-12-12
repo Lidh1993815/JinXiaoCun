@@ -35,21 +35,16 @@ public class MoneyManagerActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "钱流管理", R.mipmap.add);
-        //toolbar右边菜单的点击事件
-        ImageView rightImageBtn = toolBar.getRightImageBtn();
-        if (rightImageBtn != null) {
-            rightImageBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //显示底部弹窗
-                    showBottomDialog();
-                }
-            });
-        }
         setContentView(requestView(R.layout.activity_money_manager));
         ButterKnife.bind(this);
         setupViewPager();
         initEvent();
+    }
+
+    @Override
+    protected void rightImageAction() {
+        super.rightImageAction();
+        showBottomDialog();
     }
 
     private void initEvent() {

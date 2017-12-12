@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/_eeeeee"
+    tools:context="com.qianmo.jinxiaocun.fu.activity.NewMoneyOrderActivity">
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:id="@+id/rl_chooseType_thing"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/leaveOfThing" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="@dimen/_20dp"
+            style="@style/CustomCheckboxTheme"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_16dp"
+            android:layout_height="@dimen/_20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:id="@+id/rl_chooseType_sick"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/leaveOfSick" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="@dimen/_20dp"
+            style="@style/CustomCheckboxTheme"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_16dp"
+            android:layout_height="@dimen/_20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_chooseType_rest"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/leaveOfRest" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="@dimen/_20dp"
+            style="@style/CustomCheckboxTheme"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_16dp"
+            android:layout_height="@dimen/_20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_chooseType_other"
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/leaveOfOther" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="@dimen/_20dp"
+            style="@style/CustomCheckboxTheme"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_16dp"
+            android:layout_height="@dimen/_20dp" />
+    </RelativeLayout>
+</LinearLayout>

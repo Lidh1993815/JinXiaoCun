@@ -226,4 +226,13 @@
     <string name="please_input_advice">请填写意见</string>
     <string name="agree">同意</string>
     <string name="disagree">不同意</string>
+    <string name="leaveOfThing">事假</string>
+    <string name="leaveOfSick">病假</string>
+    <string name="leaveOfRest">休假</string>
+    <string name="leaveOfOther">其他</string>
+    <string name="pleaseChoose">请选择</string>
+    <string name="photo">照片</string>
+    <string name="carame">相机</string>
+    <string name="open_picture">相册</string>
+    <string name="cancle">取消</string>
 </resources>

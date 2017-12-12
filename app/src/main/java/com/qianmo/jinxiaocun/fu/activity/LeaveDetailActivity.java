@@ -22,6 +22,7 @@ import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 请假详情
@@ -58,6 +59,10 @@ public class LeaveDetailActivity extends BaseActivity implements OnActionListene
     ConstraintLayout mLlApplyDetailProgressLayout;
     @BindView(R.id.ll_applyDetail_bottomLayout)
     LinearLayout mLlApplyDetailBottomLayout;
+    @BindView(R.id.tv_applyDetail_execute)
+    TextView mTvApplyDetailExecute;
+    @BindView(R.id.tv_applyDetail_continueExecute)
+    TextView mTvApplyDetailContinueExecute;
     private int mAPplyClockId;
     private static final String TAG = "LeaveDetailActivity";
     private int mApprovalType;
@@ -213,4 +218,17 @@ public class LeaveDetailActivity extends BaseActivity implements OnActionListene
         return null;
     }
 
+    @OnClick({R.id.tv_applyDetail_execute, R.id.tv_applyDetail_continueExecute})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_applyDetail_execute:
+                //执行
+                Intent intent = new Intent(this, ExecuteOpinionActivity.class);
+                intent.putExtra("aPplyClockId", mAPplyClockId);
+                startActivity(intent);
+                break;
+            case R.id.tv_applyDetail_continueExecute:
+                break;
+        }
+    }
 }

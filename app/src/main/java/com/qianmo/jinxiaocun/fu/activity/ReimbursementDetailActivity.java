@@ -31,6 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 报销详情界面
@@ -61,6 +62,10 @@ public class ReimbursementDetailActivity extends BaseActivity implements OnActio
     ConstraintLayout mLlApplyDetailProgressLayout;
     @BindView(R.id.ll_applyDetail_bottomLayout)
     LinearLayout mLlApplyDetailBottomLayout;
+    @BindView(R.id.tv_applyDetail_execute)
+    TextView mTvApplyDetailExecute;
+    @BindView(R.id.tv_applyDetail_continueExecute)
+    TextView mTvApplyDetailContinueExecute;
 
     private ReimAdapter mReimAdapter = null;//数据适配器
     private int mAPplyClockId;
@@ -191,6 +196,20 @@ public class ReimbursementDetailActivity extends BaseActivity implements OnActio
         mReimAdapter.addAll(list);
         mRecyclerView.setAdapter(mReimAdapter);
 
+    }
+
+    @OnClick({R.id.tv_applyDetail_execute, R.id.tv_applyDetail_continueExecute})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_applyDetail_execute:
+                //执行
+                Intent intent = new Intent(this, ExecuteOpinionActivity.class);
+                intent.putExtra("aPplyClockId", mAPplyClockId);
+                startActivity(intent);
+                break;
+            case R.id.tv_applyDetail_continueExecute:
+                break;
+        }
     }
 
     //设置RecycleView的适配器

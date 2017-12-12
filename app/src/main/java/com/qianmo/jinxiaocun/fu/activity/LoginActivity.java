@@ -1,5 +1,6 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,8 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class LoginActivity extends BaseActivity implements OnActionListener {
 
@@ -37,6 +40,7 @@ public class LoginActivity extends BaseActivity implements OnActionListener {
     private String mLoginPassWd;
     private LoadingDialog mLoadingDialog;
     private static final String TAG = "LoginActivity";
+    private static final int REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class LoginActivity extends BaseActivity implements OnActionListener {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initView();
+        methodRequiresTwoPermission();
     }
 
     private void initView() {
@@ -52,6 +57,28 @@ public class LoginActivity extends BaseActivity implements OnActionListener {
             startActivity(MainActivity.class,true);
         }
     }
+
+    @AfterPermissionGranted(REQUEST_CODE)//添加注解，是为了首次执行权限申请后，回调该方法
+    private void methodRequiresTwoPermission() {
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            //已经申请过权限，直接调用相机
+            // openCamera();
+        } else {
+            EasyPermissions.requestPermissions(this, "需要获取权限",
+                    REQUEST_CODE, perms);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
 
     @OnClick({R.id.btn_login})
     public void clickAction(View view) {

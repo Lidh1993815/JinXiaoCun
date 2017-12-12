@@ -92,11 +92,10 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
     public void requestData() {
         super.requestData();
         OkhttpParam okhttpParam = new OkhttpParam();
-        okhttpParam.putString("fTime",mCardTime);
+        okhttpParam.putString("fTime", mCardTime);
         okhttpParam.putString("fContent", mCardApplyReason);
         okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(Contents.CARD, Integer.parseInt(SPUtil.getInstance().getStaffId()), Integer.parseInt(mStaffId))));
-        Log.i(TAG, "requestData: "+JsonUitl.objectToString(new ApplyClockDetailBean(2, 1, 3)));
-        OkhttpUtils.sendRequest(1001, 1, "http://192.168.0.189:8080/app/apply_fill_card/add_applyfillcard", okhttpParam, this);
+        OkhttpUtils.sendRequest(1001, 1, ApiConfig.ADD_APPLY_FILL_CARD, okhttpParam, this);
     }
 
     private boolean checkParam() {
@@ -239,7 +238,7 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
                     if (responseBean != null) {
                         String state = responseBean.getState();
                         if (state.equals("00000")) {
-                            ToastUtils.MyToast(CardApplyActivity.this,"申请成功！");
+                            ToastUtils.MyToast(CardApplyActivity.this, "申请成功！");
                             finish();
                         } else {
                             ToastUtils.MyToast(this, responseBean.getMsg());
@@ -255,11 +254,11 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
 
     @Override
     public void onActionServerFailed(int actionId, int httpStatus) {
-        Log.i(TAG, "onActionServerFailed: "+httpStatus);
+        Log.i(TAG, "onActionServerFailed: " + httpStatus);
     }
 
     @Override
     public void onActionException(int actionId, String exception) {
-        Log.i(TAG, "onActionException: "+exception);
+        Log.i(TAG, "onActionException: " + exception);
     }
 }

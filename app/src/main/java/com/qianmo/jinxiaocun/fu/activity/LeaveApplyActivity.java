@@ -1,17 +1,26 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.ApiConfig;
+import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.bean.ApplyClockDetailBean;
+import com.qianmo.jinxiaocun.fu.bean.PeopleInfoBean;
 import com.qianmo.jinxiaocun.fu.bean.ResponseBean;
 import com.qianmo.jinxiaocun.fu.utils.DateUtil;
 import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
@@ -19,9 +28,12 @@ import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
 import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +42,7 @@ import butterknife.OnClick;
 /**
  * 请假申请界面
  */
-public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, OnActionListener {
+public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, OnActionListener, TimePickerDialog.OnTimeSetListener {
 
     @BindView(R.id.tv_start_time_choose)
     TextView tvStartTimeChoose;
@@ -41,10 +53,38 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
     TextView tvEndTimeChoose;
     @BindView(R.id.rl_leave_typeLayout)
     RelativeLayout mRlLeaveTypeLayout;
+    @BindView(R.id.tv_start_time)
+    TextView mTvStartTime;
+    @BindView(R.id.tv_end_time)
+    TextView mTvEndTime;
+    @BindView(R.id.tv_leave_type)
+    TextView mTvLeaveType;
+    @BindView(R.id.tv_leave_showType)
+    TextView mTvLeaveShowType;
+    @BindView(R.id.tv_avatar_name)
+    TextView mTvAvatarName;
+    @BindView(R.id.img_add_people)
+    ImageView mImgAddPeople;
+    @BindView(R.id.avatar)
+    FrameLayout mAvatar;
+    @BindView(R.id.ll_apply_approval)
+    LinearLayout mLlApplyApproval;
+    @BindView(R.id.et_leave_content)
+    EditText mEtLeaveContent;
+
     private Calendar now;
     private String startTime;
     private String endTime;
     private static final String TAG = "LeaveApplyActivity";
+    private Calendar mCalendarDate;
+    private Calendar mCalendarTime;
+    private int mBetweenDays;
+    private static final int INTENT_CHOOSE_TYPE = 101;
+    private static final int INTENT_CHOOSE_PEOPLE = 102;
+
+    private int mLeaveType;
+    private String mStaffId;
+    private String mLeaveContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,55 +93,138 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
         setContentView(requestView(R.layout.activity_leave));
         ButterKnife.bind(this);
         initView();
+
     }
 
     @Override
     protected void rightTextAction() {
         super.rightTextAction();
-        requestData();//提交数据
+        mLeaveContent = mEtLeaveContent.getText().toString().trim();
+        if (checkParam()) {
+            requestData();//提交数据
+
+        }
+    }
+
+    private boolean checkParam() {
+        if (TextUtils.isEmpty(startTime)) {
+            ToastUtils.MyToast(this, "请选择开始请假日期！");
+            return false;
+        } else if (TextUtils.isEmpty(endTime)) {
+            ToastUtils.MyToast(this, "请选择结束请假日期！");
+            return false;
+        } else if (mLeaveType == 0) {
+            ToastUtils.MyToast(this, "请选择请假类型！");
+            return false;
+        } else if (TextUtils.isEmpty(mLeaveContent)) {
+            ToastUtils.MyToast(this, "请输入请假原因！");
+            return false;
+        }else if (TextUtils.isEmpty(mStaffId)) {
+            ToastUtils.MyToast(this, "请选择审核人员！");
+            return false;
+        }
+        return true;
     }
 
     @Override
     public void requestData() {
         super.requestData();
         OkhttpParam okhttpParam = new OkhttpParam();
-        okhttpParam.putString("startTime","2017-12-01 00:00:00");
-        okhttpParam.putString("endTime","2017-12-01 00:00:00");
-        okhttpParam.putString("applyDays","1");
-        okhttpParam.putString("leaveType","1");
-        okhttpParam.putString("leaveContent", "昨日下班比较冲忙忘记打卡");
-        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(new ApplyClockDetailBean(2,1,3)));
-        OkhttpUtils.sendRequest(1001, 1, "http://192.168.0.189:8080/app/apply_fill_card/add_applyleave", okhttpParam, this);
+        okhttpParam.putString("startTime", startTime);
+        okhttpParam.putString("endTime", endTime);
+        okhttpParam.putString("applyDays", mBetweenDays + "");
+        okhttpParam.putString("leaveType", mLeaveType + "");
+        okhttpParam.putString("leaveContent", mLeaveContent);
+        okhttpParam.putString("applyClockDetails", JsonUitl.objectToString(
+                new ApplyClockDetailBean(Contents.LEAVE, Integer.valueOf(SPUtil.getInstance().getStaffId()), Integer.valueOf(mStaffId))));
+        OkhttpUtils.sendRequest(1001, 1, ApiConfig.ADD_APPLYLEAVE, okhttpParam, this);
 
     }
 
     private void initView() {
         //初始化view
         now = Calendar.getInstance();
-        String date = DateUtil.getDate(System.currentTimeMillis(), "yyyy-MM-dd");
-        startTime = date;
-        endTime = date;
+        String date = DateUtil.getDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm");
+        startTime = DateUtil.getDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss");
+        endTime = DateUtil.getDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss");
         tvEndTimeChoose.setText(date);
         tvStartTimeChoose.setText(date);
-        tvLeaveDays.setText("1");
-
+        try {
+            mBetweenDays = DateUtil.daysBetween(startTime, endTime);
+            if (mBetweenDays < 0) {
+                mBetweenDays = 0;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        tvLeaveDays.setText(mBetweenDays + "");
     }
 
 
-
-    @OnClick({R.id.tv_start_time_choose, R.id.tv_end_time_choose,R.id.rl_leave_typeLayout})
+    @OnClick({R.id.tv_start_time_choose, R.id.tv_end_time_choose, R.id.rl_leave_typeLayout,
+            R.id.img_add_people,R.id.avatar})
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.tv_start_time_choose:
-                createDatePickerDialog("startTime");
+                createDatePickerDialog("startDate");
                 break;
             case R.id.tv_end_time_choose:
-                createDatePickerDialog("endTime");
+                createDatePickerDialog("endDate");
                 break;
-            case R.id.rl_leave_typeLayout:
-               //选择请假类型
-                // TODO: 17-12-11
+            case R.id.rl_leave_typeLayout: {
+                //选择请假类型
+                Intent intent = new Intent(LeaveApplyActivity.this, ChooseLeaveTypeActivity.class);
+                startActivityForResult(intent, INTENT_CHOOSE_TYPE);
+            }
+            break;
+            case R.id.img_add_people:
+                Intent intent = new Intent(this, ChoosePeopleActivity.class);
+                startActivityForResult(intent, INTENT_CHOOSE_PEOPLE);
                 break;
+            case R.id.avatar:
+                int visibility = mAvatar.getVisibility();
+                if (visibility == View.VISIBLE) {
+                    mAvatar.setVisibility(View.GONE);
+                    mStaffId = "";
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null) {
+            switch (requestCode) {
+                case INTENT_CHOOSE_TYPE:
+                    mLeaveType = data.getIntExtra("leaveType", 0);
+                    String leaveTitle = data.getStringExtra("leaveTitle");
+                    if (!TextUtils.isEmpty(leaveTitle)) {
+                        mTvLeaveShowType.setText(leaveTitle);
+                    }
+                    break;
+                case INTENT_CHOOSE_PEOPLE:
+                    PeopleInfoBean.DataBean dataBean = (PeopleInfoBean.DataBean) data.getSerializableExtra("peopleInfo");
+                    String staffName = dataBean.getStaffName();
+                    int staffId = dataBean.getStaffId();
+                    if (staffId == 0) {
+                        mStaffId = "";
+                    } else {
+                        mStaffId = "" + staffId;
+                    }
+                    if (!TextUtils.isEmpty(staffName)) {
+                        mAvatar.setVisibility(View.VISIBLE);
+
+                        String substring = staffName.substring(staffName.length() - 2, staffName.length());
+                        if (!TextUtils.isEmpty(substring)) {
+                            mTvAvatarName.setText(substring);
+                        }
+
+                    } else {
+                        mAvatar.setVisibility(View.GONE);
+                    }
+                    break;
+            }
         }
     }
 
@@ -117,6 +240,17 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
         dpd.show(getFragmentManager(), tag);
     }
 
+    //日历选择对话框
+    private void createTimePickerDialog(String tag) {
+
+        TimePickerDialog tpd = TimePickerDialog.newInstance(this,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND), true
+        );
+        tpd.show(getFragmentManager(), tag);
+    }
+
     @Override
     public void requestInit() {
 
@@ -126,28 +260,47 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String tag = view.getTag();
-        String date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+        mCalendarDate = Calendar.getInstance();
+        mCalendarDate.set(year, monthOfYear, dayOfMonth);
         //根据tag的不同，对不同的textView设置文字
-        if (tag.equals("startTime")) {
-            tvStartTimeChoose.setText(date);
-            startTime = date;
+        if (tag.equals("startDate")) {
+            createTimePickerDialog("startTime");
         } else {
-            tvEndTimeChoose.setText(date);
-            endTime = date;
+            createTimePickerDialog("endTime");
+        }
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        String tag = view.getTag();
+        if (mCalendarDate != null) {
+            mCalendarTime = Calendar.getInstance();
+            mCalendarTime.set(mCalendarDate.get(Calendar.YEAR), mCalendarDate.get(Calendar.MONTH),
+                    mCalendarDate.get(Calendar.DAY_OF_MONTH), hourOfDay, minute, second);
         }
 
-        int betweenDays = 0;
+        if (mCalendarTime != null) {
+            if (tag.equals("startTime")) {
+                tvStartTimeChoose.setText(DateUtil.getFormateDate(mCalendarTime.getTime(), "yyyy-MM-dd HH:mm"));
+                startTime = DateUtil.getFormateDate(mCalendarTime.getTime(), "yyyy-MM-dd HH:mm:ss");
+            } else {
+                tvEndTimeChoose.setText(DateUtil.getFormateDate(mCalendarTime.getTime(), "yyyy-MM-dd HH:mm"));
+                endTime = DateUtil.getFormateDate(mCalendarTime.getTime(), "yyyy-MM-dd HH:mm:ss");
+                ;
+            }
+        }
+        //计算日期之间相隔的天数
         try {
-            betweenDays = DateUtil.daysBetween(startTime, endTime);
-            if (betweenDays < 0) {
-                betweenDays = 0;
+            mBetweenDays = DateUtil.daysBetween(startTime, endTime);
+            if (mBetweenDays < 0) {
+                mBetweenDays = 0;
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        tvLeaveDays.setText(betweenDays + "");
-
+        tvLeaveDays.setText(mBetweenDays + "");
     }
+
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
@@ -164,7 +317,7 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
                     if (responseBean != null) {
                         String state = responseBean.getState();
                         if (state.equals("00000")) {
-                            ToastUtils.MyToast(LeaveApplyActivity.this,"申请成功！");
+                            ToastUtils.MyToast(LeaveApplyActivity.this, "申请成功！");
                             finish();
                         } else {
                             ToastUtils.MyToast(this, responseBean.getMsg());
@@ -177,12 +330,14 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
 
     @Override
     public void onActionServerFailed(int actionId, int httpStatus) {
-        Log.i(TAG, "onActionServerFailed: "+httpStatus);
+        Log.i(TAG, "onActionServerFailed: " + httpStatus);
     }
 
     @Override
     public void onActionException(int actionId, String exception) {
-        Log.i(TAG, "onActionException: "+exception);
+        Log.i(TAG, "onActionException: " + exception);
 
     }
+
+
 }

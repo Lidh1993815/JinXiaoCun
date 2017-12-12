@@ -1,12 +1,15 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
@@ -14,13 +17,24 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.ApiConfig;
+import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
+import com.qianmo.jinxiaocun.fu.bean.ApplyClockDetailBean;
+import com.qianmo.jinxiaocun.fu.bean.ApprovalListBean;
+import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
+import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
+import com.qianmo.jinxiaocun.main.okhttp.listener.OnActionListener;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
+import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +46,7 @@ import butterknife.ButterKnife;
  * desc   :
  * version: 1.0
  */
-public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
-    /**
-     * 服务器端一共多少条数据
-     */
-    private static final int TOTAL_COUNTER = 34;
+public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, OnActionListener {
 
     /**
      * 每一页展示多少条数据
@@ -48,7 +58,7 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
      */
     private static int mCurrentCounter = 0;
 
-    private static final String TAG = "TaskNotifyActivity";
+    private static final String TAG = "MyReleaseActivity";
 
     @BindView(R.id.rv_task_list)
     LuRecyclerView mRecyclerView;
@@ -56,56 +66,19 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
+    private int mCurrentPage = 1;
+    private int totalCount;
 
-    private ArrayList<String> datas = new ArrayList<>();
-    private Handler handler;
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "我发布的", -1);
+        toolBar = new MyToolBar(this, R.mipmap.zoujiant, "我发起的", -1);
         setContentView(requestView(R.layout.activity_task_notify));
         ButterKnife.bind(this);
-        initData();//初始化数据
         initView();
         initEvent();
-    }
-
-    private void initData() {
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 1) {
-
-                    if (mSwipeRefreshLayout.isRefreshing()) {
-                        mTaskAdapter.clear();
-                        mCurrentCounter = 0;
-                    }
-
-                    int currentSize = mTaskAdapter.getItemCount();
-
-                    //模拟组装10个数据
-                    datas = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        if (datas.size() + currentSize >= TOTAL_COUNTER) {
-                            break;
-                        }
-                        datas.add("");
-                    }
-
-
-                    addItems(datas);
-
-                    if (mSwipeRefreshLayout.isRefreshing()) {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                    mRecyclerView.refreshComplete(REQUEST_COUNT);
-                    notifyDataSetChanged();
-                }
-
-            }
-        };
     }
 
     private void initEvent() {
@@ -113,24 +86,53 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                ApprovalListBean.DataBean dataBean = mTaskAdapter.getDataList().get(position);
+                int aType = dataBean.getAType();//申请的类型
+                switch (aType) {
+                    //请假
+                    case 1: {
+                        Intent intent = new Intent(MyReleaseActivity.this, LeaveDetailActivity.class);
+                        //待我审批
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
 
+                    break;
+                    //补卡
+                    case 2: {
+                        Intent intent = new Intent(MyReleaseActivity.this, CardDetailActivity.class);
+                        //待我审批
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
+                    //物料
+                    case 3: {
+                        Intent intent = new Intent(MyReleaseActivity.this, MaterialApplyDetailActivity.class);
+                        //待我审批
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
+                    //报销
+                    case 4: {
+                        Intent intent = new Intent(MyReleaseActivity.this, ReimbursementDetailActivity.class);
+                        //待我审批
+                        intent.putExtra("aPplyClockId", dataBean.getAPplyClockId());
+                        startActivity(intent);
+                    }
+                    break;
+                }
             }
 
-        });
-
-        mLuRecyclerViewAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                Log.i(TAG, "onLoadMore: ");
-                if (mCurrentCounter < TOTAL_COUNTER) {
+                if (mCurrentCounter < totalCount) {
                     // loading more
+                    mCurrentPage++;
                     requestDataFromNet();
                 } else {
                     //the end
@@ -144,8 +146,8 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
     private void initView() {
         mTaskAdapter = new TaskAdapter(this);//实例化适配器
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
-        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter);//创建RecycleView
-
+        setupRecycleView(mRecyclerView, mLuRecyclerViewAdapter);//创建RecycleView
+        mRecyclerView.setAdapter(mLuRecyclerViewAdapter);
     }
 
     @Override
@@ -158,13 +160,57 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
         mCurrentCounter = 0;
         mSwipeRefreshLayout.setRefreshing(true);
         mRecyclerView.setRefreshing(true);//同时调用LuRecyclerView的setRefreshing方法
-        //  mTaskAdapter.setDataList(datas);
-        // dismissSwipeRefresh(mSwipeRefreshLayout,3000);
         requestDataFromNet();
     }
 
+    @Override
+    public void onActionSuccess(int actionId, String ret) {
+        switch (actionId) {
+            case 1001:
+                if (!TextUtils.isEmpty(ret)) {
+                    Log.i(TAG, "1001: " + ret);
+                    if (mSwipeRefreshLayout.isRefreshing()) {
+                        mTaskAdapter.clear();
+                        mCurrentCounter = 0;
+                    }
+                    ApprovalListBean approvalListBean = (ApprovalListBean) JsonUitl.stringToObject(ret, ApprovalListBean.class);
+                    List<ApprovalListBean.DataBean> mDataList = approvalListBean.getData();
+                    totalCount = approvalListBean.getRecordsTotal();
+                    int currentSize = mTaskAdapter.getItemCount();
+                    if (currentSize >= totalCount) {
+                        refreshFinish();
+                        break;
+                    }
+                    addItems(mDataList);
+                    refreshFinish();
+                    notifyDataSetChanged();
+                    break;
+                } else {
+                    ToastUtils.MyToast(this, "获取数据失败！");
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onActionServerFailed(int actionId, int httpStatus) {
+        Log.i(TAG, "onActionServerFailed: " + httpStatus);
+    }
+
+    @Override
+    public void onActionException(int actionId, String exception) {
+        Log.i(TAG, "onActionException: " + exception);
+    }
+
+    private void refreshFinish() {
+        mRecyclerView.refreshComplete(REQUEST_COUNT);
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
     //设置RecycleView的适配器
-    private class TaskAdapter extends ListBaseAdapter<String> {
+    private class TaskAdapter extends ListBaseAdapter<ApprovalListBean.DataBean> {
 
         public TaskAdapter(Context context) {
             super(context);
@@ -177,7 +223,23 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            TextView tvTitle = holder.getView(R.id.tv_title);
+            TextView tvTime = holder.getView(R.id.tv_time);
+            TextView tvStatus = holder.getView(R.id.tv_status);
+            ApprovalListBean.DataBean dataBean = mDataList.get(position);
+            int aType = dataBean.getAType();
 
+            String staffName = dataBean.getStaffName();
+            if (!TextUtils.isEmpty(staffName)) {
+                tvTitle.setText(staffName + int2ApplyType(aType));
+            }
+            String cTime = dataBean.getCTime();
+            if (!TextUtils.isEmpty(cTime)) {
+                tvTime.setText(cTime);
+            }
+            if (!TextUtils.isEmpty(int2StringStatus(dataBean.getAPplyStatus()))) {
+                tvStatus.setText(int2StringStatus(dataBean.getAPplyStatus()));
+            }
         }
 
     }
@@ -186,27 +248,44 @@ public class MyReleaseActivity extends BaseActivity implements SwipeRefreshLayou
         mLuRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItems(ArrayList<String> list) {
+    private void addItems(List<ApprovalListBean.DataBean> list) {
         mTaskAdapter.addAll(list);
         mCurrentCounter += list.size();
+    }
+
+    private String int2ApplyType(int aType) {
+        //审批类型 1,请假,2补卡,3物料,4报销
+        switch (aType) {
+            case 1:
+                return "的请假申请";
+            case 2:
+                return "的补卡申请";
+            case 3:
+                return "的物料申请";
+            case 4:
+                return "的报销申请";
+        }
+        return null;
+    }
+
+    private String int2StringStatus(int aType) {
+        switch (aType) {
+            case 1:
+                return "待审批";
+            case 2:
+                return "已经审批";
+        }
+        return null;
     }
 
     /**
      * 模拟请求网络
      */
     private void requestDataFromNet() {
-        Log.i(TAG, "requestDataFromNet: ");
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(2000);
-                    handler.sendEmptyMessage(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        OkhttpParam okhttpParam = new OkhttpParam();
+        okhttpParam.putString("staffId", SPUtil.getInstance().getStaffId());
+        okhttpParam.putString("start", mCurrentPage + "");
+        okhttpParam.putString("length", REQUEST_COUNT + "");
+        OkhttpUtils.sendRequest(1001, 0, ApiConfig.MY_RELEASE_CHECK, okhttpParam, this);
     }
 }

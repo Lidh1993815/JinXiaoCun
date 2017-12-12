@@ -41,13 +41,14 @@
             android:layout_gravity="center_vertical"
             android:text="@string/reim_money" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="@color/_9f9f9f"
-            android:id="@+id/tv_card_time"
-            android:text="@string/please_input_reim_money"
+            android:id="@+id/tv_reim_fee"
+            android:background="@null"
+            android:hint="@string/please_input_reim_money"
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
     <RelativeLayout
@@ -55,6 +56,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="44dp"
+        android:id="@+id/rl_reim_type"
         android:layout_marginTop="@dimen/_1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -63,7 +65,12 @@
             android:id="@+id/tv_start_time"
             android:layout_gravity="center_vertical"
             android:text="@string/reim_type" />
-
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_toRightOf="@+id/tv_start_time"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/rl_reim_showType"
+            android:text="@string/pleaseChoose" />
         <ImageView
             android:layout_marginRight="@dimen/_15dp"
             android:layout_alignParentRight="true"
@@ -85,6 +92,7 @@
             android:text="@string/charge_detail" />
 
         <EditText
+            android:id="@+id/et_reim_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"
@@ -94,6 +102,28 @@
             android:lineSpacingMultiplier="1.2"
             android:textColorHint="@color/_9f9f9f"
             android:textSize="@dimen/_14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTaskTitleStyle"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/photo" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/iv_reim_addImg"
+            android:layout_marginLeft="@dimen/_14dp"
+            android:src="@mipmap/add_pic"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layout_marginBottom="@dimen/_14dp"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

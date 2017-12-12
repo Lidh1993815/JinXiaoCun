@@ -18,6 +18,14 @@ public class DateUtil {
         String date = format.format(new Date(createTime));
         return date;
     }
+
+    //将事件戳转化为日期
+    public static String getFormateDate(Date date,String dateFromat){
+        SimpleDateFormat format =  new SimpleDateFormat(dateFromat, Locale.CHINA);
+        String result = format.format(date);
+        return result;
+    }
+
     //计算两个日期之间相隔的天数
     public static int daysBetween(String startDate,String endDate) throws ParseException {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -30,6 +38,8 @@ public class DateUtil {
 
         return Integer.parseInt(String.valueOf(between_days));
     }
+
+
 
     /**
      * 计算两个日期之间相差的天数

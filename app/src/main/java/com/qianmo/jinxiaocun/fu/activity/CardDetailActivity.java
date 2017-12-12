@@ -214,7 +214,7 @@ public class CardDetailActivity extends BaseActivity implements OnActionListener
             case R.id.tv_applyDetail_execute:
                 //执行
                 Intent intent = new Intent(this, ExecuteOpinionActivity.class);
-                intent.putExtra("aPplyClockId", Contents.CARD);
+                intent.putExtra("aPplyClockId", mAPplyClockId);
                 startActivity(intent);
                 break;
             case R.id.tv_applyDetail_continueExecute:
