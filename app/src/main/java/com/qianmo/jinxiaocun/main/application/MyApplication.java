@@ -5,6 +5,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.view.CropImageView;
+import com.qianmo.jinxiaocun.fu.utils.GlideImageLoader;
 import com.qianmo.jinxiaocun.main.okhttp.base.OkhttpBase;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ public class MyApplication extends Application {
     private static List<Activity> activities;
     public static Application application;
     public static Context context;
+    private ImagePicker imagePicker;
 
     @Override
     public void onTerminate() {
@@ -38,6 +42,20 @@ public class MyApplication extends Application {
 
 //        OkhttpBase.BASE_URL = "http://192.168.0.133:8080";
 //        OkhttpBase.H5 = "http://www.nongbabi.com/";//h5地址
+        initPicker();
+    }
+
+
+    private void initPicker() {
+        imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new GlideImageLoader());
+        imagePicker.setCrop(false);
+        imagePicker.setMultiMode(true);
+        imagePicker.setStyle(CropImageView.Style.RECTANGLE);
+        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
+        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
     }
 
     @Override

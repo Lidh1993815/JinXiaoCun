@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".main.application.MyApplication"
@@ -167,7 +169,7 @@
         <activity android:name=".fu.activity.SwitchShopActivity" />
         <!-- 审批意见界面 -->
         <activity android:name=".fu.activity.ExecuteOpinionActivity" />
-        <activity android:name=".fu.activity.ChooseLeaveTypeActivity"></activity>
+        <activity android:name=".fu.activity.ChooseLeaveTypeActivity"/>
     </application>
 
 </manifest>

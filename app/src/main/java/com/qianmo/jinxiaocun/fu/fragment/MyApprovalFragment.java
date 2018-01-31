@@ -115,7 +115,6 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
         }
         super.setUserVisibleHint(isVisibleToUser);
 
-        Log.i(TAG, "setUserVisibleHint: "+isVisibleToUser);
     }
 
     private void lazyLoadData() {
@@ -123,6 +122,12 @@ public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayo
             //进行数据的加载
             onRefresh();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        lazyLoadData();
     }
 
     @Nullable

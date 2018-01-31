@@ -141,12 +141,12 @@ public class OkhttpCore implements Runnable {
                 if (param != null) {
 //                    FormBody.Builder builder = new FormBody.Builder();//构建参数
                     JSONObject jsonObject = new JSONObject();
-                    Map<String, String> stringParams = param.getStringParams();
+                    Map<String, Object> stringParams = param.getStringParams();
                     if (stringParams != null && stringParams.size() > 0) {
                         //在字符串集合中有数据
-                        Iterator<Map.Entry<String, String>> iterator = stringParams.entrySet().iterator();
+                        Iterator<Map.Entry<String, Object>> iterator = stringParams.entrySet().iterator();
                         while (iterator.hasNext()) {
-                            Map.Entry<String, String> next = iterator.next();
+                            Map.Entry<String, Object> next = iterator.next();
                             jsonObject.put(next.getKey(), next.getValue());
                         }
                     }
@@ -193,12 +193,12 @@ public class OkhttpCore implements Runnable {
                                 , requestBody);
                     }
 
-                    Map<String, String> stringParams = param.getStringParams();
+                    Map<String, Object> stringParams = param.getStringParams();
                     if (stringParams != null && stringParams.size() > 0) {
                         //说明在传图片的时候还带了参数
-                        Iterator<Map.Entry<String, String>> iterator1 = stringParams.entrySet().iterator();
+                        Iterator<Map.Entry<String, Object>> iterator1 = stringParams.entrySet().iterator();
                         while (iterator1.hasNext()) {
-                            Map.Entry<String, String> next = iterator1.next();
+                            Map.Entry<String, Object> next = iterator1.next();
                             builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + next.getKey() + "\""), RequestBody.create(null, next.getValue() + ""));
                         }
                     }
@@ -206,14 +206,14 @@ public class OkhttpCore implements Runnable {
                     Log.d("Debug", "执行有图片的请求,url:" + url);
                 } else {
                     //do not have byte array
-                    Map<String, String> stringParams = param.getStringParams();
+                    Map<String, Object> stringParams = param.getStringParams();
                     if (stringParams != null && stringParams.size() > 0) {
                         FormBody.Builder byteBuilder = new FormBody.Builder();//构建参数
                         //在字符串集合中有数据
-                        Iterator<Map.Entry<String, String>> iterator = stringParams.entrySet().iterator();
+                        Iterator<Map.Entry<String, Object>> iterator = stringParams.entrySet().iterator();
                         while (iterator.hasNext()) {
-                            Map.Entry<String, String> next = iterator.next();
-                            byteBuilder.add(next.getKey(), next.getValue());
+                            Map.Entry<String, Object> next = iterator.next();
+                            byteBuilder.add(next.getKey(), (String) next.getValue());
                         }
                         request = new Request.Builder().url(url).post(byteBuilder.build()).build();
                         Log.d("Debug", "执行没有图片的请求，但有参数");

@@ -206,6 +206,7 @@ public class ReimbursementDetailActivity extends BaseActivity implements OnActio
                 Intent intent = new Intent(this, ExecuteOpinionActivity.class);
                 intent.putExtra("aPplyClockId", mAPplyClockId);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.tv_applyDetail_continueExecute:
                 break;

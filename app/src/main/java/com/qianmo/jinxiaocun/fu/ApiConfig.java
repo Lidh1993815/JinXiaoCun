@@ -27,5 +27,11 @@ public interface ApiConfig {
     String ADD_APPLYLEAVE = "/apply_fill_card/add_applyleave";
     //获取我发布的审批
     String MY_RELEASE_CHECK = "/apply_fill_card/my_release_check";
+    //上传图片
+    String UPLOAD = "http://192.168.0.189:8080/file/upload";
+    //获取待我执行的任务列表的数据
+    String MY_WAIT_FOR_TASK = "/task/my_waitforTask";
+    //我发布的
+    String MY_TASK = "/task/my_task";
 
 }

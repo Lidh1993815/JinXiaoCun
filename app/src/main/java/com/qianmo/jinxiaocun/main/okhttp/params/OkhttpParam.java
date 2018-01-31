@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by Administrator on 2016/8/15.
  */
 public class OkhttpParam {
-    private Map<String, String> stringParams;
+    private Map<String, Object> stringParams;
     /**
      * 文件相关的参数
      */
@@ -46,17 +46,17 @@ public class OkhttpParam {
         this.fileParams = fileParams;
     }
 
-    public Map<String, String> getStringParams() {
+    public Map<String, Object> getStringParams() {
         return stringParams;
     }
 
-    public void setStringParams(Map<String, String> stringParams) {
+    public void setStringParams(Map<String, Object> stringParams) {
         this.stringParams = stringParams;
     }
 
-    public void putString(String key, String value) {
+    public void putString(String key, Object value) {
         if (stringParams == null) {
-            stringParams = new HashMap<String, String>();
+            stringParams = new HashMap<String, Object>();
         }
         stringParams.put(key, value);
     }

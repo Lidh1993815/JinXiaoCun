@@ -216,6 +216,8 @@ public class CardDetailActivity extends BaseActivity implements OnActionListener
                 Intent intent = new Intent(this, ExecuteOpinionActivity.class);
                 intent.putExtra("aPplyClockId", mAPplyClockId);
                 startActivity(intent);
+                finish();
+
                 break;
             case R.id.tv_applyDetail_continueExecute:
                 //继续审核

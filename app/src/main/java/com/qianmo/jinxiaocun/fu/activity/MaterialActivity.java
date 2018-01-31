@@ -1,6 +1,7 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,11 +19,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
+import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.bean.AddApplyMaterialBean;
+import com.qianmo.jinxiaocun.fu.bean.PeopleInfoBean;
 import com.qianmo.jinxiaocun.fu.bean.ResponseBean;
 import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
+import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
@@ -33,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 物料申请界面
@@ -41,11 +48,21 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
 
     @BindView(R.id.rv_material_apply)
     RecyclerView mRecyclerView;
+    @BindView(R.id.tv_avatar_name)
+    TextView mTvAvatarName;
+    @BindView(R.id.avatar)
+    FrameLayout mAvatar;
+    @BindView(R.id.img_add_people)
+    ImageView mImgAddPeople;
+    @BindView(R.id.ll_apply_approval)
+    LinearLayout mLlApplyApproval;
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private ArrayList<String> datas = new ArrayList<>();
     private int size;
     private static final String TAG = "MaterialActivity";
     private AddApplyMaterialBean.ApplyMaterielsBean[] mApplyMaterielsData;
+    private static final int INTENT_CHOOSE_PEOPLE = 102;
+    private String mStaffId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +85,25 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
             EditText applyMaterialNum = child.findViewById(R.id.tv_applyMaterial_num);
             EditText applyMaterialUse = child.findViewById(R.id.tv_applyMaterial_use);
             String materialName = applyMaterialName.getText().toString().trim();
+            if (TextUtils.isEmpty(materialName)) {
+                ToastUtils.MyToast(this, "请输入物品名称！");
+                return;
+            }
             String materialNum = applyMaterialNum.getText().toString().trim();
+            if (TextUtils.isEmpty(materialNum)) {
+                ToastUtils.MyToast(this, "请输入物品数量！");
+                return;
+            }
             String materialUse = applyMaterialUse.getText().toString().trim();
-            mApplyMaterielsData[i] = new AddApplyMaterialBean.ApplyMaterielsBean(materialName,materialNum,materialUse);
+            if (TextUtils.isEmpty(materialUse)) {
+                ToastUtils.MyToast(this, "请输入物品用途！");
+                return;
+            }
+            mApplyMaterielsData[i] = new AddApplyMaterialBean.ApplyMaterielsBean(materialName, materialNum, materialUse);
+        }
+        if (TextUtils.isEmpty(mStaffId)) {
+            ToastUtils.MyToast(this,"请选择审核人员！");
+            return;
         }
         requestData();
     }
@@ -80,19 +113,29 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
 
     }
 
+    @OnClick({R.id.img_add_people})
+    public void clickAction(View view) {
+        switch (view.getId()) {
+            case R.id.img_add_people:
+                Intent intent = new Intent(this, ChoosePeopleActivity.class);
+                startActivityForResult(intent, INTENT_CHOOSE_PEOPLE);
+                break;
+        }
+    }
+
     @Override
     public void requestData() {
         super.requestData();
         OkhttpParam okhttpParam = new OkhttpParam();
-        okhttpParam.putString("aType", 2 + "");
-        okhttpParam.putString("staffId", 1 + "");
-        okhttpParam.putString("aAuditor", 2 + "");
+        okhttpParam.putString("aType", Contents.MATERIAL);
+        okhttpParam.putString("staffId", SPUtil.getInstance().getStaffId());
+        okhttpParam.putString("aAuditor", mStaffId);
 
         // 设置对象数组转JSON串
         String jsonString = JSON.toJSONString(mApplyMaterielsData);
         // JSON串转设置对象列表
         List<AddApplyMaterialBean.ApplyMaterielsBean> applyMaterielBeans = JSON.parseArray(jsonString, AddApplyMaterialBean.ApplyMaterielsBean.class);
-        Log.i(TAG, "requestData: "+JSONArray.toJSONString(applyMaterielBeans));
+        Log.i(TAG, "requestData: " + JSONArray.toJSONString(applyMaterielBeans));
         okhttpParam.putString("applyMateriels", JSONArray.toJSONString(applyMaterielBeans));
         OkhttpUtils.sendRequest(1001, 1, ApiConfig.ADD_APPLY_MATERIEL, okhttpParam, this);
 
@@ -134,13 +177,51 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
 
     @Override
     public void onActionServerFailed(int actionId, int httpStatus) {
-        Log.i(TAG, "onActionServerFailed: "+httpStatus);
+        Log.i(TAG, "onActionServerFailed: " + httpStatus);
     }
 
     @Override
     public void onActionException(int actionId, String exception) {
-        Log.i(TAG, "onActionException: "+exception);
+        Log.i(TAG, "onActionException: " + exception);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null) {
+            switch (requestCode) {
+                /*case INTENT_CHOOSE_TYPE:
+                    mLeaveType = data.getIntExtra("leaveType", 0);
+                    String leaveTitle = data.getStringExtra("leaveTitle");
+                    if (!TextUtils.isEmpty(leaveTitle)) {
+                        mTvLeaveShowType.setText(leaveTitle);
+                    }
+                    break;*/
+                case INTENT_CHOOSE_PEOPLE:
+                    PeopleInfoBean.DataBean dataBean = (PeopleInfoBean.DataBean) data.getSerializableExtra("peopleInfo");
+                    String staffName = dataBean.getStaffName();
+                    int staffId = dataBean.getStaffId();
+                    if (staffId == 0) {
+                        mStaffId = "";
+                    } else {
+                        mStaffId = "" + staffId;
+                    }
+                    if (!TextUtils.isEmpty(staffName)) {
+                        mAvatar.setVisibility(View.VISIBLE);
+
+                        String substring = staffName.substring(staffName.length() - 2, staffName.length());
+                        if (!TextUtils.isEmpty(substring)) {
+                            mTvAvatarName.setText(substring);
+                        }
+
+                    } else {
+                        mAvatar.setVisibility(View.GONE);
+                    }
+                    break;
+            }
+        }
+    }
+
 
     //设置RecycleView的适配器
     private class TaskAdapter extends ListBaseAdapter<String> {

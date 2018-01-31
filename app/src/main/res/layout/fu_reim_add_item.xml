@@ -4,36 +4,39 @@
     android:layout_height="wrap_content"
     android:background="@color/_eeeeee"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:textColor="@color/_9f9f9f"
-            android:textSize="10sp"
             android:id="@+id/reim_detail_position"
-            android:layout_marginTop="@dimen/_15dp"
-            android:layout_marginLeft="@dimen/dp_14"
-            android:text="报销明细（1）"
-            android:layout_height="wrap_content" />
-        <TextView
             android:layout_width="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="9sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginTop="@dimen/_15dp"
+            android:text="报销明细（1）"
+            android:textColor="@color/_9f9f9f"
+            android:textSize="10sp" />
+
+        <TextView
             android:id="@+id/tv_delete_action"
-            android:paddingRight="@dimen/_15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/_15dp"
             android:paddingTop="@dimen/_15dp"
             android:text="删除"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="9sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
         android:background="@color/white"
         android:minHeight="44dp"
-        android:layout_marginTop="@dimen/_5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -42,42 +45,47 @@
             android:text="@string/reim_money" />
 
         <EditText
+            android:id="@+id/tv_reim_fee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/_9f9f9f"
-            android:id="@+id/tv_reim_fee"
             android:background="@null"
             android:hint="@string/please_input_reim_money"
+            android:textColor="@color/_9f9f9f"
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
+
     <RelativeLayout
+        android:id="@+id/rl_reim_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="44dp"
-        android:id="@+id/rl_reim_type"
         android:layout_marginTop="@dimen/_1dp"
+        android:background="@color/white"
         android:gravity="center_vertical"
+        android:minHeight="44dp"
         android:orientation="horizontal">
+
         <TextView
-            style="@style/AddTaskTitleStyle"
             android:id="@+id/tv_start_time"
+            style="@style/AddTaskTitleStyle"
             android:layout_gravity="center_vertical"
             android:text="@string/reim_type" />
+
         <TextView
-            style="@style/AddTaskTitleStyle"
-            android:layout_toRightOf="@+id/tv_start_time"
-            android:layout_gravity="center_vertical"
             android:id="@+id/rl_reim_showType"
+            style="@style/AddTaskTitleStyle"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/tv_start_time"
             android:text="@string/pleaseChoose" />
+
         <ImageView
-            android:layout_marginRight="@dimen/_15dp"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/youjiantou"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiantou" />
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,33 +123,57 @@
             style="@style/AddTaskTitleStyle"
             android:layout_marginTop="@dimen/_16dp"
             android:text="@string/photo" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:id="@+id/iv_reim_addImg"
-            android:layout_marginLeft="@dimen/_14dp"
-            android:src="@mipmap/add_pic"
-            android:layout_marginTop="@dimen/_15dp"
-            android:layout_marginBottom="@dimen/_14dp"
-            android:layout_height="wrap_content" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/_14dp"
+            android:scrollbars="none"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:layout_marginBottom="@dimen/_14dp"
+                    android:layout_marginLeft="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_15dp" />
+
+                <ImageView
+                    android:id="@+id/iv_reim_addImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:src="@mipmap/add_pic" />
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
 
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/add_reim_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="44dp"
-        android:id="@+id/add_reim_detail_layout"
-        android:gravity="center"
         android:layout_marginTop="@dimen/_1dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:minHeight="44dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_14sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="+添加报销明细" />
+            android:text="+添加报销明细"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_14sp" />
 
     </LinearLayout>
 </LinearLayout>
