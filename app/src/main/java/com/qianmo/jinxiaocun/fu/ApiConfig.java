@@ -1,5 +1,7 @@
 package com.qianmo.jinxiaocun.fu;
 
+import com.qianmo.jinxiaocun.main.okhttp.base.OkhttpBase;
+
 /**
  * anthor : wizardev
  * email : wizarddev@163.com
@@ -33,5 +35,11 @@ public interface ApiConfig {
     String MY_WAIT_FOR_TASK = "/task/my_waitforTask";
     //我发布的
     String MY_TASK = "/task/my_task";
+    //我执行的任务详情
+    String TASK_DETAILS = OkhttpBase.BASE_URL+"/task/task_details";
+    //获取发布的任务详情
+    String MY_RELEASE_TASK_DETAILS = OkhttpBase.BASE_URL+"/task/my_release_task_details";
+    //获取日报详情
+    String GETDAILY_CARRYOUTID = OkhttpBase.BASE_URL+"/task/getdaily_carryOutid";
 
 }

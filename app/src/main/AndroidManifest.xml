@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -169,7 +168,8 @@
         <activity android:name=".fu.activity.SwitchShopActivity" />
         <!-- 审批意见界面 -->
         <activity android:name=".fu.activity.ExecuteOpinionActivity" />
-        <activity android:name=".fu.activity.ChooseLeaveTypeActivity"/>
+        <activity android:name=".fu.activity.ChooseLeaveTypeActivity" />
+        <activity android:name=".fu.activity.NewspaperDetailActivity"></activity>
     </application>
 
 </manifest>

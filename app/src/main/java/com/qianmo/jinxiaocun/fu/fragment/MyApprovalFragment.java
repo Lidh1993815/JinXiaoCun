@@ -50,11 +50,6 @@ import butterknife.Unbinder;
  */
 public class MyApprovalFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnActionListener {
     /**
-     * 服务器端一共多少条数据
-     */
-
-
-    /**
      * 每一页展示多少条数据
      */
     private static final int REQUEST_COUNT = 10;

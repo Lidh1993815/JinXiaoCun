@@ -1,5 +1,8 @@
 package com.qianmo.jinxiaocun.fu.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -47,7 +50,7 @@ public class PeopleInfoBean {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
+    public static class DataBean implements Parcelable{
         /**
          * staffId : 1
          * staffName : 牵陌吴彦祖
@@ -57,6 +60,30 @@ public class PeopleInfoBean {
         private int staffId;
         private String staffName;
         private String postName;
+
+        public DataBean(Parcel in) {
+            staffId = in.readInt();
+            staffName = in.readString();
+            postName = in.readString();
+            isSelect = in.readByte() != 0;
+            letters = in.readString();
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel in) {
+                return new DataBean(in);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
+
+        public DataBean() {
+
+        }
 
         public boolean isSelect() {
             return isSelect;
@@ -100,6 +127,20 @@ public class PeopleInfoBean {
 
         public void setPostName(String postName) {
             this.postName = postName;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(staffId);
+            dest.writeString(staffName);
+            dest.writeString(postName);
+            dest.writeByte((byte) (isSelect ? 1 : 0));
+            dest.writeString(letters);
         }
     }
 }

@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
+import com.qianmo.jinxiaocun.fu.Contents;
 import com.qianmo.jinxiaocun.fu.adapter.ListBaseAdapter;
 import com.qianmo.jinxiaocun.fu.adapter.SuperViewHolder;
 import com.qianmo.jinxiaocun.fu.bean.PeopleInfoBean;
@@ -75,9 +77,12 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
     private LoadingDialog mLoadingDialog;
     private ChoosePeopleAdapter mPeopleAdapter;
     private List<PeopleInfoBean.DataBean> mSelectPeopleList = new ArrayList<>();
+    private int mChooseType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mChooseType = getIntent().getIntExtra("chooseType", 0);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "选择人员", -1);
         setContentView(requestView(R.layout.activity_choose_people));
         ButterKnife.bind(this);
@@ -184,15 +189,17 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
                 }
                 break;
             case R.id.tv_total_num:
-                if (mSelectPeopleList.size() > 1) {
-                    ToastUtils.MyToast(this,"只能选择一个审批人！");
-                    return;
-                }
                 Intent intent = new Intent();
-                intent.putExtra("peopleInfo", mSelectPeopleList.get(0));
-                int staffId = mSelectPeopleList.get(0).getStaffId();
-                Log.i(TAG, "跳转时的id: "+staffId);
 
+                if (mChooseType == Contents.ONLY_ONE) {
+                    if (mSelectPeopleList.size() > 1) {
+                        ToastUtils.MyToast(this, "只能选择一个审批人！");
+                        return;
+                    }
+                    intent.putExtra("peopleInfo", mSelectPeopleList.get(0));
+                } else {
+                    intent.putParcelableArrayListExtra("peoplesInfo", (ArrayList<? extends Parcelable>) mSelectPeopleList);
+                }
                 setResult(RESULT_OK,intent);
                 finish();
                 break;

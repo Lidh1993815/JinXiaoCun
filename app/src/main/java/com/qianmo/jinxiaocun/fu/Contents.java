@@ -15,4 +15,7 @@ public interface Contents {
     int MATERIAL = 3;
     int REIM = 4;
 
+    int ONLY_ONE = 1;
+    int MOST = 2;
+
 }

@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@null"
+            android:id="@+id/et_addTask_title"
             android:hint="@string/please_input_title"
             android:textColorHint="@color/_9f9f9f"
             android:textSize="@dimen/_14sp" />
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"
             android:background="@null"
+            android:id="@+id/et_addTask_content"
             android:hint="@string/please_input_task_content"
             android:inputType="textMultiLine"
             android:lineSpacingMultiplier="1.2"
@@ -98,6 +100,7 @@
             android:layout_gravity="center_vertical"
             android:background="@null"
             android:hint="@string/please_input_bonus"
+            android:id="@+id/et_addTask_bonus"
             android:textColorHint="@color/_9f9f9f"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sp" />
@@ -122,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColorHint="@color/_9f9f9f"
-
+            android:id="@+id/et_addTask_fine"
             android:background="@null"
             android:hint="@string/please_input_fine"
             android:textColor="@color/black"
@@ -130,43 +133,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
-        android:background="@color/white"
-        android:minHeight="100dp"
-
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/AddTaskTitleStyle"
-                android:layout_marginTop="@dimen/_16dp"
-                android:text="@string/executor"
-                android:textSize="@dimen/_15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                android:text="(点击头像可删除)"
-                android:textColor="@color/_9f9f9f"
-                android:textSize="@dimen/_12sp" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="@dimen/_40dp"
-            android:layout_height="@dimen/_40dp"
-            android:layout_marginBottom="17dp"
-            android:layout_marginLeft="@dimen/dp_14"
-            android:layout_marginTop="@dimen/dp_14"
-            android:src="@mipmap/tianjia01" />
-    </LinearLayout>
+    <include layout="@layout/peoples_apply_layout" />
 
 </LinearLayout>

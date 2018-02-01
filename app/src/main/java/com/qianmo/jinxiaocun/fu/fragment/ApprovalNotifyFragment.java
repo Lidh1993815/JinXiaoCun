@@ -1,6 +1,7 @@
 package com.qianmo.jinxiaocun.fu.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -71,9 +72,6 @@ public class ApprovalNotifyFragment extends BaseFragment implements SwipeRefresh
 
     private TaskAdapter mTaskAdapter = null;//数据适配器
     private LuRecyclerViewAdapter mLuRecyclerViewAdapter = null;//增强版的Adapter
-
-    private ArrayList<TaskForMeBean.DataBean> datas = new ArrayList<>();
-    private Handler handler;
     private static final String TAG = "ApprovalNotifyFragment";
     private int approvalStatus;
 
@@ -115,14 +113,19 @@ public class ApprovalNotifyFragment extends BaseFragment implements SwipeRefresh
         mLuRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                TaskForMeBean.DataBean dataBean = mTaskAdapter.getDataList().get(position);
+                int taskId = dataBean.getTaskId();
                 if (approvalStatus == 0) {
                     //待我执行的界面
-                    startActivity(ForMeTaskDetailActivity.class, false);
+                    Intent intent = new Intent(getContext(), ForMeTaskDetailActivity.class);
+                    intent.putExtra("taskId", taskId);
+                    startActivity(intent);
 
                 } else {
                     //我发布的界面
-                    startActivity(TaskDetailActivity.class, false);
-
+                    Intent intent = new Intent(getContext(), TaskDetailActivity.class);
+                    intent.putExtra("taskId", taskId);
+                    startActivity(intent);
                 }
 
 
@@ -172,7 +175,9 @@ public class ApprovalNotifyFragment extends BaseFragment implements SwipeRefresh
     public void onActionSuccess(int actionId, String ret) {
         switch (actionId) {
             case 1001:
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (!TextUtils.isEmpty(ret)) {
                     Log.d(TAG, "onActionSuccess: " + ret);
                     TaskForMeBean taskForMeBean = (TaskForMeBean) JsonUitl.stringToObject(ret, TaskForMeBean.class);

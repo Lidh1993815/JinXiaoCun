@@ -84,7 +84,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <TextView
-                    android:id="@+id/tv_cardDetail_date"
+                    android:id="@+id/tv_taskDetail_taskTitle"
                     style="@style/TaskDetailText"
 
                     android:text="xxxxxxxxxx"
@@ -102,7 +102,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
-                    android:id="@+id/tv_cardDetail_content"
+                    android:id="@+id/tv_taskDetail_content"
                     style="@style/TaskDetailText"
                     android:layout_width="0dp"
                     android:layout_marginEnd="12dp"
@@ -110,7 +110,7 @@
                     android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cardDetail_date" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_taskDetail_taskTitle" />
 
                 <TextView
                     android:id="@+id/tv_auditStatus"
@@ -120,14 +120,14 @@
                     android:layout_marginStart="16dp"
                     android:text="@string/expected_bonus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cardDetail_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_taskDetail_content" />
 
                 <TextView
                     android:id="@+id/expectec_bonus"
                     style="@style/TaskDetailText"
                     android:text="100"
                     app:layout_constraintStart_toEndOf="@+id/tv_auditStatus"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cardDetail_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_taskDetail_content" />
 
                 <TextView
                     android:id="@+id/textView14"

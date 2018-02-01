@@ -35,7 +35,7 @@ public class MyApplication extends Application {
         context=getApplicationContext();
         application = this;
 ////        内网 地址
-        OkhttpBase.BASE_URL = "http://192.168.0.189:8080/app";
+        OkhttpBase.BASE_URL = "http://192.168.0.124:8080/app";
 
         //外网
 //        OkhttpBase.BASE_URL = "http://app.touzigang.net/HKoption";
