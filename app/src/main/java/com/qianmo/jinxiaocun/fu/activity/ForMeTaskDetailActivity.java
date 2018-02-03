@@ -16,6 +16,7 @@ import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.fu.utils.StringUtil;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import java.util.HashMap;
@@ -69,9 +70,9 @@ public class ForMeTaskDetailActivity extends BaseActivity {
     }
 
     private void requestTaskDetail() {
-        Map<String, Object> param = new HashMap<>();
-        param.put("staffId", SPUtil.getInstance().getStaffId());
-        param.put("taskId", mTaskId);
+        OkhttpParam param = new OkhttpParam();
+        param.putString("staffId", SPUtil.getInstance().getStaffId());
+        param.putString("taskId", mTaskId);
         OkHttpHelper.getInstance().post(ApiConfig.TASK_DETAILS, param, new LoadingCallback<TaskDetailBean>(this) {
 
             @Override

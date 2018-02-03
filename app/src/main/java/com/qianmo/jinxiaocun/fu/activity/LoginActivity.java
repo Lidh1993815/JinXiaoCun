@@ -47,6 +47,9 @@ public class LoginActivity extends BaseActivity implements OnActionListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        //todo登录功能好了以后，要把这里的代码去掉
+        SPUtil instance = SPUtil.getInstance();
+        instance.putString(this, SPUtil.STAFF_ID, "4");//保存员工Id到本地到本地
         initView();
         methodRequiresTwoPermission();
     }

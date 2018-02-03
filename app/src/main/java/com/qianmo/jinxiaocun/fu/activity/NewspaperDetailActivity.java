@@ -24,6 +24,7 @@ import com.qianmo.jinxiaocun.fu.http.NoLoadingCallback;
 import com.qianmo.jinxiaocun.fu.http.OkHttpHelper;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import java.util.HashMap;
@@ -90,10 +91,10 @@ public class NewspaperDetailActivity extends BaseActivity implements SwipeRefres
     }
 
     private void requestNewspaperData() {
-        Map<String, Object> param = new HashMap<>();
-        param.put("carryOutId", mCarryOutTaskId);
-        param.put("start", mCurrentPage);
-        param.put("length", REQUEST_COUNT);
+        OkhttpParam param = new OkhttpParam();
+        param.putString("carryOutId", mCarryOutTaskId);
+        param.putString("start", mCurrentPage);
+        param.putString("length", REQUEST_COUNT);
         OkHttpHelper.getInstance().post(ApiConfig.GETDAILY_CARRYOUTID, param, new NoLoadingCallback<NewspaperDetail>() {
 
 

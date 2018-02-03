@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * version : 1.0
  */
 
-public class PeopleInfoBean {
+public class PeopleInfoBean implements Parcelable{
 
     /**
      * recordsFiltered : 8
@@ -24,7 +25,25 @@ public class PeopleInfoBean {
 
     private int recordsFiltered;
     private int recordsTotal;
-    private List<DataBean> data;
+    private List<DataBean> data = new ArrayList<>();
+
+    protected PeopleInfoBean(Parcel in) {
+        recordsFiltered = in.readInt();
+        recordsTotal = in.readInt();
+        data = in.createTypedArrayList(DataBean.CREATOR);
+    }
+
+    public static final Creator<PeopleInfoBean> CREATOR = new Creator<PeopleInfoBean>() {
+        @Override
+        public PeopleInfoBean createFromParcel(Parcel in) {
+            return new PeopleInfoBean(in);
+        }
+
+        @Override
+        public PeopleInfoBean[] newArray(int size) {
+            return new PeopleInfoBean[size];
+        }
+    };
 
     public int getRecordsFiltered() {
         return recordsFiltered;
@@ -48,6 +67,18 @@ public class PeopleInfoBean {
 
     public void setData(List<DataBean> data) {
         this.data = data;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(recordsFiltered);
+        dest.writeInt(recordsTotal);
+        dest.writeTypedList(data);
     }
 
     public static class DataBean implements Parcelable{

@@ -26,11 +26,13 @@ public class NewspaperActivity extends BaseActivity {
     EditText mEtNewspaperContent;
     @BindView(R.id.tv_newspaper_reportPeople)
     TextView mTvNewspaperReportPeople;
+    private int mCarryOutTaskId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mCarryOutTaskId = getIntent().getIntExtra("carryOutTaskId", 0);
         toolBar = new MyToolBar(this, R.mipmap.zoujiant, "填写日报", "完成");
         setContentView(requestView(R.layout.activity_newspaper));
         ButterKnife.bind(this);

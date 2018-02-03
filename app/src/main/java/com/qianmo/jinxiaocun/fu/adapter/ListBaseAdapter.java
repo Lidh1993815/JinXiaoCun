@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +21,7 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     private LayoutInflater mInflater;
 
     protected List<T> mDataList = new ArrayList<>();
+    private OnItemClickListener mOnItemClickListener;
 
     public ListBaseAdapter(Context context) {
         mContext = context;
@@ -32,8 +35,18 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     }
 
     @Override
-    public void onBindViewHolder(SuperViewHolder holder, int position) {
+    public void onBindViewHolder(final SuperViewHolder holder, final int position) {
         onBindItemHolder(holder, position);
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener()  {
+                @Override
+                public void onClick(View v)
+                {
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
+                }
+            });
+
+        }
     }
 
     //局部刷新关键：带payload的这个onBindViewHolder方法必须实现
@@ -44,6 +57,8 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
         } else {
             onBindItemHolder(holder, position, payloads);
         }
+
+
 
     }
 
@@ -88,5 +103,9 @@ public abstract class ListBaseAdapter<T> extends RecyclerView.Adapter<SuperViewH
     public void clear() {
         mDataList.clear();
         notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.mOnItemClickListener = itemClickListener;
     }
 }

@@ -41,5 +41,7 @@ public interface ApiConfig {
     String MY_RELEASE_TASK_DETAILS = OkhttpBase.BASE_URL+"/task/my_release_task_details";
     //获取日报详情
     String GETDAILY_CARRYOUTID = OkhttpBase.BASE_URL+"/task/getdaily_carryOutid";
+    //添加任务
+    String INSERT_TASK = OkhttpBase.BASE_URL+"/task/insertTask";
 
 }

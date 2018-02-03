@@ -99,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@null"
+            android:inputType="numberDecimal"
             android:hint="@string/please_input_bonus"
             android:id="@+id/et_addTask_bonus"
             android:textColorHint="@color/_9f9f9f"
@@ -127,6 +128,7 @@
             android:textColorHint="@color/_9f9f9f"
             android:id="@+id/et_addTask_fine"
             android:background="@null"
+            android:inputType="numberDecimal"
             android:hint="@string/please_input_fine"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sp" />

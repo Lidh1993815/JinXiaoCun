@@ -7,6 +7,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,7 +64,7 @@ public class OkHttpHelper {
     }
 
 
-    private Request buildRequestPost(String url, Map<String, Object> params) {
+    private Request buildRequestPost(String url, OkhttpParam params) {
         return buildRequest(url, HttpMethodType.POST, params);
     }
 
@@ -75,49 +76,54 @@ public class OkHttpHelper {
         request(request, callback);
 
     }
-    public void get(String url,  BaseCallback callback) {
+
+    public void get(String url, BaseCallback callback) {
 
 
-        this.get(url,null,callback);
+        this.get(url, null, callback);
 
     }
-    private static String buildUrlParams(String url, Map<String, Object> params) {
 
-        if (params == null)
-            params = new HashMap<>(1);
+    private static String buildUrlParams(String url, OkhttpParam params) {
+
+        if (params != null) {
+
 
       /*  String token = SPUtil.getInstance().getUserToken();
         if (!TextUtils.isEmpty(token))
             params.put("token", token);*/
 
+            Map<String, Object> stringParams = params.getStringParams();
 
-        StringBuffer sb = new StringBuffer();
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
-            sb.append(entry.getKey() + "=" + (entry.getValue() == null ? "" : entry.getValue().toString()));
-            sb.append("&");
-        }
-        String s = sb.toString();
-        if (s.endsWith("&")) {
-            s = s.substring(0, s.length() - 1);
-        }
+            if (stringParams != null && stringParams.size() > 0) {
+                StringBuffer sb = new StringBuffer();
+                for (Map.Entry<String, Object> entry : stringParams.entrySet()) {
+                    sb.append(entry.getKey() + "=" + (entry.getValue() == null ? "" : entry.getValue().toString()));
+                    sb.append("&");
+                }
+                String s = sb.toString();
+                if (s.endsWith("&")) {
+                    s = s.substring(0, s.length() - 1);
+                }
 
-        if (url.indexOf("?") > 0) {
-            url = url + "&" + s;
-        } else {
-            url = url + "?" + s;
+                if (url.indexOf("?") > 0) {
+                    url = url + "&" + s;
+                } else {
+                    url = url + "?" + s;
+                }
+            }
         }
-
         return url;
     }
 
-    public void post(String url, Map<String, Object> param, BaseCallback callback) {
+    public void post(String url, OkhttpParam param, BaseCallback callback) {
 
         Request request = buildRequestPost(url, param);
         request(request, callback);
     }
 
 
-    private static Request buildRequest(String url, HttpMethodType type, Map<String, Object> params) {
+    private static Request buildRequest(String url, HttpMethodType type, OkhttpParam params) {
         Request.Builder builder = new Request.Builder();
         if (type == HttpMethodType.GET) {
             url = buildUrlParams(url, params);
@@ -144,7 +150,7 @@ public class OkHttpHelper {
                 callbackResponse(callback, response);
                 if (response.isSuccessful()) {
                     String resultStr = response.body().string();
-                    Log.i("wizardev", "onResponse: "+resultStr);
+                    Log.i("wizardev", "onResponse: " + resultStr);
                     if (callback.mType == String.class) {
                         callbackSuccess(callback, response, resultStr);
                     } else {
@@ -156,17 +162,17 @@ public class OkHttpHelper {
                         }
                     }
                     // mGson.fromJson(resultStr,)
-                } else if(response.code() == TOKEN_ERROR||response.code() == TOKEN_EXPIRE ||response.code() == TOKEN_MISSING ){
+                } else if (response.code() == TOKEN_ERROR || response.code() == TOKEN_EXPIRE || response.code() == TOKEN_MISSING) {
 
-                    callbackTokenError(callback,response);
-                }
-                else {
+                    callbackTokenError(callback, response);
+                } else {
                     callback.onError(response, response.code(), null);
                 }
             }
         });
     }
-    private void callbackTokenError(final  BaseCallback callback , final Response response ){
+
+    private void callbackTokenError(final BaseCallback callback, final Response response) {
 
        /* mHandler.post(new Runnable() {
             @Override
@@ -175,6 +181,7 @@ public class OkHttpHelper {
             }
         });*/
     }
+
     private void callbackSuccess(final BaseCallback callback, final Response response, final Object object) {
         mHandler.post(new Runnable() {
             @Override
@@ -213,7 +220,7 @@ public class OkHttpHelper {
     }
 
 
-    private static RequestBody builderFormData(Map<String, Object> params) {
+    private static RequestBody builderFormData(OkhttpParam params) {
        /* FormBody.Builder builder = new FormBody.Builder();
         if (params != null) {
             for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -225,15 +232,18 @@ public class OkHttpHelper {
 
         if (params != null) {
             JSONObject jsonObject = new JSONObject();
-            if (params != null && params.size() > 0) {
+            Map<String, Object> stringParams = params.getStringParams();
+
+            if (stringParams != null && stringParams.size() > 0) {
                 //在字符串集合中有数据
-                Iterator<Map.Entry<String, Object>> iterator = params.entrySet().iterator();
+                Iterator<Map.Entry<String, Object>> iterator = stringParams.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<String, Object> next = iterator.next();
                     jsonObject.put(next.getKey(), next.getValue());
                 }
             }
-           return RequestBody.create(JSON, jsonObject.toString());
+            Log.d("wizardev", "请求的数据: "+jsonObject.toJSONString());
+            return RequestBody.create(JSON, jsonObject.toString());
         }
         return null;
     }
