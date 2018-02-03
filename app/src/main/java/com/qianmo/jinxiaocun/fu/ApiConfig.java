@@ -43,5 +43,7 @@ public interface ApiConfig {
     String GETDAILY_CARRYOUTID = OkhttpBase.BASE_URL+"/task/getdaily_carryOutid";
     //添加任务
     String INSERT_TASK = OkhttpBase.BASE_URL+"/task/insertTask";
+    //添加日报
+    String INSER_DAILY = OkhttpBase.BASE_URL+"/task/inser_daily";
 
 }
