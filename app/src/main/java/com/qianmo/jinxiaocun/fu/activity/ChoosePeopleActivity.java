@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -104,22 +105,20 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
             public void onItemClick(View view, int position) {
                 //  isSureChoose = !isSureChoose;
                 //  Log.i(TAG, "onItemClick: " + isSureChoose);
-                ImageView imageView = view.findViewById(R.id.iv_chooseStatus);
                 PeopleInfoBean.DataBean dataBean = mDataAdapter.getDataList().get(position);
                 if (dataBean.isSelect()) {
                     Log.i(TAG, "点击的id: "+dataBean.getStaffId());
-                    mSelectPeopleList.remove(dataBean);
-                    imageView.setImageResource(R.drawable.dagou);
+                    mSelectPeopleList.remove(dataBean);//从已经选择人员列表中移除
                     dataBean.setSelect(false);
                 } else {
                     mSelectPeopleList.add(dataBean);
-                    imageView.setImageResource(R.drawable.dagou02);
                     dataBean.setSelect(true);
                 }
                 Log.i(TAG, "列表的长度: " + mSelectPeopleList.size());
                 mTvTotalNum.setText("确定（"+mSelectPeopleList.size()+"）");
                 mPeopleAdapter.setDataList(mSelectPeopleList);
                 mPeopleAdapter.notifyDataSetChanged();
+                mLuRecyclerViewAdapter.notifyDataSetChanged();
 
             }
         });
@@ -297,6 +296,8 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
 
     }
 
+
+    //已经选择的人员的列表Adapter
     class ChoosePeopleAdapter extends ListBaseAdapter<PeopleInfoBean.DataBean> {
         public ChoosePeopleAdapter(Context context) {
             super(context);
@@ -309,9 +310,12 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            PeopleInfoBean.DataBean dataBean = mDataList.get(position);
+
             TextView tvChooseName = holder.getView(R.id.tv_choose_name);
             TextView tvAvatarName = holder.getView(R.id.tv_avatar_name);
-            String staffName = mDataList.get(position).getStaffName();
+
+            String staffName = dataBean.getStaffName();
             if (!TextUtils.isEmpty(staffName)) {
                 tvChooseName.setText(staffName);
                 if (staffName.length() > 2) {
@@ -324,6 +328,7 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
         }
     }
 
+    //可以选择的人员
     class PeopleNameAdapter extends ListBaseAdapter<PeopleInfoBean.DataBean> {
         public PeopleNameAdapter(Context context) {
             super(context);
@@ -336,11 +341,23 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, int position) {
+            PeopleInfoBean.DataBean dataBean = mDataList.get(position);
+
             TextView tvName = holder.getView(R.id.tv_name);
             TextView tvAvatarName = holder.getView(R.id.tv_avatar_name);
             TextView positionName = holder.getView(R.id.tv_position);//职位
+
             String staffName = mDataList.get(position).getStaffName();
             String postName = mDataList.get(position).getPostName();
+
+            ImageView imageView = holder.getView(R.id.iv_chooseStatus);
+
+            if (dataBean.isSelect()) {
+                imageView.setImageResource(R.drawable.dagou02);
+            } else {
+                imageView.setImageResource(R.drawable.dagou);
+            }
+
 
             if (!TextUtils.isEmpty(staffName)) {
                 tvName.setText(staffName);

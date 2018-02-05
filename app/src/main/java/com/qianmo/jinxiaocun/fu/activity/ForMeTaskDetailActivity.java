@@ -65,7 +65,7 @@ public class ForMeTaskDetailActivity extends BaseActivity {
         mRightText = toolBar.getRightTextBtn();
         setContentView(requestView(R.layout.activity_for_me_task_detail));
         ButterKnife.bind(this);
-
+// TODO: 18-2-3 完成任务点击事件
         requestTaskDetail();//获取任务详情
     }
 
@@ -122,8 +122,6 @@ public class ForMeTaskDetailActivity extends BaseActivity {
         mExpectecBonus.setText(data.getBonus()+"");//任务奖金
         mExpectedFine.setText(data.getPenalty()+"");//预计罚款
         mStopTime.setText(StringUtil.getString(data.getUptoTime()));//截至时间
-
-
     }
 
     private String int2TaskStatus(int executeStatus) {
