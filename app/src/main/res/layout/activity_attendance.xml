@@ -39,6 +39,7 @@
             style="@style/AddTaskTitleStyle"
             android:textColor="@color/_8c969f"
             android:textSize="@dimen/_12sp"
+            android:id="@+id/tv_attendance_department"
             android:layout_marginTop="@dimen/_12dp"
             android:layout_toRightOf="@+id/attendance_name_bg"
             android:layout_below="@+id/attendance_name"

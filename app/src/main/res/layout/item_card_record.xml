@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/_12sp"
+        android:textColor="@color/black"
+        android:text="上班打卡时间08:40"
+        android:layout_marginTop="11dp"
+        android:id="@+id/tv_item_cardTime"
+        android:layout_marginLeft="46dp"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/_8dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:textSize="@dimen/_12sp"
+            android:textColor="@color/black"
+            android:id="@+id/tv_item_cardLocation"
+            android:drawableLeft="@mipmap/address"
+            android:text="浙江省杭州市"
+            android:drawablePadding="@dimen/_12dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:id="@+id/tv_item_cardStatus"
+            android:textSize="@dimen/_10sp"
+            android:textColor="@color/white"
+            android:background="@drawable/text_radius_bg"
+            android:text="打卡正常"
+            android:paddingTop="@dimen/_3dp"
+            android:paddingBottom="@dimen/_3dp"
+            android:paddingLeft="@dimen/_5dp"
+            android:paddingRight="@dimen/_5dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
