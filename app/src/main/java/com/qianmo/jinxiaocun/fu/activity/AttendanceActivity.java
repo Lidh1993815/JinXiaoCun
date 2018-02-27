@@ -305,8 +305,11 @@ public class AttendanceActivity extends BaseActivity {
         mLocationListener = null;
         mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
         mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
-        mGeoFenceClient.removeGeoFence();//移除围栏
-        unregisterReceiver(mGeoFenceReceiver);
+        if (mGeoFenceClient != null) {
+            mGeoFenceClient.removeGeoFence();//移除围栏
+            unregisterReceiver(mGeoFenceReceiver);
+        }
+
     }
 
 

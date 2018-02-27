@@ -4,55 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/_eeeeee"
+    android:orientation="vertical"
     tools:context="com.qianmo.jinxiaocun.fu.activity.SearchOrderActivity">
+
     <LinearLayout
-        android:orientation="horizontal"
+        style="@style/ItemHorizontalStyle"
         android:gravity="center_vertical"
-        style="@style/ItemHorizontalStyle">
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/number_name"
-            style="@style/ConditionTitleStyle" />
+            style="@style/ConditionTitleStyle"
+            android:text="@string/number_name" />
+
         <EditText
-            android:hint="@string/please_input_member_name"
-            style="@style/EditHintStyle" />
+            android:id="@+id/et_addNum_vipName"
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_member_name" />
     </LinearLayout>
+
     <LinearLayout
+        style="@style/ItemHorizontalStyle"
         android:layout_marginTop="@dimen/line_height_size"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        style="@style/ItemHorizontalStyle">
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/contact"
-            style="@style/ConditionTitleStyle" />
+            style="@style/ConditionTitleStyle"
+            android:text="@string/contact" />
+
         <EditText
-            android:hint="@string/please_input_contact_person"
-            style="@style/EditHintStyle" />
+            android:id="@+id/et_addNum_contactName"
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_contact_person" />
     </LinearLayout>
+
     <LinearLayout
+        style="@style/ItemHorizontalStyle"
         android:layout_marginTop="@dimen/_5dp"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        style="@style/ItemHorizontalStyle">
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/phone"
-            style="@style/ConditionTitleStyle" />
+            style="@style/ConditionTitleStyle"
+            android:text="@string/phone" />
+
         <EditText
-            android:hint="@string/please_input_phone_num"
-            style="@style/EditHintStyle" />
+            android:id="@+id/et_addNum_mobile"
+            style="@style/EditHintStyle"
+
+            android:hint="@string/please_input_phone_num" />
     </LinearLayout>
-    <LinearLayout
+
+
+    <RelativeLayout
+        style="@style/ItemHorizontalStyle"
         android:layout_marginTop="@dimen/line_height_size"
-        android:orientation="horizontal"
+        android:clickable="true"
+        android:id="@+id/rl_addNum_chooseSex"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/ItemHorizontalStyle"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ConditionTitleStyle"
+                android:text="@string/gender" />
+
+            <EditText
+                android:id="@+id/et_addNum_sex"
+                style="@style/EditHintStyle"
+                android:enabled="false"
+                android:cursorVisible="false"
+                android:hint="@string/please_choose_sex" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15dp"
+            android:src="@mipmap/youjiant" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
         android:gravity="center_vertical"
-        style="@style/ItemHorizontalStyle">
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/gender"
-            style="@style/ConditionTitleStyle" />
+            style="@style/ConditionTitleStyle"
+            android:text="@string/age" />
+
         <EditText
-            android:layout_width="match_parent"
-            style="@style/EditHintStyle" />
+            android:id="@+id/et_addNum_age"
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_age"
+
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/profession" />
+
+        <EditText
+            android:id="@+id/et_addNum_profession"
+
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_profession" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ItemHorizontalStyle"
+        android:layout_marginTop="@dimen/line_height_size"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ConditionTitleStyle"
+            android:text="@string/month_income" />
+
+        <EditText
+            android:id="@+id/et_addNum_monthIncome"
+            style="@style/EditHintStyle"
+            android:hint="@string/please_input_month_income" />
     </LinearLayout>
 
 </LinearLayout>

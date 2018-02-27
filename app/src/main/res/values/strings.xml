@@ -239,4 +239,13 @@
     <string name="report_prompt">(任务发起人，不能改)</string>
     <string name="newspaper_prompt">(点击查看执行日报详情)</string>
     <string name="newspaper_date">日报日期：</string>
+    <string name="please_choose_sex">请选择性别</string>
+    <string name="age">年龄：</string>
+    <string name="please_input_age">请输入年龄</string>
+    <string name="profession">职业：</string>
+    <string name="please_input_profession">请输入职业</string>
+    <string name="month_income">月收入：</string>
+    <string name="please_input_month_income">请输入月收入</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
 </resources>

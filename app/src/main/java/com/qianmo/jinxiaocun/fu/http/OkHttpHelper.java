@@ -142,6 +142,7 @@ public class OkHttpHelper {
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.i("wizardev", "onFailure: ");
                 callbackFailure(callback, request, e);
             }
 
@@ -159,6 +160,7 @@ public class OkHttpHelper {
                             callbackSuccess(callback, response, object);
                         } catch (JsonParseException e) {
                             callback.onError(response, response.code(), e);
+                            Log.d("wizardev", "error: "+ response.code());
                         }
                     }
                     // mGson.fromJson(resultStr,)
@@ -166,6 +168,8 @@ public class OkHttpHelper {
 
                     callbackTokenError(callback, response);
                 } else {
+                    Log.d("wizardev", "error: "+ response.code());
+
                     callback.onError(response, response.code(), null);
                 }
             }
