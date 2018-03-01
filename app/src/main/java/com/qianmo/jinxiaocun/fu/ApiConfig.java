@@ -47,5 +47,7 @@ public interface ApiConfig {
     String INSER_DAILY = OkhttpBase.BASE_URL+"/task/inser_daily";
     //添加会员
     String INCREASE_MEMBER = OkhttpBase.BASE_URL+"/member/increaseMember";
+    //获取会员列表
+    String STAFF_MEMBER = OkhttpBase.BASE_URL+"/member/staff_member";
 
 }

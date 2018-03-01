@@ -411,7 +411,15 @@ public abstract class BaseActivity extends FragmentActivity {
                 .build();
         this.setupRecycleView(recyclerView,luRecyclerViewAdapter,divider);
     }
-
+    //设置RecycleView
+    protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter,int res) {
+        LuDividerDecoration divider = new LuDividerDecoration.Builder(this, luRecyclerViewAdapter)
+                .setHeight(res)
+                //  .setPadding(R.dimen.default_divider_padding)
+                .setColorResource(R.color._eeeeee)
+                .build();
+        this.setupRecycleView(recyclerView,luRecyclerViewAdapter,divider);
+    }
     protected void setupRecycleView(LuRecyclerView recyclerView, LuRecyclerViewAdapter luRecyclerViewAdapter, RecyclerView.ItemDecoration divider) {
         //setLayoutManager放在setAdapter之前配置
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

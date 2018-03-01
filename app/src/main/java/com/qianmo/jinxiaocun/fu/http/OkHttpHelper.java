@@ -59,7 +59,7 @@ public class OkHttpHelper {
         }
     }
 
-    private Request buildRequestGet(String url, Map<String, String> params) {
+    private Request buildRequestGet(String url, OkhttpParam params) {
         return buildRequest(url, HttpMethodType.GET, null);
     }
 
@@ -68,7 +68,7 @@ public class OkHttpHelper {
         return buildRequest(url, HttpMethodType.POST, params);
     }
 
-    public void get(String url, Map<String, String> params, BaseCallback callback) {
+    public void get(String url, OkhttpParam params, BaseCallback callback) {
 
 
         Request request = buildRequestGet(url, params);
