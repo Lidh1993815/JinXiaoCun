@@ -198,7 +198,8 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
                     }
                     break;*/
                 case INTENT_CHOOSE_PEOPLE:
-                    PeopleInfoBean.DataBean dataBean = (PeopleInfoBean.DataBean) data.getSerializableExtra("peopleInfo");
+                    ArrayList<PeopleInfoBean.DataBean> parcelableArrayListExtra = data.getParcelableArrayListExtra(("peoplesInfo"));
+                    PeopleInfoBean.DataBean dataBean = parcelableArrayListExtra.get(0);
                     String staffName = dataBean.getStaffName();
                     int staffId = dataBean.getStaffId();
                     if (staffId == 0) {

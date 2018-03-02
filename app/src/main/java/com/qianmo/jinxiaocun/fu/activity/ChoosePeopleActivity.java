@@ -190,15 +190,15 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
             case R.id.tv_total_num:
                 Intent intent = new Intent();
 
-                if (mChooseType == Contents.ONLY_ONE) {
+                /*if (mChooseType == Contents.ONLY_ONE) {
                     if (mSelectPeopleList.size() > 1) {
                         ToastUtils.MyToast(this, "只能选择一个审批人！");
                         return;
                     }
                     intent.putExtra("peopleInfo", mSelectPeopleList.get(0));
-                } else {
+                } else {*/
                     intent.putParcelableArrayListExtra("peoplesInfo", (ArrayList<? extends Parcelable>) mSelectPeopleList);
-                }
+//                }
                 setResult(RESULT_OK,intent);
                 finish();
                 break;

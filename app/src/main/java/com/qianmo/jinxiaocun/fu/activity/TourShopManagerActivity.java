@@ -110,8 +110,8 @@ public class TourShopManagerActivity extends BaseActivity {
     //为viewPager添加fragment
     public void setupViewPager() {
         mPageAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPageAdapter.addFragment(WaitTourShopFragment.newInstance(0), "待巡店");
-        mPageAdapter.addFragment(TourShopFragment.newInstance(1), "已巡店");
+        mPageAdapter.addFragment(WaitTourShopFragment.newInstance(1), "待巡店");
+        mPageAdapter.addFragment(TourShopFragment.newInstance(2), "已巡店");
         vpApproval.setAdapter(mPageAdapter);
     }
 }

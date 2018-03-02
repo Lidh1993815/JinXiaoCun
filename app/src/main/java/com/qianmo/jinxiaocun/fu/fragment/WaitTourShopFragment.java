@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +98,7 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
 
         initView();
         initEvent();
+        requestData();
         return view;
     }
 
@@ -109,10 +111,12 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
         super.requestData();
         OkhttpParam okhttpParam = new OkhttpParam();
         //http://hzq.s1.natapp.cc/app/patrol_store?start=1&length=20&patrolStoreStatus=1&staffId=1
-        String uri ="http://hzq.s1.natapp.cc/app/patrol_store?start="+mCurrentPage+"&length="
-                +REQUEST_COUNT+"&patrolStoreStatus="+mApprovalStatus+"&staffId="+ SPUtil.getInstance().getStaffId();
+        okhttpParam.putString("start",mCurrentPage);
+        okhttpParam.putString("length",REQUEST_COUNT);
+        okhttpParam.putString("patrolStoreStatus",mApprovalStatus);
+        okhttpParam.putString("staffId",SPUtil.getInstance().getStaffId());
 
-        OkhttpUtils.sendRequest(1001, 0, uri, okhttpParam, this);
+        OkhttpUtils.sendRequest(1001, 0, ApiConfig.PATROL_STORE, okhttpParam, this);
     }
 
     private void initEvent() {
@@ -215,16 +219,24 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
 
     @Override
     public void onActionSuccess(int actionId, String ret) {
+        Log.d(TAG, "onActionSuccess: "+ret);
+        switch (actionId) {
+            case 1001:
+                if (!TextUtils.isEmpty(ret)) {
 
+                }
+                break;
+        }
     }
 
     @Override
     public void onActionServerFailed(int actionId, int httpStatus) {
-
+        Log.d(TAG, "onActionServerFailed: "+httpStatus);
     }
 
     @Override
     public void onActionException(int actionId, String exception) {
+        Log.d(TAG, "onActionException: "+exception);
 
     }
 

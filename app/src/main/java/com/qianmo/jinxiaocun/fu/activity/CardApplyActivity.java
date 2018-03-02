@@ -2,6 +2,7 @@ package com.qianmo.jinxiaocun.fu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -186,7 +188,8 @@ public class CardApplyActivity extends BaseActivity implements DatePickerDialog.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INTENT_CODE && resultCode == RESULT_OK && data != null) {
-            PeopleInfoBean.DataBean dataBean = (PeopleInfoBean.DataBean) data.getSerializableExtra("peopleInfo");
+            ArrayList<PeopleInfoBean.DataBean> parcelableArrayListExtra = data.getParcelableArrayListExtra(("peoplesInfo"));
+            PeopleInfoBean.DataBean dataBean = parcelableArrayListExtra.get(0);
             String staffName = dataBean.getStaffName();
             int staffId = dataBean.getStaffId();
             if (staffId == 0) {

@@ -141,7 +141,6 @@ public class MoneyManagerActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_new_expenditure_order:
                 intent.putExtra("type", "expenditure");
                 dismisDialog();
-
                 startActivity(intent);
                 break;
         }

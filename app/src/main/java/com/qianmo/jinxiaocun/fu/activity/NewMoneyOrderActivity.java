@@ -1,10 +1,12 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.qianmo.jinxiaocun.R;
+import com.qianmo.jinxiaocun.fu.utils.StringUtil;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 
@@ -21,18 +23,25 @@ public class NewMoneyOrderActivity extends BaseActivity {
     TextView tvOrderType;
     @BindView(R.id.tv_choose_project)
     TextView tvChooseProject;
-    private String type;
+    private String mMoneyType;
+    private int type;//(1收入单 2支出单)
+    private static final int INTENT_TYPE = 333;
+    private int moneyFlowsType = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        type = getIntent().getStringExtra("type");
-        if (type != null && type.equals("income")) {
+        mMoneyType = getIntent().getStringExtra("type");
+        if (mMoneyType != null && mMoneyType.equals("income")) {
             //新建收入单
             toolBar = new MyToolBar(this, R.mipmap.zoujiant, "新建收入单", "提交");
-        } else if (type != null && type.equals("expenditure")) {
+            type = 1;
+
+        } else if (mMoneyType != null && mMoneyType.equals("expenditure")) {
             //新建费用单
             toolBar = new MyToolBar(this, R.mipmap.zoujiant, "新建费用单", "提交");
+            type = 2;
+
         }
         setContentView(requestView(R.layout.activity_new_money_order));
         ButterKnife.bind(this);
@@ -40,10 +49,10 @@ public class NewMoneyOrderActivity extends BaseActivity {
     }
 
     private void initView() {
-        if (type != null && type.equals("income")) {
+        if (mMoneyType != null && mMoneyType.equals("income")) {
             //新建收入单
             tvOrderType.setText("收入单");
-        } else if (type != null && type.equals("expenditure")) {
+        } else if (mMoneyType != null && mMoneyType.equals("expenditure")) {
             //新建费用单
             tvOrderType.setText("支出单");
         }
@@ -59,8 +68,21 @@ public class NewMoneyOrderActivity extends BaseActivity {
     public void clickAction(View view) {
         switch (view.getId()) {
             case R.id.tv_choose_project:
-                startActivity(ChooseCostProjectActivity.class,false);
+                Intent intent = new Intent(this, ChooseCostProjectActivity.class);
+//                startActivity(ChooseCostProjectActivity.class,false);
+                startActivityForResult(intent, INTENT_TYPE);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == INTENT_TYPE && resultCode == RESULT_OK && data != null) {
+
+            moneyFlowsType = data.getIntExtra("moneyFlowsType", 0);
+            String typeName = data.getStringExtra("typeName");
+            tvChooseProject.setText(StringUtil.getString(typeName));
         }
     }
 }

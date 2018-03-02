@@ -134,6 +134,7 @@ public class TaskAddActivity extends BaseActivity implements DatePickerDialog.On
         okhttpParam.putString("bonus",mTaskBonus);
         okhttpParam.putString("penalty",mTaskFine);
         okhttpParam.putString("uptoTime",overTimer);
+        okhttpParam.putString("cTime",overTimer);
         okhttpParam.putString("staffId", SPUtil.getInstance().getStaffId());
         okhttpParam.putString("implementId",handleID());
         OkHttpHelper.getInstance().post(ApiConfig.INSERT_TASK, okhttpParam, new LoadingCallback<ResponseBean>(this) {

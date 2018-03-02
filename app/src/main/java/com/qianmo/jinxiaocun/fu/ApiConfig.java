@@ -49,5 +49,9 @@ public interface ApiConfig {
     String INCREASE_MEMBER = OkhttpBase.BASE_URL+"/member/increaseMember";
     //获取会员列表
     String STAFF_MEMBER = OkhttpBase.BASE_URL+"/member/staff_member";
+    //获取项目类型
+    String APPLY_REIMBURSE_TYPE = OkhttpBase.BASE_URL+"/apply_fill_card/apply_reimburse_type";
+    //巡店查询
+    String PATROL_STORE = OkhttpBase.BASE_URL+"/patrol_store";
 
 }

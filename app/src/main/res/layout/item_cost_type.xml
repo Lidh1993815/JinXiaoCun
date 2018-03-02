@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ItemHorizontalStyle"
+
+    android:gravity="center_vertical">
+
+    <TextView
+        style="@style/ConditionTitleStyle"
+        android:id="@+id/tv_projectName" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:layout_width="@dimen/_20dp"
+        style="@style/CustomCheckboxTheme"
+        android:id="@+id/cb_chooseStatus"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_16dp"
+        android:layout_height="@dimen/_20dp" />
+</RelativeLayout>

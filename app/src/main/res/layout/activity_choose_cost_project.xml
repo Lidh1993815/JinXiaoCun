@@ -1,57 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/_eeeeee"
     tools:context="com.qianmo.jinxiaocun.fu.activity.NewMoneyOrderActivity">
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:gravity="center_vertical">
-
-        <TextView
-            style="@style/ConditionTitleStyle"
-            android:text="住宿" />
-
-        <android.support.v7.widget.AppCompatCheckBox
-            android:layout_width="@dimen/_20dp"
-            style="@style/CustomCheckboxTheme"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_16dp"
-            android:layout_height="@dimen/_20dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:layout_marginTop="@dimen/line_height_size"
-        android:gravity="center_vertical">
-
-        <TextView
-            style="@style/ConditionTitleStyle"
-            android:text="长途" />
-
-        <android.support.v7.widget.AppCompatCheckBox
-            android:layout_width="@dimen/_20dp"
-            style="@style/CustomCheckboxTheme"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_16dp"
-            android:layout_height="@dimen/_20dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/ItemHorizontalStyle"
-        android:layout_marginTop="@dimen/line_height_size"
-        android:gravity="center_vertical">
-
-        <TextView
-            style="@style/ConditionTitleStyle"
-            android:text="餐饮" />
-
-        <android.support.v7.widget.AppCompatCheckBox
-            android:layout_width="@dimen/_20dp"
-            style="@style/CustomCheckboxTheme"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_16dp"
-            android:layout_height="@dimen/_20dp" />
-    </RelativeLayout>
+    <com.github.jdsjlzx.recyclerview.LuRecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
