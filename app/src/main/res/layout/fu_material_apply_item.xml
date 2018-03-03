@@ -103,23 +103,6 @@
             android:textColorHint="@color/_9f9f9f"
             android:textSize="@dimen/_14sp" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="44dp"
-        android:id="@+id/add_material_used"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/_1dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_14sp"
-            android:layout_gravity="center_vertical"
-            android:text="+添加领用物品" />
-
-    </LinearLayout>
+    <!--<include layout="@layout/layout_add_footer" />-->
 </LinearLayout>

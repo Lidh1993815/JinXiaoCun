@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.github.jdsjlzx.recyclerview.LuRecyclerView;
+import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.Contents;
@@ -27,6 +29,7 @@ import com.qianmo.jinxiaocun.fu.bean.PeopleInfoBean;
 import com.qianmo.jinxiaocun.fu.bean.ResponseBean;
 import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
 import com.qianmo.jinxiaocun.fu.utils.SPUtil;
+import com.qianmo.jinxiaocun.fu.widget.AddListFooter;
 import com.qianmo.jinxiaocun.main.base.BaseActivity;
 import com.qianmo.jinxiaocun.main.base.MyToolBar;
 import com.qianmo.jinxiaocun.main.okhttp.OkhttpUtils;
@@ -47,7 +50,7 @@ import butterknife.OnClick;
 public class MaterialActivity extends BaseActivity implements OnActionListener {
 
     @BindView(R.id.rv_material_apply)
-    RecyclerView mRecyclerView;
+    LuRecyclerView mRecyclerView;
     @BindView(R.id.tv_avatar_name)
     TextView mTvAvatarName;
     @BindView(R.id.avatar)
@@ -63,6 +66,7 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
     private AddApplyMaterialBean.ApplyMaterielsBean[] mApplyMaterielsData;
     private static final int INTENT_CHOOSE_PEOPLE = 102;
     private String mStaffId;
+    private LuRecyclerViewAdapter mLuRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +150,31 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
     }
 
     private void initView() {
+
         mTaskAdapter = new TaskAdapter(this);
         mTaskAdapter.addAll(datas);
+
+        mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
+
+
+        AddListFooter addListFooter = new AddListFooter(this);
+        LinearLayout linearLayout = addListFooter.findViewById(R.id.add_material_used);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: ");
+                addItems(datas);
+            }
+        });
+        mLuRecyclerViewAdapter.addFooterView(addListFooter);
+
+//        setupRecycleView(mRecyclerView,mLuRecyclerViewAdapter,R.dimen._1dp);
+        mRecyclerView.setAdapter(mLuRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mTaskAdapter);
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLoadMoreEnabled(true);
+
     }
 
     @Override
@@ -238,12 +261,13 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
 
         @Override
         public void onBindItemHolder(SuperViewHolder holder, final int position) {
-            holder.getView(R.id.add_material_used).setOnClickListener(new View.OnClickListener() {
+            /*holder.getView(R.id.add_material_used).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+//                    datas.add("");
                     addItems(datas);
                 }
-            });
+            });*/
             TextView deleteText = holder.getView(R.id.tv_delete_action);
             if (position == 0) {
                 //第一个item不显示删除选项，第一个永远都存在
@@ -261,12 +285,12 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
             });
 
             //让“添加报销明细”显示隐藏
-            LinearLayout layout = holder.getView(R.id.add_material_used);
-            if (position == mTaskAdapter.getDataList().size() - 1) {
+//            LinearLayout layout = holder.getView(R.id.add_material_used);
+            /*if (position == mTaskAdapter.getDataList().size() - 1) {
                 layout.setVisibility(View.VISIBLE);
             } else {
                 layout.setVisibility(View.GONE);
-            }
+            }*/
             TextView positionText = holder.getView(R.id.material_detail_position);
             int num = position + 1;
             positionText.setText("报销明细（" + num + "）");//设置显示的文字
@@ -278,7 +302,9 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
     //模拟添加数据，为了增加layout的数量
     private void addItems(ArrayList<String> list) {
         mTaskAdapter.addAll(list);
-        mTaskAdapter.notifyDataSetChanged();
+        mTaskAdapter.notifyItemInserted(mTaskAdapter.getDataList().size());
+
+//        mTaskAdapter.notifyDataSetChanged();
     }
 
     //删除指定位置的布局，并刷新全部的item
