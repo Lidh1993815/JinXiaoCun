@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.jdsjlzx.recyclerview.LuRecyclerView;
 import com.github.jdsjlzx.recyclerview.LuRecyclerViewAdapter;
+import com.google.gson.Gson;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.Contents;
@@ -135,12 +137,13 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
         okhttpParam.putString("staffId", SPUtil.getInstance().getStaffId());
         okhttpParam.putString("aAuditor", mStaffId);
 
+
         // 设置对象数组转JSON串
         String jsonString = JSON.toJSONString(mApplyMaterielsData);
+        Log.i(TAG, "requestData: "+jsonString);
         // JSON串转设置对象列表
-        List<AddApplyMaterialBean.ApplyMaterielsBean> applyMaterielBeans = JSON.parseArray(jsonString, AddApplyMaterialBean.ApplyMaterielsBean.class);
-        Log.i(TAG, "requestData: " + JSONArray.toJSONString(applyMaterielBeans));
-        okhttpParam.putString("applyMateriels", JSONArray.toJSONString(applyMaterielBeans));
+        List<AddApplyMaterialBean.ApplyMaterielsBean> applyMaterielsBean = JSON.parseArray(jsonString, AddApplyMaterialBean.ApplyMaterielsBean.class);
+        okhttpParam.putString("applyMateriels",JSONArray.toJSONString(applyMaterielsBean) );
         OkhttpUtils.sendRequest(1001, 1, ApiConfig.ADD_APPLY_MATERIEL, okhttpParam, this);
 
     }
@@ -150,13 +153,9 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
     }
 
     private void initView() {
-
         mTaskAdapter = new TaskAdapter(this);
         mTaskAdapter.addAll(datas);
-
         mLuRecyclerViewAdapter = new LuRecyclerViewAdapter(mTaskAdapter);
-
-
         AddListFooter addListFooter = new AddListFooter(this);
         LinearLayout linearLayout = addListFooter.findViewById(R.id.add_material_used);
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -284,13 +283,6 @@ public class MaterialActivity extends BaseActivity implements OnActionListener {
                 }
             });
 
-            //让“添加报销明细”显示隐藏
-//            LinearLayout layout = holder.getView(R.id.add_material_used);
-            /*if (position == mTaskAdapter.getDataList().size() - 1) {
-                layout.setVisibility(View.VISIBLE);
-            } else {
-                layout.setVisibility(View.GONE);
-            }*/
             TextView positionText = holder.getView(R.id.material_detail_position);
             int num = position + 1;
             positionText.setText("报销明细（" + num + "）");//设置显示的文字

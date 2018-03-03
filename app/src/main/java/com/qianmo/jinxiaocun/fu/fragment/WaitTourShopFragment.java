@@ -20,6 +20,8 @@ import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.qianmo.jinxiaocun.R;
 import com.qianmo.jinxiaocun.fu.ApiConfig;
 import com.qianmo.jinxiaocun.fu.adapter.SwipeMenuAdapter;
+import com.qianmo.jinxiaocun.fu.bean.WaitTourShopBean;
+import com.qianmo.jinxiaocun.fu.utils.JsonUitl;
 import com.qianmo.jinxiaocun.fu.utils.SPUtil;
 import com.qianmo.jinxiaocun.fu.widget.WrapSwipeRefreshLayout;
 import com.qianmo.jinxiaocun.main.base.BaseFragment;
@@ -30,6 +32,7 @@ import com.qianmo.jinxiaocun.main.okhttp.params.OkhttpParam;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,10 +46,6 @@ import butterknife.Unbinder;
  * version: 1.0
  */
 public class WaitTourShopFragment extends BaseFragment implements OnActionListener {
-    /**
-     * 服务器端一共多少条数据
-     */
-    private static final int TOTAL_COUNTER = 34;
 
     /**
      * 每一页展示多少条数据
@@ -62,12 +61,10 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
     Unbinder unbinder;
     @BindView(R.id.swipe_refresh_layout)
     WrapSwipeRefreshLayout mSwipeRefreshLayout;
-
+    private long mTotalCount;
     private SwipeMenuAdapter mDataAdapter = null;//可以右划删除的数据适配器
-    private ArrayList<String> datas = new ArrayList<>();
     private int mApprovalStatus;
-    private int mCurrentPage=1;
-    private PreviewHandler mHandler = new PreviewHandler(this);
+    private int mCurrentPage = 1;
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private static final String TAG = "WaitTourShopFragment";
     private boolean isRefresh = false;//用来判断是上拉还是下拉刷新
@@ -94,11 +91,9 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = requestView(inflater, R.layout.fu_tour_shop_fragment);
         unbinder = ButterKnife.bind(this, view);
-      //  requestData();
-
         initView();
         initEvent();
-        requestData();
+//        requestData();
         return view;
     }
 
@@ -106,15 +101,16 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
     public void requestInit() {
 
     }
+
     @Override
     public void requestData() {
         super.requestData();
         OkhttpParam okhttpParam = new OkhttpParam();
         //http://hzq.s1.natapp.cc/app/patrol_store?start=1&length=20&patrolStoreStatus=1&staffId=1
-        okhttpParam.putString("start",mCurrentPage);
-        okhttpParam.putString("length",REQUEST_COUNT);
-        okhttpParam.putString("patrolStoreStatus",mApprovalStatus);
-        okhttpParam.putString("staffId",SPUtil.getInstance().getStaffId());
+        okhttpParam.putString("start", mCurrentPage);
+        okhttpParam.putString("length", REQUEST_COUNT);
+        okhttpParam.putString("patrolStoreStatus", mApprovalStatus);
+        okhttpParam.putString("staffId", SPUtil.getInstance().getStaffId());
 
         OkhttpUtils.sendRequest(1001, 0, ApiConfig.PATROL_STORE, okhttpParam, this);
     }
@@ -130,7 +126,7 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
                 mDataAdapter.getDataList().remove(pos);
                 mDataAdapter.notifyItemRemoved(pos);//推荐用这个
 
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了
                     mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
                 }
                 //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
@@ -147,12 +143,10 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
                 mDataAdapter.notifyItemInserted(0);*/
 
 
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略
-                    mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.getDataList().size() - 1,"jdsjlzx");
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略
+                    mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.getDataList().size() - 1, "jdsjlzx");
                 }
-
                 mRecyclerView.scrollToPosition(0);
-
             }
         });
 
@@ -161,7 +155,6 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
     private void initView() {
 
         mDataAdapter = new SwipeMenuAdapter(getContext());
-        mDataAdapter.setDataList(datas);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mDataAdapter);
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
 
@@ -174,21 +167,19 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-           //     mDataAdapter.clear();
-              //  mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
+                //     mDataAdapter.clear();
+                //  mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 mCurrentCounter = 0;
-                isRefresh = true;
-                requestDataBak();
+                mCurrentPage = 1;
+                requestData();
             }
         });
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if (mCurrentCounter < TOTAL_COUNTER) {
-                    // loading more
-                    Log.i(TAG, "onLoadMore: ");
-                    isRefresh = false;
-                    requestDataBak();//从网络获取数据
+                if (mCurrentCounter < mTotalCount) {
+                    mCurrentPage++;
+                    requestData();//从网络获取数据
                 } else {
                     //the end
                     mRecyclerView.setNoMore(true);
@@ -196,8 +187,8 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
             }
         });
         mRecyclerView.refresh();
-
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -205,25 +196,30 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
     }
 
 
-
-
-
     private void notifyDataSetChanged() {
         mLRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItems(ArrayList<String> list) {
+    private void addItems(List<WaitTourShopBean.DataBean> list) {
         mDataAdapter.addAll(list);
         mCurrentCounter += list.size();
     }
 
     @Override
     public void onActionSuccess(int actionId, String ret) {
-        Log.d(TAG, "onActionSuccess: "+ret);
+        Log.d(TAG, "onActionSuccess: " + ret);
         switch (actionId) {
             case 1001:
                 if (!TextUtils.isEmpty(ret)) {
-
+                    WaitTourShopBean waitTourShopBean = (WaitTourShopBean) JsonUitl.stringToObject(ret, WaitTourShopBean.class);
+                    mTotalCount = waitTourShopBean.getRecordsTotal();
+                    if (mDataAdapter.getDataList().size() > mTotalCount) {
+                        return;
+                    }
+                    List<WaitTourShopBean.DataBean> data = waitTourShopBean.getData();
+                    addItems(data);
+                    mRecyclerView.refreshComplete(REQUEST_COUNT);
+                    notifyDataSetChanged();
                 }
                 break;
         }
@@ -231,98 +227,11 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
 
     @Override
     public void onActionServerFailed(int actionId, int httpStatus) {
-        Log.d(TAG, "onActionServerFailed: "+httpStatus);
+        Log.d(TAG, "onActionServerFailed: " + httpStatus);
     }
 
     @Override
     public void onActionException(int actionId, String exception) {
-        Log.d(TAG, "onActionException: "+exception);
-
-    }
-
-    private static class PreviewHandler extends Handler {
-
-        private WeakReference<WaitTourShopFragment> ref;
-
-        PreviewHandler(WaitTourShopFragment fragment) {
-            ref = new WeakReference<>(fragment);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            final WaitTourShopFragment fragment = ref.get();
-            if (fragment == null) {
-                return;
-            }
-            switch (msg.what) {
-
-                case -1:
-                    if(fragment.isRefresh){
-                        fragment.mDataAdapter.clear();
-                        mCurrentCounter = 0;
-                    }
-
-                    int currentSize = fragment.mDataAdapter.getItemCount();
-
-                    //模拟组装10个数据
-                    ArrayList<String> newList = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        if (newList.size() + currentSize >= TOTAL_COUNTER) {
-                            break;
-                        }
-                        newList.add("");
-                    }
-
-                    fragment.addItems(newList);
-                    fragment.mRecyclerView.refreshComplete(REQUEST_COUNT);
-                  //  fragment.notifyDataSetChanged();
-                    break;
-                case -2:
-                    fragment.notifyDataSetChanged();
-                    break;
-                case -3:
-                    fragment.mRecyclerView.refreshComplete(REQUEST_COUNT);
-                    fragment.notifyDataSetChanged();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    private View.OnClickListener mFooterClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-         //   RecyclerViewUtils.setFooterViewState(getContext(), mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
-         //  RecyclerViewUtils.getLayoutPosition(mRecyclerView,)
-            requestDataBak();
-        }
-    };
-
-    /**
-     * 模拟请求网络
-     */
-    public void requestDataBak() {
-        Log.d(TAG, "requestDataBak");
-        new Thread() {
-
-            @Override
-            public void run() {
-                super.run();
-
-                try {
-                    Thread.sleep(800);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendEmptyMessage(-1);
-                /*//模拟一下网络请求失败的情况
-                if(NetworkUtils.isNetAvailable(SwipeDeleteActivity.this)) {
-                    mHandler.sendEmptyMessage(-1);
-                } else {
-                    mHandler.sendEmptyMessage(-3);
-                }*/
-            }
-        }.start();
+        Log.d(TAG, "onActionException: " + exception);
     }
 }

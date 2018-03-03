@@ -150,7 +150,10 @@ public class OkhttpCore implements Runnable {
                             jsonObject.put(next.getKey(), next.getValue());
                         }
                     }
-                    RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
+//                    RequestBody.create()
+                    RequestBody requestBody = RequestBody.create(JSON,jsonObject.toString());
+                    Log.i("wizardev", "run: "+jsonObject.toString());
+//                    RequestBody requestBody = RequestBody.create(MediaType.parse("text/xml"),jsonObject.toString());
                     request = new Request.Builder().url(url).post(requestBody).build();
                     Log.d("Debug POST-->", url + param != null ? url + param.getRequestParam() : url);
                 } else {

@@ -32,6 +32,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -204,7 +205,8 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
                     }
                     break;
                 case INTENT_CHOOSE_PEOPLE:
-                    PeopleInfoBean.DataBean dataBean = (PeopleInfoBean.DataBean) data.getSerializableExtra("peopleInfo");
+                    ArrayList<PeopleInfoBean.DataBean> parcelableArrayListExtra = data.getParcelableArrayListExtra(("peoplesInfo"));
+                    PeopleInfoBean.DataBean dataBean = parcelableArrayListExtra.get(0);
                     String staffName = dataBean.getStaffName();
                     int staffId = dataBean.getStaffId();
                     if (staffId == 0) {
