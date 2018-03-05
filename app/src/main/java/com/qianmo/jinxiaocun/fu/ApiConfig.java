@@ -54,5 +54,9 @@ public interface ApiConfig {
     String APPLY_REIMBURSE_TYPE = OkhttpBase.BASE_URL+"/apply_fill_card/apply_reimburse_type";
     //巡店查询
     String PATROL_STORE = OkhttpBase.BASE_URL+"/patrol_store";
+    //获取门店列表
+    String STORE = "http://192.168.0.124:8080/store";
+    //添加巡店任务
+    String ADD = "http://192.168.0.124:8080/app/patrol_store/add";
 
 }

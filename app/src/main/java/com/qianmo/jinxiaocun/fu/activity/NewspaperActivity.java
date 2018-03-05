@@ -1,10 +1,8 @@
 package com.qianmo.jinxiaocun.fu.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +20,6 @@ import com.qianmo.jinxiaocun.main.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import okhttp3.Response;
 
 /**
@@ -31,7 +28,7 @@ import okhttp3.Response;
 public class NewspaperActivity extends BaseActivity {
 
 
-    @BindView(R.id.tv_start_time_choose)
+    @BindView(R.id.et_choose_store_name)
     TextView mTvStartTimeChoose;
     @BindView(R.id.et_newspaper_content)
     EditText mEtNewspaperContent;

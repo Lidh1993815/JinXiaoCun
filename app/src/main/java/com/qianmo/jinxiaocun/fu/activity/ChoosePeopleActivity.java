@@ -107,7 +107,7 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
                 //  Log.i(TAG, "onItemClick: " + isSureChoose);
                 PeopleInfoBean.DataBean dataBean = mDataAdapter.getDataList().get(position);
                 if (dataBean.isSelect()) {
-                    Log.i(TAG, "点击的id: "+dataBean.getStaffId());
+                    Log.i(TAG, "点击的id: " + dataBean.getStaffId());
                     mSelectPeopleList.remove(dataBean);//从已经选择人员列表中移除
                     dataBean.setSelect(false);
                 } else {
@@ -115,7 +115,7 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
                     dataBean.setSelect(true);
                 }
                 Log.i(TAG, "列表的长度: " + mSelectPeopleList.size());
-                mTvTotalNum.setText("确定（"+mSelectPeopleList.size()+"）");
+                mTvTotalNum.setText("确定（" + mSelectPeopleList.size() + "）");
                 mPeopleAdapter.setDataList(mSelectPeopleList);
                 mPeopleAdapter.notifyDataSetChanged();
                 mLuRecyclerViewAdapter.notifyDataSetChanged();
@@ -177,7 +177,7 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
 
     }
 
-    @OnClick({R.id.tv_search,R.id.tv_total_num})
+    @OnClick({R.id.tv_search, R.id.tv_total_num})
     public void clickAction(View view) {
 
         switch (view.getId()) {
@@ -189,17 +189,14 @@ public class ChoosePeopleActivity extends BaseActivity implements OnActionListen
                 break;
             case R.id.tv_total_num:
                 Intent intent = new Intent();
-
-                /*if (mChooseType == Contents.ONLY_ONE) {
+                if (mChooseType == Contents.ONLY_ONE) {
                     if (mSelectPeopleList.size() > 1) {
                         ToastUtils.MyToast(this, "只能选择一个审批人！");
                         return;
                     }
-                    intent.putExtra("peopleInfo", mSelectPeopleList.get(0));
-                } else {*/
-                    intent.putParcelableArrayListExtra("peoplesInfo", (ArrayList<? extends Parcelable>) mSelectPeopleList);
-//                }
-                setResult(RESULT_OK,intent);
+                }
+                intent.putParcelableArrayListExtra("peoplesInfo", (ArrayList<? extends Parcelable>) mSelectPeopleList);
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
         }

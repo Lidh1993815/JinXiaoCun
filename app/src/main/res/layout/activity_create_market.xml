@@ -476,7 +476,7 @@
                 android:text="@string/start_time" />
 
             <TextView
-                android:id="@+id/tv_start_time_choose"
+                android:id="@+id/et_choose_store_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

@@ -171,6 +171,7 @@ public class WaitTourShopFragment extends BaseFragment implements OnActionListen
                 //  mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
+                mDataAdapter.clear();
                 requestData();
             }
         });

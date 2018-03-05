@@ -248,4 +248,5 @@
     <string name="please_input_month_income">请输入月收入</string>
     <string name="man">男</string>
     <string name="woman">女</string>
+    <string name="choose_people">选择人员</string>
 </resources>

@@ -10,130 +10,89 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:background="@color/white"
-        android:minHeight="44dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
             style="@style/AddTaskTitleStyle"
             android:id="@+id/tv_start_time"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:text="选择门店：" />
 
-        <TextView
+        <EditText
             android:layout_toRightOf="@+id/tv_start_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@null"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/_9f9f9f"
-            android:id="@+id/tv_start_time_choose"
-            android:text="@string/please_choose_shop"
+            android:textColor="@color/black"
+            android:id="@+id/et_choose_store_name"
+            android:hint="@string/please_choose_shop"
             android:textSize="@dimen/_14sp" />
         <ImageView
             android:layout_marginRight="@dimen/_15dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@mipmap/youjiantou"/>
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:background="@color/white"
-        android:minHeight="44dp"
-        android:layout_marginTop="@dimen/_5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
             style="@style/AddTaskTitleStyle"
-            android:id="@+id/tv_end_time"
+            android:id="@+id/tv_tour_peiple"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:text="巡店人员：" />
 
-        <TextView
-            android:layout_toRightOf="@+id/tv_end_time"
+        <EditText
+            android:layout_toRightOf="@+id/tv_tour_peiple"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@null"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
-            android:text="黄克山"
-
+            android:id="@+id/et_choose_people"
+            android:hint="@string/choose_people"
             android:textSize="@dimen/_14sp" />
         <ImageView
             android:layout_marginRight="@dimen/_15dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@mipmap/youjiantou"/>
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="44dp"
-        android:layout_marginTop="@dimen/_1dp"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:layout_gravity="center_vertical"
-            android:text="创建人：" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColorHint="@color/_9f9f9f"
-            android:background="@null"
-            android:hint="请输入创建人"
-            android:textColor="@color/black"
-            android:id="@+id/tv_leave_days"
-            android:textSize="@dimen/_14sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="44dp"
-        android:layout_marginTop="@dimen/_1dp"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/AddTaskTitleStyle"
-            android:layout_gravity="center_vertical"
-            android:text="巡店人员电话：" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColorHint="@color/_9f9f9f"
-            android:background="@null"
-            android:hint="@string/input_phone_num"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14sp" />
-    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:background="@color/white"
-        android:minHeight="44dp"
-        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
             style="@style/AddTaskTitleStyle"
             android:id="@+id/tv_tour_time"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:text="巡店时间：" />
 
         <TextView
             android:layout_toRightOf="@+id/tv_tour_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:textColor="@color/_8c969f"
             android:text="@string/please_choose_shop_time"
@@ -143,6 +102,7 @@
             android:layout_marginRight="@dimen/_15dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:src="@mipmap/youjiantou"/>
     </RelativeLayout>
@@ -164,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp"
             android:background="@null"
+            android:id="@+id/et_tourTask_content"
             android:hint="@string/input_tour_content"
             android:inputType="textMultiLine"
             android:lineSpacingMultiplier="1.2"

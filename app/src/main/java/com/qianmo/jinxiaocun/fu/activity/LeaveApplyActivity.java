@@ -31,10 +31,8 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +43,7 @@ import butterknife.OnClick;
  */
 public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener, OnActionListener, TimePickerDialog.OnTimeSetListener {
 
-    @BindView(R.id.tv_start_time_choose)
+    @BindView(R.id.et_choose_store_name)
     TextView tvStartTimeChoose;
 
     @BindView(R.id.tv_leave_days)
@@ -162,11 +160,11 @@ public class LeaveApplyActivity extends BaseActivity implements DatePickerDialog
     }
 
 
-    @OnClick({R.id.tv_start_time_choose, R.id.tv_end_time_choose, R.id.rl_leave_typeLayout,
+    @OnClick({R.id.et_choose_store_name, R.id.tv_end_time_choose, R.id.rl_leave_typeLayout,
             R.id.img_add_people,R.id.avatar})
     public void clickAction(View view) {
         switch (view.getId()) {
-            case R.id.tv_start_time_choose:
+            case R.id.et_choose_store_name:
                 createDatePickerDialog("startDate");
                 break;
             case R.id.tv_end_time_choose:
